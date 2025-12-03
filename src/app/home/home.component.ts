@@ -13,16 +13,13 @@ import { CommonModule } from '@angular/common';
 
       <div class="container hero-container">
         <div class="hero-text animate-fade-up">
-          <div class="badge-capsule">
-            <span class="badge-dot"></span>
-            <span>AI-Powered Food & Training Ecosystem</span>
-          </div>
+          <span class="badge">✨ AI-Powered Food & Training Coach</span>
 
-          <h1>Wise Eating –<br> <span class="text-highlight">The rhythm of your health.</span></h1>
+          <h1>Wise Eating –<br> <span class="text-highlight">Nutrition, Workouts & Daily Balance.</span></h1>
 
           <p class="hero-sub">
-            Stop guessing. Connect your nutrition, inventory, and training into one seamless timeline.
-            Plan with precision, shop with intent, and understand how every meal fuels your movement.
+            Connect what you eat, how you move, and how you feel. Plan meals from real food data,
+            build structured workouts, and see nutrients, calories, and symptoms on one beautiful timeline.
           </p>
 
           <div class="app-buttons">
@@ -35,158 +32,199 @@ import { CommonModule } from '@angular/common';
             </a>
           </div>
 
-          <!-- HERO PILLS (Using SVGs) -->
+          <!-- HERO FEATURES PILLS -->
           <div class="hero-features">
             <div class="feature-pill">
-              <!-- Shield Icon -->
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="icon">🔒</span>
               <span>Privacy First</span>
             </div>
             <div class="feature-pill">
-              <!-- Calendar Icon -->
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span class="icon">📅</span>
               <span>Smart Timeline</span>
             </div>
             <div class="feature-pill">
-              <!-- Activity Icon -->
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              <span>Bio-Feedback</span>
+              <span class="icon">🧬</span>
+              <span>Deep Science</span>
             </div>
           </div>
         </div>
 
         <div class="hero-visual animate-float">
           <div class="phone-frame-clean">
-            <!-- Ensure this image is high quality -->
-            <img src="assets/nutritions_details_view.png" alt="Wise Eating App Interface" class="app-screenshot">
+            <!-- Ideally this image shows the "Day View" or "Timeline" -->
+            <img src="assets/nutritions_details_view.png" alt="Wise Eating App" class="app-screenshot">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- WORKFLOW SECTION (The Wise Cycle) -->
+    <!-- THE WISE CYCLE (Workflow) -->
     <section id="app-flow" class="steps-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">The Workflow</span>
-          <h2>Orchestrate your entire day</h2>
-          <p>Most apps handle just one piece of the puzzle. Wise Eating unifies the lifecycle of your health—from the grocery store to the gym floor—giving you a complete picture of your body's inputs and outputs.</p>
+          <span class="badge-sub">The Wise Cycle</span>
+          <h2>How Wise Eating fits into your day</h2>
+          <p>Wise Eating brings planning, shopping, eating, and training into a single, coherent workflow.</p>
         </div>
 
         <div class="steps-grid">
-          <!-- Step 1 -->
           <div class="step-card">
-            <div class="step-icon-bg">
-              <!-- Search Icon -->
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            </div>
-            <h3>1. Find &amp; Filter</h3>
-            <p>Go beyond basic calorie counting. Use advanced semantic search to find foods that match your exact macro goals, allergen restrictions, and age requirements. Build your database with precision.</p>
+            <div class="step-icon-bg">🔍</div>
+            <h3>1. Find &amp; Plan</h3>
+            <p>
+              Search the food database using clear phrases such as
+              <em>"high protein, no milk"</em>, review the nutrient profile, and add chosen foods to a daily or weekly plan.
+            </p>
           </div>
-
-          <!-- Step 2 -->
           <div class="step-card">
-            <div class="step-icon-bg">
-              <!-- Box/Inventory Icon -->
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-            </div>
-            <h3>2. Stock &amp; Manage</h3>
-            <p>Your fridge is an inventory. Track batches, expiration dates, and real-time quantities in grams. Reduce waste and know exactly what ingredients you have available for your next meal.</p>
+            <div class="step-icon-bg">📦</div>
+            <h3>2. Shop &amp; Store</h3>
+            <p>
+              Record what you keep at home: products, quantities, and expiry dates. Plan meals based on what is already
+              in your pantry, fridge, or freezer, and reduce unnecessary food waste.
+            </p>
           </div>
-
-          <!-- Step 3 -->
           <div class="step-card">
-            <div class="step-icon-bg">
-              <!-- Timeline/Layers Icon -->
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-            </div>
-            <h3>3. Schedule &amp; Sync</h3>
-            <p>Visualize your day on a vertical timeline. Place your meals and workouts in chronological order to understand how your fueling strategy impacts your training performance and recovery.</p>
+            <div class="step-icon-bg">⚡</div>
+            <h3>3. Align &amp; Track</h3>
+            <p>
+              Log meals, snacks, and workouts on one timeline. Over time you can see how your food choices relate to
+              energy, mood, symptoms, and progress toward your goals.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURE DEEP DIVE (Bento Grid) -->
+    <!-- PRODUCT HIGHLIGHTS (Bento Grid) -->
     <section id="features" class="features-section">
       <div class="container">
         <div class="section-header">
-          <h2>Data that drives decisions</h2>
-          <p>We believe in granular control. Whether it is the specific muscle group you just trained or the micronutrient density of your lunch, Wise Eating visualizes the data that matters most.</p>
+          <h2>Deep data, beautifully presented</h2>
+          <p>From the exact gram of ingredients in your fridge to the specific muscle group you trained.</p>
         </div>
 
         <div class="bento-grid">
-
           <!-- Feature 1: The Timeline -->
-          <div class="bento-item large item-timeline">
+          <div class="bento-item large item-1">
             <div class="bento-content">
-              <div class="bento-icon-sm">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              </div>
               <h3>The Integrated Timeline</h3>
-              <p>Life isn't a static list. It's a flow. See your nutrition and training interwoven in one vertical view. Understand the relationship between your 12:00 PM meal and your 5:00 PM energy levels.</p>
+              <p>
+                View meals, workouts, symptoms, and notes in one chronological timeline. This helps you connect what
+                you ate, how you moved, and how you felt across the day or week.
+              </p>
             </div>
             <div class="visual-circle green-blur"></div>
-            <!-- Large decorative SVG -->
-            <div class="visual-svg">
-              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="1" opacity="0.1"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
+            <div class="visual-icon floating-icon">⏱️</div>
           </div>
 
-          <!-- Feature 2: Smart Search -->
-          <div class="bento-item item-search">
+          <!-- Feature 2: Natural Language Search -->
+          <div class="bento-item item-2">
             <div class="bento-content">
-              <div class="bento-icon-sm">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              </div>
-              <h3>Natural Language Intelligence</h3>
-              <p>Type exactly what you need. Filter by complex criteria like <em>"High protein, no dairy, suitable for toddlers"</em> instantly.</p>
+              <h3>AI Semantic Search</h3>
+              <p>
+                Use natural-language queries such as <em>"vegetarian, rich in iron"</em> and combine them with filters
+                for allergens, age groups, or specific nutrients to quickly find suitable foods.
+              </p>
             </div>
+            <div class="visual-icon">🧠</div>
           </div>
 
-          <!-- Feature 3: Storage -->
-          <div class="bento-item item-storage">
+          <!-- Feature 3: Storage & Inventory -->
+          <div class="bento-item item-3">
             <div class="bento-content">
-              <div class="bento-icon-sm">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-              </div>
-              <h3>Pantry &amp; Storage</h3>
-              <p>Track open batches and available grams. Manage your kitchen like a professional supply chain.</p>
+              <h3>Smart Pantry & Storage</h3>
+              <p>
+                Maintain a clear overview of foods at home by tracking batches, quantities, and expiry dates. Log
+                consumption so you always know what is available when planning meals.
+              </p>
             </div>
+            <div class="visual-icon">🧊</div>
           </div>
 
-          <!-- Feature 4: Training -->
-          <div class="bento-item large item-training">
+          <!-- Feature 4: Muscle & Bio-Feedback -->
+          <div class="bento-item large item-4">
             <div class="bento-content">
-              <div class="bento-icon-sm">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.5 17h11"/><path d="M6 20v-2a6 6 0 1 1 12 0v2"/><path d="M15 11l-3-3-3 3"/><path d="M12 8v9"/></svg>
-              </div>
-              <h3>Training &amp; Bio-Feedback</h3>
-              <p>Map your workouts to specific muscle groups. Then, connect the dots: log how your body feels post-training—energized, heavy, or recovering. Turn feelings into actionable data.</p>
+              <h3>Training & Bio-Feedback</h3>
+              <p>
+                Describe your training sessions with targeted muscle groups and link them to your journal entries.
+                Over time you can review how specific meals and training patterns relate to your mood, energy,
+                recovery, or symptoms.
+              </p>
             </div>
-            <div class="visual-svg">
-              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#FDBA74" stroke-width="1" opacity="0.1"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
-            </div>
+            <div class="visual-icon">🏋️‍♂️</div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- NUTRITION SCIENCE (Text Heavy) -->
+    <!-- NUTRITION SCIENCE / EDUCATION -->
     <section id="why-nutrition" class="info-section">
       <div class="container info-grid">
         <div class="info-text">
-          <span class="info-eyebrow">The Science of Balance</span>
-          <h2>Why we track nutrients, not just calories.</h2>
-          <p>Modern nutrition science teaches us that the quality of fuel matters just as much as the quantity. A calorie is a unit of energy, but micronutrients are the keys that unlock your body's potential.</p>
-          <p>Our bodies require a complex symphony of around 40 different micronutrients—vitamins, minerals, and essential fatty acids—to regulate hormones, rebuild muscle tissue, and maintain cognitive sharpness.</p>
-          <p>Wise Eating moves beyond simple tracking. We provide a comprehensive dashboard that highlights your intake of essentials like Zinc, Magnesium, Vitamin B6, and Iron. By visualizing these metrics alongside your training, you can identify gaps in your recovery strategy and adjust your diet to support long-term longevity rather than short-term fluctuations.</p>
+          <span class="info-eyebrow">Food as everyday medicine</span>
+          <h2>Why nutrients – not just calories – matter</h2>
+          <p>Modern nutrition science and traditional medical wisdom both teach us to use food wisely as medicine. That means choosing certain foods more often and limiting others, especially in large amounts.</p>
+          <p>Diet is one of the most important foundations of health—along with exercise, good sleep, and recovery from everyday stress. It’s worth the effort to build healthy eating habits and choose foods that provide enough of both macronutrients and micronutrients.</p>
+          <p>Our bodies need around 40 different micronutrients to function properly. When we don’t get enough of them, it can contribute to disease, illness, and imbalances in the body.</p>
+          <p>Wise Eating helps you see, in a simple visual way, how your meals contribute to essentials like Zinc, Magnesium, Vitamin B6, and Iron.</p>
         </div>
         <div class="info-image">
           <div class="screenshot-frame">
-            <img src="assets/screenshots/wise-eating-nutrients.jpeg" alt="Wise Eating nutrient dashboard" />
+            <img src="assets/wise_eating_nutrients.png" alt="Wise Eating nutrient dashboard" />
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO IS THIS FOR -->
+    <section id="who-for" class="info-section alt-bg">
+      <div class="container info-grid info-grid-reverse">
+        <div class="info-text">
+          <span class="info-eyebrow">Who is this app for?</span>
+          <h2>Designed for individuals, professionals, and teams</h2>
+          <ul class="bullet-list">
+            <li>
+              <div class="bullet-icon">👤</div>
+              <div>
+                <strong>Individuals &amp; Families</strong>
+                <p>People who want to eat wisely, check for allergens, and track how food affects their mood and energy.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon">🩺</div>
+              <div>
+                <strong>Health Professionals</strong>
+                <p>Nutritionists, pediatricians, and food therapists who need accurate data to create plans for clients.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon">🏢</div>
+              <div>
+                <strong>Employers &amp; Teams</strong>
+                <p>Organizations offering tools for better health, well-being, and productivity.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="info-image">
+          <div class="screenshot-frame">
+            <img src="assets/wise-eating-search.png" alt="Wise Eating food search and lists" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA, LIMITATIONS & MINDSET -->
+    <section id="science" class="info-section">
+      <div class="container narrow">
+        <div class="section-header">
+          <h2>Science-based estimates, not medical diagnostics</h2>
+          <p>Wise Eating helps you review and improve your diet, but it does not replace professional medical advice.</p>
+        </div>
+        <div class="info-text-wide">
+          <p>You should keep in mind that the micronutrient calculations in this app are general estimates based on data from the U.S. Department of Agriculture database and similar sources.</p>
+          <p>We encourage you to use the application wisely: let it help you improve your eating habits and make more informed food choices, but remember that your well-being depends not only on diet. It is also strongly influenced by physical activity, your goals, healthy relationships, and getting enough sleep.</p>
         </div>
       </div>
     </section>
@@ -195,226 +233,224 @@ import { CommonModule } from '@angular/common';
     <section class="cta-section">
       <div class="container">
         <div class="cta-box">
-          <h2>Your health, organized.</h2>
-          <p>Experience the clarity of having your meals, workouts, and inventory in one intelligent system.</p>
+          <h2>Ready to eat – and live – wiser?</h2>
+          <p>Start building meal and training plans that actually fit your life, not someone else’s template.</p>
           <a href="https://apps.apple.com" target="_blank" class="btn btn-white">View in App Store</a>
         </div>
       </div>
     </section>
   `,
   styles: [`
-    /* --- GLOBAL / TYPOGRAPHY --- */
-    :host {
-      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      --primary-dark: #111827;
-      --primary-green: #059669;
-      --text-gray: #4B5563;
-      --bg-light: #F8FAFC;
-    }
-
-    * { box-sizing: border-box; }
-
-    section { font-family: var(--font-family); }
-
     /* --- HERO SECTION --- */
     .hero {
-      position: relative; overflow: hidden; padding: 140px 0 100px;
-      background: var(--bg-light);
+      position: relative; overflow: hidden; padding: 120px 0 80px;
+      background: #F8FAFC;
     }
     .hero-blob {
-      position: absolute; border-radius: 50%; filter: blur(100px); z-index: 0; opacity: 0.5;
+      position: absolute; border-radius: 50%; filter: blur(100px); z-index: 0; opacity: 0.4;
     }
-    .blob-1 { top: -20%; right: -10%; width: 700px; height: 700px; background: #D1FAE5; }
-    .blob-2 { bottom: 0%; left: -10%; width: 600px; height: 600px; background: #E0E7FF; }
+    .blob-1 { top: -20%; right: -10%; width: 600px; height: 600px; background: #D1FAE5; }
+    .blob-2 { bottom: 10%; left: -10%; width: 500px; height: 500px; background: #E0E7FF; }
 
     .hero-container {
-      position: relative; z-index: 1; display: flex; align-items: center; gap: 70px;
+      position: relative; z-index: 1; display: flex; align-items: center; gap: 60px;
       flex-direction: column; text-align: center;
       @media(min-width: 992px) { flex-direction: row; text-align: left; }
     }
     .hero-text { flex: 1; }
 
-    .badge-capsule {
-      display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px;
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
       background: #fff; border: 1px solid #E2E8F0;
-      color: var(--primary-dark); border-radius: 50px;
-      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em;
-      margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      color: var(--primary-dark, #0f172a); border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 24px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
-    .badge-dot { width: 8px; height: 8px; background: var(--primary-green); border-radius: 50%; }
+
+    .badge-sub {
+      display: inline-block; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #059669; margin-bottom: 12px;
+      background: #ECFDF5; padding: 4px 12px; border-radius: 20px;
+    }
 
     h1 {
-      font-size: 2.75rem; font-weight: 800; color: #0F172A; margin-bottom: 24px;
-      letter-spacing: -0.03em; line-height: 1.1;
-      @media(min-width: 768px) { font-size: 4rem; }
+      font-size: 2.5rem; font-weight: 800; color: #111; margin-bottom: 20px;
+      letter-spacing: -0.02em; line-height: 1.1;
+      @media(min-width: 768px) { font-size: 3.5rem; }
     }
 
-    .text-highlight {
-      background: linear-gradient(135deg, #059669 0%, #10B981 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
+    .text-highlight { color: #059669; }
 
     .hero-sub {
-      font-size: 1.2rem; margin-bottom: 36px; max-width: 560px; color: var(--text-gray);
-      margin-left: auto; margin-right: auto; line-height: 1.6; font-weight: 400;
+      font-size: 1.125rem; margin-bottom: 30px; max-width: 500px; color: #4B5563;
+      margin-left: auto; margin-right: auto; line-height: 1.6;
       @media(min-width: 992px){ margin-left: 0; }
     }
 
-    .app-buttons { margin-bottom: 32px; }
+    .app-buttons { margin-bottom: 24px; }
     .btn-primary {
-      background: #000; color: #fff;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+      background: #111; color: #fff;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      &:hover { background: #000; transform: translateY(-2px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
     }
     .app-store-btn {
-      display: inline-flex; align-items: center; gap: 12px;
-      padding: 14px 28px; border-radius: 16px; transition: all 0.3s ease; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 24px; border-radius: 14px; transition: all 0.3s ease; text-decoration: none;
       div { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
-      small { font-size: 0.75rem; opacity: 0.8; font-weight: 500; }
-      span { font-size: 1.25rem; font-weight: 600; letter-spacing: 0.02em; }
+      small { font-size: 0.7rem; opacity: 0.8; }
+      span { font-size: 1.1rem; font-weight: 600; }
     }
-    .app-store-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.25); }
 
-    /* --- HERO ICONS --- */
+    /* --- HERO FEATURES --- */
     .hero-features {
-      display: flex; align-items: center; justify-content: center; gap: 16px;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
       flex-wrap: wrap;
       @media(min-width: 992px) { justify-content: flex-start; }
     }
+
     .feature-pill {
       display: flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05);
-      padding: 8px 14px; border-radius: 12px; backdrop-filter: blur(8px);
-      font-size: 0.9rem; font-weight: 500; color: #334155;
+      background: #fff; border: 1px solid #E2E8F0;
+      padding: 8px 16px; border-radius: 30px;
+      font-size: 0.85rem; font-weight: 600; color: #4B5563;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
-    .feature-pill .icon { width: 18px; height: 18px; color: var(--primary-green); }
+
+    .feature-pill .icon { font-size: 1rem; }
 
     /* --- PHONE VISUAL --- */
     .hero-visual { flex: 1; display: flex; justify-content: center; width: 100%; }
     .phone-frame-clean {
-      position: relative; width: 100%; max-width: 340px; height: auto; z-index: 2;
-      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.12));
-      transition: transform 0.5s ease;
+      position: relative; width: 100%; max-width: 320px; height: auto; z-index: 2;
+      filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15));
     }
-    .app-screenshot { width: 100%; height: auto; display: block; border-radius: 48px; }
+    .app-screenshot { width: 100%; height: auto; display: block; border-radius: 40px; }
 
-    /* --- STEPS / WORKFLOW --- */
-    .steps-section { padding: 120px 0; background: #fff; }
-    .section-header { text-align: center; margin-bottom: 80px; max-width: 700px; margin: 0 auto 80px; }
-    .section-label {
-      font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary-green);
-      display: block; margin-bottom: 16px;
-    }
-    .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; color: #0F172A; letter-spacing: -0.02em; }
-    .section-header p { font-size: 1.15rem; color: #64748B; line-height: 1.7; }
+    /* --- SECTIONS --- */
+    .steps-section { padding: 100px 0; background: #fff; }
+    .section-header { text-align: center; margin-bottom: 60px; max-width: 600px; margin: 0 auto 60px; }
+    .section-header h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; color: #111; line-height: 1.2; }
+    .section-header p { font-size: 1.1rem; color: #64748B; }
 
-    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
     .step-card {
-      padding: 40px 32px; border-radius: 32px; text-align: left;
-      background: #FAFAFA; border: 1px solid transparent; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 32px; border-radius: 24px; text-align: center;
+      background: #fff; border: 1px solid #F1F5F9; transition: 0.3s;
     }
-    .step-card:hover {
-      background: #fff; transform: translateY(-8px);
-      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08); border-color: #E2E8F0;
-    }
-    .step-icon-bg {
-      width: 64px; height: 64px; border-radius: 20px; background: #fff;
-      display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
-      color: #0F172A; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
-    }
-    .step-card h3 { margin-bottom: 16px; font-size: 1.4rem; color: #0F172A; font-weight: 700; }
-    .step-card p { color: #64748B; line-height: 1.7; font-size: 1rem; }
+    .step-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); border-color: #E2E8F0; }
+    .step-icon-bg { font-size: 3rem; margin-bottom: 20px; display: inline-block; }
+    .step-card h3 { margin-bottom: 12px; font-size: 1.25rem; color: #111; font-weight: 700; }
+    .step-card p { color: #64748B; line-height: 1.6; }
+    .step-card em { color: #059669; font-style: normal; font-weight: 600; background: #ECFDF5; padding: 0 4px; border-radius: 4px; }
 
     /* --- BENTO GRID --- */
     .features-section { padding: 100px 0; background: #F8FAFC; }
     .bento-grid {
       display: grid; grid-template-columns: 1fr; gap: 24px;
-      @media(min-width: 768px) { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: minmax(300px, auto) minmax(300px, auto); }
+      @media(min-width: 768px) { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 280px 280px; }
     }
     .bento-item {
-      border-radius: 32px; padding: 40px; overflow: hidden; position: relative;
-      background: #fff; border: 1px solid rgba(0,0,0,0.03); box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-      transition: 0.3s; display: flex; flex-direction: column; justify-content: flex-start;
+      border-radius: 30px; padding: 32px; overflow: hidden; position: relative;
+      background: #fff; border: 1px solid #F1F5F9;
+      transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between;
+      &:hover { box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); transform: translateY(-4px); }
     }
-    .bento-item:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08); }
-
     .bento-item.large { @media(min-width: 768px) { grid-column: span 2; } }
 
-    .bento-icon-sm {
-      width: 40px; height: 40px; background: #F1F5F9; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
-      color: #334155;
+    /* Specific Bento Styles */
+    .item-1 { background: #ECFDF5; border: none; }
+    .item-2 { background: #FFF; }
+    .item-3 { background: #F0F9FF; border-color: #E0F2FE; }
+    .item-4 { background: #1F2937; color: #fff; border: none; }
+
+    .item-4 h3, .item-4 p { color: #fff; }
+    .item-4 p { opacity: 0.8; }
+    .item-4 em { color: #FDBA74; font-style: normal; } /* Orange accent for muscles */
+    .item-2 em { color: #2563EB; font-style: normal; font-weight: 600; }
+
+    .bento-content h3 { font-size: 1.5rem; margin-bottom: 12px; font-weight: 700; line-height: 1.2; }
+    .bento-content p { font-size: 0.95rem; line-height: 1.6; color: #4B5563; }
+    .item-1 .bento-content p { color: #065F46; }
+    .item-3 .bento-content p { color: #0C4A6E; }
+
+    .visual-circle { position: absolute; border-radius: 50%; filter: blur(60px); z-index: 1; pointer-events: none; }
+    .green-blur { bottom: -20px; right: -20px; width: 150px; height: 150px; background: rgba(38, 208, 124, 0.2); }
+    .visual-icon { align-self: flex-end; font-size: 3rem; opacity: 1; margin-top: 16px; }
+    .floating-icon { opacity: 0.6; }
+
+    /* --- INFO / CONTENT SECTIONS --- */
+    .info-section { padding: 90px 0; background: #fff; }
+    .info-section.alt-bg { background: #F9FAFB; }
+
+    .info-grid {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 50px;
+      align-items: center;
     }
 
-    /* Individual Bento Styles */
-    .item-timeline { background: #ECFDF5; border: 1px solid #D1FAE5; }
-    .item-timeline .bento-content h3 { color: #064E3B; }
-    .item-timeline .bento-content p { color: #065F46; opacity: 0.9; }
-    .item-timeline .bento-icon-sm { background: rgba(255,255,255,0.6); color: #059669; }
+    .info-grid.info-grid-reverse { flex-direction: column; }
 
-    .item-search { background: #fff; }
-
-    .item-storage { background: #F0F9FF; border: 1px solid #E0F2FE; }
-    .item-storage .bento-content h3 { color: #0C4A6E; }
-    .item-storage .bento-content p { color: #0369A1; opacity: 0.9; }
-    .item-storage .bento-icon-sm { background: rgba(255,255,255,0.6); color: #0284C7; }
-
-    .item-training { background: #111827; color: #fff; border: none; }
-    .item-training .bento-content h3 { color: #fff; }
-    .item-training .bento-content p { color: #9CA3AF; }
-    .item-training .bento-icon-sm { background: #1F2937; color: #FDBA74; }
-
-    .bento-content h3 { font-size: 1.6rem; margin-bottom: 14px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
-    .bento-content p { font-size: 1.05rem; line-height: 1.6; }
-
-    .visual-circle { position: absolute; border-radius: 50%; filter: blur(70px); z-index: 1; pointer-events: none; }
-    .green-blur { bottom: -30px; right: -30px; width: 180px; height: 180px; background: rgba(38, 208, 124, 0.3); }
-
-    .visual-svg {
-      position: absolute; bottom: -10px; right: -10px; z-index: 1;
-      transform: rotate(-10deg) scale(1.2); pointer-events: none;
+    @media (min-width: 992px) {
+      .info-grid { flex-direction: row; align-items: flex-start; }
+      .info-grid.info-grid-reverse { flex-direction: row-reverse; }
     }
 
-    /* --- INFO SECTION --- */
-    .info-section { padding: 120px 0; background: #fff; }
-    .info-grid { display: flex; flex-direction: column-reverse; gap: 60px; align-items: center; }
-    @media (min-width: 992px) { .info-grid { flex-direction: row; align-items: center; } }
-
-    .info-text { flex: 1; max-width: 600px; }
-    .info-image { flex: 1; display: flex; justify-content: center; position: relative; }
+    .info-text { flex: 1; max-width: 620px; }
+    .info-image { flex: 1; display: flex; justify-content: center; }
 
     .info-eyebrow {
-      font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--primary-green); margin-bottom: 16px; display: block;
+      display: inline-block; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #059669; margin-bottom: 12px;
     }
-    .info-text h2 { font-size: 2.25rem; font-weight: 800; margin-bottom: 24px; line-height: 1.2; color: #0F172A; }
-    .info-text p { margin-bottom: 20px; color: #475569; line-height: 1.8; font-size: 1.1rem; }
+
+    .info-text h2 { font-size: 2rem; font-weight: 800; margin-bottom: 24px; line-height: 1.2; }
+    .info-text p { margin-bottom: 16px; color: #4B5563; line-height: 1.7; }
+
+    .bullet-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+
+    .bullet-list li { display: flex; gap: 16px; align-items: flex-start; }
+
+    .bullet-icon {
+      width: 42px; height: 42px; border-radius: 12px; background: #ECFDF5;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0; color: #059669;
+    }
+
+    .bullet-list strong { display: block; margin-bottom: 6px; color: #111827; font-size: 1.1rem; }
+    .bullet-list p { margin: 0; color: #64748B; font-size: 0.95rem; }
 
     .screenshot-frame {
-      border-radius: 40px; overflow: hidden; border: 6px solid #F8FAFC;
-      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.15);
-      max-width: 320px; width: 100%;
+      max-width: 300px; width: 100%;
     }
+
     .screenshot-frame img { display: block; width: 100%; height: auto; }
 
+    .container.narrow { max-width: 800px; text-align: center; }
+    .info-text-wide { max-width: 700px; margin: 0 auto; color: #4B5563; font-size: 0.98rem; line-height: 1.7; }
+    .info-text-wide p { margin-bottom: 16px; }
+
     /* --- CTA --- */
-    .cta-section { padding: 80px 0 120px; background: #fff; }
+    .cta-section { padding: 80px 0 120px; }
     .cta-box {
-      border-radius: 48px; padding: 80px 24px; text-align: center; color: white;
-      background: linear-gradient(135deg, #064E3B 0%, #047857 100%);
-      box-shadow: 0 30px 60px -20px rgba(6, 78, 59, 0.5);
+      border-radius: 40px; padding: 70px 24px; text-align: center; color: white;
+      background: linear-gradient(135deg, #10B981 0%, #047857 100%);
+      box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.4);
       position: relative; overflow: hidden;
     }
     .cta-box h2 {
-      color: white; margin-bottom: 20px; font-size: 3rem; position: relative; z-index: 2;
-      font-weight: 800; letter-spacing: -0.02em;
+      color: white; margin-bottom: 16px; font-size: 2.5rem; position: relative; z-index: 2;
+      background: none; -webkit-text-fill-color: white; font-weight: 800;
     }
-    .cta-box p { color: rgba(255,255,255,0.85); margin-bottom: 40px; position: relative; z-index: 2; font-size: 1.25rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .cta-box p { color: rgba(255,255,255,0.9); margin-bottom: 32px; position: relative; z-index: 2; font-size: 1.1rem; }
     .btn-white {
-      display: inline-block; padding: 18px 36px; border-radius: 16px; font-weight: 600; text-decoration: none;
-      background: #fff; color: #064E3B; position: relative; z-index: 2; font-size: 1.1rem;
+      display: inline-block; padding: 14px 28px; border-radius: 12px; font-weight: 600; text-decoration: none;
+      background: #fff; color: #047857; position: relative; z-index: 2; border: 2px solid transparent;
       transition: all 0.3s;
+      &:hover { background: #F8FAFC; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
     }
-    .btn-white:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
   `]
 })
 export class HomeComponent {}
