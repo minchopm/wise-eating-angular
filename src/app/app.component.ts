@@ -33,7 +33,7 @@ import { filter } from 'rxjs';
         </div>
 
         <!-- CTA Button -->
-        <a class="btn-download" href="https://apps.apple.com" target="_blank">
+        <a class="btn-download" href="https://apps.apple.com/us/app/wiseeating/id6751406823" target="_blank">
           <span>Get App</span>
         </a>
       </div>
