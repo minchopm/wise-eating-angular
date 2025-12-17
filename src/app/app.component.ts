@@ -166,10 +166,10 @@ export class AppComponent {
   showShell = true;
 
   // Routes without header/footer
-  private readonly shelllessRoutes = ['/app-store-hero'];
+  private readonly shelllessRoutes = ['/app-store-hero', '/app-store-workouts'];
 
   // Routes that should force black status bar + body background
-  private readonly screenshotRoutes = ['/app-store-hero'];
+  private readonly screenshotRoutes = ['/app-store-hero', '/app-store-workouts'];
 
   constructor(private router: Router, private meta: Meta) {
     // Initial state (direct load)
