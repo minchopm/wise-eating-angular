@@ -28,6 +28,7 @@ import { filter } from 'rxjs';
         <!-- Desktop Navigation -->
         <div class="nav-links">
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" fragment="features">Features</a>
+          <a routerLink="/baby-feeding" routerLinkActive="active">Baby Feeding</a>
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" fragment="how-it-works">How it Works</a>
           <a routerLink="/privacy" routerLinkActive="active">Privacy</a>
         </div>
@@ -50,7 +51,7 @@ import { filter } from 'rxjs';
         <div class="footer-top">
           <div class="footer-brand">
             <h3 class="brand-gradient">Wise Eating</h3>
-            <p>Your AI-powered nutrition companion.<br>Eat smarter, live better.</p>
+            <p>Your AI-powered nutrition companion.<br>Еat wisely, Live better.</p>
           </div>
 
           <div class="footer-links-group">

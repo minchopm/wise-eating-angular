@@ -1,0 +1,208 @@
+<!-- baby-feeding.component.html -->
+<section class="article">
+  <div class="container">
+    <header class="hero">
+      <div class="kicker">
+        <span class="pill">👶 Baby Feeding</span>
+      </div>
+
+      <h1>Why calcium-rich meals matter for your baby every day</h1>
+
+      <p class="lede">
+        Calcium supports building and maintaining strong bones and teeth. It also helps with blood vessel constriction and relaxation,
+        muscle contraction, normal nervous system function, and hormone secretion—and it plays a role in connective tissue formation.
+      </p>
+
+      <div class="hero-media" aria-label="Mother feeding baby">
+        <img
+          class="hero-img"
+          src="assets/baby-feeding.png"
+          alt="A smiling mother feeding her baby in a high chair"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="disclaimer">
+        <strong>Quick note:</strong>
+        This content is for general education. Always check with your pediatrician when you’re introducing new foods.
+      </div>
+    </header>
+
+    <article class="card">
+      <h2>What is the Recommended Dietary Allowance (RDA) for calcium for your baby?</h2>
+
+      <p>
+        Based on the references listed below, the Recommended Dietary Allowance (RDA) for calcium is
+        <strong>210 mg</strong> for babies from <strong>0 to 0.5 months</strong>, <strong>270 mg</strong> for babies from
+        <strong>0.5 to 1 year old</strong>, and <strong>500 mg</strong> for toddlers between <strong>1 to 3 years old</strong>.
+      </p>
+
+      <p>
+        It’s important to keep in mind that for good calcium absorption, you should also feed your baby foods rich in vitamins D and K.
+        Magnesium matters, too—and it should be about half of the quantity you feed him/her of calcium.
+      </p>
+
+      <div class="table-wrap" role="region" aria-label="Calcium RDA table" tabindex="0">
+        <table class="nice-table">
+          <thead>
+          <tr>
+            <th>Age</th>
+            <th>Calcium (RDA)</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of calciumGuidance">
+            <td>{{ row.age }}</td>
+            <td><strong>{{ row.amount }}</strong></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Which foods are rich in calcium?</h2>
+
+      <p>
+        Some of the richest foods in calcium are dairy products like yoghurt and milk, low-fat Ricotta cheese, Swiss cheese,
+        Cheddar cheese, white cheese, yellow cheese, and mozzarella.
+      </p>
+
+      <p>
+        Other good sources of calcium include white beans, chickpeas, and salmon. Vegetables like steamed spinach are also rich in calcium,
+        along with steamed broccoli, egg yolk, potatoes, and sweet potatoes.
+      </p>
+
+      <div class="callout">
+        <p>
+          Here’s our calcium-rich recipe, suitable for babies 6+ months, once they’ve started solids.
+          Remember to always check with your pediatrician if you’re introducing new foods.
+        </p>
+      </div>
+
+      <!-- Recipes / Accordions -->
+      <section class="recipes">
+        <h2>Recipes</h2>
+
+        <div class="recipe" *ngFor="let r of recipes">
+          <button
+            type="button"
+            class="recipe-head"
+            (click)="toggleRecipe(r.id)"
+            [attr.aria-expanded]="isOpen(r.id)"
+          >
+            <div class="recipe-title">
+              <span class="recipe-name">{{ r.title }}</span>
+              <span class="recipe-age">{{ r.ageLabel }}</span>
+            </div>
+
+            <span class="chev" aria-hidden="true">
+              {{ isOpen(r.id) ? '▴' : '▾' }}
+            </span>
+          </button>
+
+          <div class="recipe-body" *ngIf="isOpen(r.id)">
+            <div class="recipe-quick" *ngIf="r.quickLines?.length">
+              <h4>Quick notes</h4>
+              <ul class="pretty-list">
+                <li *ngFor="let line of r.quickLines">{{ line }}</li>
+              </ul>
+            </div>
+
+            <div class="recipe-sections">
+              <div class="recipe-section-card">
+                <h4>Ingredients</h4>
+                <ul class="pretty-list">
+                  <li *ngFor="let i of r.ingredients">{{ i }}</li>
+                </ul>
+              </div>
+
+              <div class="recipe-section-card">
+                <h4>Step-by-Step Preparation</h4>
+
+                <div class="steps">
+                  <div class="step" *ngFor="let s of r.steps">
+                    <div class="step-title" *ngIf="s.title">{{ s.title }}</div>
+
+                    <ul class="pretty-list" *ngIf="s.bullets?.length">
+                      <li *ngFor="let b of s.bullets">{{ b }}</li>
+                    </ul>
+
+                    <div class="sublists" *ngIf="s.sublists?.length">
+                      <ng-container *ngFor="let sub of s.sublists">
+                        <div class="sub-label" *ngIf="sub.label">{{ sub.label }}</div>
+
+                        <ol class="pretty-olist" *ngIf="sub.ordered; else subUl">
+                          <li *ngFor="let item of sub.items">{{ item }}</li>
+                        </ol>
+
+                        <ng-template #subUl>
+                          <ul class="pretty-list">
+                            <li *ngFor="let item of sub.items">{{ item }}</li>
+                          </ul>
+                        </ng-template>
+                      </ng-container>
+                    </div>
+
+                    <div class="inline-note" *ngIf="s.note">{{ s.note }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="recipe-section-card">
+                <h4>Storage</h4>
+                <ul class="pretty-list">
+                  <li *ngFor="let st of r.storage">{{ st }}</li>
+                </ul>
+              </div>
+
+              <div class="recipe-section-card" *ngIf="r.extraNotes?.length">
+                <h4>Notes</h4>
+                <ul class="pretty-list">
+                  <li *ngFor="let n of r.extraNotes">{{ n }}</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="yoghurt">
+              <h4>Yoghurt</h4>
+              <p>It is recommended not to combine it with foods rich in fibre like oat nuts.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- References -->
+      <div class="bottom-card">
+        <h3>References</h3>
+
+        <div class="refs-group">
+          <ul class="refs">
+            <li *ngFor="let r of references" [hidden]="r.group !== 'primary'">
+              <ng-container *ngIf="r.href; else primaryLabel">
+                <a class="ref-link" [href]="r.href" target="_blank" rel="noopener noreferrer">{{ r.label }}</a>
+              </ng-container>
+              <ng-template #primaryLabel>
+                <span class="ref-text">{{ r.label }}</span>
+              </ng-template>
+              <div class="ref-note" *ngIf="r.note">{{ r.note }}</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="refs-group">
+          <div class="refs-title">Additional sources</div>
+          <ul class="refs">
+            <li *ngFor="let r of references" [hidden]="r.group !== 'additional'">
+              <ng-container *ngIf="r.href; else addLabel">
+                <a class="ref-link" [href]="r.href" target="_blank" rel="noopener noreferrer">{{ r.label }}</a>
+              </ng-container>
+              <ng-template #addLabel>
+                <span class="ref-text">{{ r.label }}</span>
+              </ng-template>
+              <div class="ref-note" *ngIf="r.note">{{ r.note }}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

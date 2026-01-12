@@ -1,23 +1,37 @@
 <!-- HERO SECTION -->
-<section class="hero">
-  <div class="hero-blob blob-1"></div>
-  <div class="hero-blob blob-2"></div>
+<section class="hero" aria-label="Wise Eating hero">
+  <div class="hero-blob blob-1" aria-hidden="true"></div>
+  <div class="hero-blob blob-2" aria-hidden="true"></div>
 
   <div class="container hero-container">
-    <div class="hero-text">
-      <span class="badge">✨ Wise Eating as Medicine</span>
+    <div class="hero-text animate-fade-up">
+      <span class="badge">✨ AI-Powered Food &amp; Training Coach</span>
 
-      <h1>Nourish deep.<br> <span class="text-highlight">Master your biology.</span></h1>
+      <h1>
+        Wise Eating –<br />
+        <span class="text-highlight">Nutrition, Workouts &amp; Daily Balance.</span>
+      </h1>
 
       <p class="hero-sub">
-        More than a calorie counter. A bio-individual ecosystem connecting your meals,
-        symptoms, and budget. Ensure you get the 40 essential micronutrients your body
-        needs to thrive, not just survive.
+        Connect what you eat, how you move, and how you feel. Plan meals from real food data,
+        build structured workouts, and see nutrients, calories, and notes on one clean, beautiful timeline.
       </p>
 
       <div class="app-buttons">
-        <a href="https://apps.apple.com/us/app/wiseeating/id6751406823" target="_blank" class="app-store-btn btn-primary">
-          <svg viewBox="0 0 384 512" width="22"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 43.3-25.6 63.7 26.5 1.3 52.7-4.7 69.5-26.1z"/></svg>
+        <a
+          href="https://apps.apple.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="app-store-btn btn-primary"
+          aria-label="View Wise Eating on the App Store"
+        >
+          <svg viewBox="0 0 384 512" width="20" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 43.3-25.6 63.7 26.5 1.3 52.7-4.7 69.5-26.1z"
+            />
+          </svg>
+
           <div>
             <small>Download on the</small>
             <span>App Store</span>
@@ -25,180 +39,253 @@
         </a>
       </div>
 
-      <div class="hero-features">
-        <div class="feature-pill">🧬 Bio-Individual</div>
-        <div class="feature-pill">🔬 40+ Nutrients</div>
-        <div class="feature-pill">💰 Smart Budgeting</div>
+      <!-- HERO FEATURES PILLS -->
+      <div class="hero-features" aria-label="Key benefits">
+        <div class="feature-pill">
+          <span class="icon" aria-hidden="true">🔒</span>
+          <span>Privacy-first mindset</span>
+        </div>
+        <div class="feature-pill">
+          <span class="icon" aria-hidden="true">📅</span>
+          <span>Smart Timeline</span>
+        </div>
+        <div class="feature-pill">
+          <span class="icon" aria-hidden="true">🧬</span>
+          <span>Evidence-informed</span>
+        </div>
       </div>
+
+      <!-- QUICK COMPLIANCE NOTE (EU/US-friendly) -->
+      <p class="micro-disclaimer">
+        For education and wellness tracking only. Not a medical device. Not intended to diagnose, treat, cure, or
+        prevent any disease. If you have symptoms or health concerns, talk with a qualified clinician.
+      </p>
     </div>
 
-    <div class="hero-visual">
-      <div class="phone-frame-clean">
-        <img src="assets/nutritions_details_view.png" alt="Wise Eating App Interface" class="app-screenshot">
+    <div class="hero-visual animate-float">
+      <div class="phone-frame-clean" aria-label="App screenshot">
+        <img
+          src="assets/nutritions_details_view.png"
+          alt="Wise Eating app screenshot showing nutrition details"
+          class="app-screenshot"
+          loading="eager"
+        />
       </div>
     </div>
   </div>
 </section>
 
-<!-- THE PROBLEM / SCIENCE -->
-<section class="science-section">
-  <div class="container science-grid">
-    <div class="science-content">
-      <span class="badge-sub">The Hidden Hunger</span>
-      <h3>Calories are cheap. <br>Nutrients are priceless.</h3>
-      <p>
-        Research shows that while we eat energy-dense foods, we are starving on a cellular level.
-        Your body relies on a symphony of around <strong>40 different micronutrients</strong> to function.
-      </p>
-      <p style="margin-top: 16px;">
-        When you miss these targets, you open the door to premature aging, hormonal imbalance, and fatigue.
-        Wise Eating helps you identify these invisible gaps before they become visible problems.
-      </p>
+<!-- THE WISE CYCLE (Workflow) -->
+<section id="app-flow" class="steps-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge-sub">The Wise Cycle</span>
+      <h2>How Wise Eating fits into your day</h2>
+      <p>Wise Eating brings planning, shopping, eating, and training into a single, coherent workflow.</p>
     </div>
-    <div class="science-stats">
-      <div class="stat-box">
-        <span class="stat-number">50%+</span>
-        <span class="stat-label">of the population is deficient in key minerals</span>
-        <div class="micronutrient-list">
-          <span>Zinc</span> <span>Magnesium</span> <span>Calcium</span> <span>Vitamin A</span> <span>Vitamin B6</span>
-        </div>
-        <p style="font-size: 0.9rem; margin-top: 16px; opacity: 0.8;">
-          *Based on estimates for the U.S. population.
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-icon-bg" aria-hidden="true">🔍</div>
+        <h3>1. Find &amp; Plan</h3>
+        <p>
+          Search the food database using clear phrases such as
+          <em>"high protein, no milk"</em>, review the nutrient profile, and add chosen foods to a daily or weekly plan.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon-bg" aria-hidden="true">📦</div>
+        <h3>2. Shop &amp; Store</h3>
+        <p>
+          Record what you keep at home: products, quantities, and expiry dates. Plan meals based on what is already
+          in your pantry, fridge, or freezer, and reduce unnecessary food waste.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon-bg" aria-hidden="true">⚡</div>
+        <h3>3. Align &amp; Track</h3>
+        <p>
+          Log meals, snacks, and workouts on one timeline. Over time you can see how your choices relate to
+          energy, mood, notes, and progress toward your goals.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TOOLKIT SECTION (The How) -->
-<section class="toolkit-section">
+<!-- PRODUCT HIGHLIGHTS (Bento Grid) -->
+<section id="features" class="features-section">
   <div class="container">
     <div class="section-header">
-      <span class="badge-sub">Your Digital Toolkit</span>
-      <h2>A Complete Health OS</h2>
-      <p>From the grocery aisle to your feelings journal, connect every dot of your well-being.</p>
-    </div>
-    <div class="toolkit-grid">
-      <!-- 1. Planning -->
-      <div class="tool-item">
-        <div class="tool-icon">📅</div>
-        <h4>Macro & Micro Planning</h4>
-        <p>Create weekly meal plans with calculated nutrient ratios specifically for your age and gender. Build habits that stick.</p>
-      </div>
-      <!-- 2. Budget -->
-      <div class="tool-item">
-        <div class="tool-icon">💸</div>
-        <h4>Budget & Expenses</h4>
-        <p>Financial health is part of the equation. Estimate monthly food costs and generate smart shopping lists based on your plan.</p>
-      </div>
-      <!-- 3. Quality Check -->
-      <div class="tool-item">
-        <div class="tool-icon">🔎</div>
-        <h4>Quality Audit</h4>
-        <p>Instantly spot the gaps. Does your lunch have enough Iron? Is your dinner too acidic? Check alkalinity and nutrient density in seconds.</p>
-      </div>
-      <!-- 4. Symptoms -->
-      <div class="tool-item">
-        <div class="tool-icon">🧠</div>
-        <h4>Mood & Symptoms</h4>
-        <p>Log your emotional state and physical symptoms. Discover hidden patterns between what you eat and how you feel.</p>
-      </div>
-      <!-- 5. Pantry -->
-      <div class="tool-item">
-        <div class="tool-icon">📦</div>
-        <h4>Smart Pantry</h4>
-        <p>Manage what you own. Reduce waste, cook from abundance, and organize your favorite recipes in one digital kitchen.</p>
-      </div>
-      <!-- 6. AI -->
-      <div class="tool-item">
-        <div class="tool-icon">🤖</div>
-        <h4>AI Dietician</h4>
-        <p>Unsure what to eat? Let our AI suggest dietary patterns that align with your specific health goals and preferences.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHO IS THIS FOR? -->
-<section class="audience-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Who is Wise Eating for?</h2>
-    </div>
-    <div class="audience-cards">
-      <div class="audience-card">
-        <span class="card-icon">👤</span>
-        <h4>The Conscious Individual</h4>
-        <p>For those who want to move beyond guessing. Ensure you get essential nutrients, prevent illness, and longevity-proof your body.</p>
-      </div>
-      <div class="audience-card highlight">
-        <span class="card-icon">🩺</span>
-        <h4>Health Professionals</h4>
-        <p>For Nutritionists, Pediatricians, and Endocrinologists. Monitor client habits, identify deficiencies, and use real data to guide therapy.</p>
-      </div>
-      <div class="audience-card">
-        <span class="card-icon">🏢</span>
-        <h4>Forward-Thinking Teams</h4>
-        <p>For employers who value performance. Offer a tool that supports employee well-being, reduces burnout, and boosts productivity.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES BENTO (Deep Dive) -->
-<section class="features-section">
-  <div class="container">
-    <div class="section-header">
-      <span class="badge-sub">Deep Integration</span>
-      <h2>Align your lifestyle</h2>
+      <h2>Deep data, beautifully presented</h2>
+      <p>From the exact gram of ingredients in your fridge to the specific muscle group you trained.</p>
     </div>
 
     <div class="bento-grid">
       <!-- Feature 1: The Timeline -->
-      <div class="bento-item large green">
+      <div class="bento-item large item-1">
         <div class="bento-content">
-          <h3>The Holistic Flow</h3>
+          <h3>The Integrated Timeline</h3>
           <p>
-            Health isn't compartmentalized. Track the rhythm of your day—from breakfast to gym to sleep.
-            Share this meaningful data with your doctor or coach to make informed decisions about supplements or diet changes.
+            View meals, workouts, symptoms, and notes in one chronological timeline. This helps you connect what
+            you ate, how you moved, and how you felt across the day or week.
           </p>
         </div>
-        <div class="visual-icon">📊</div>
+        <div class="visual-circle green-blur" aria-hidden="true"></div>
+        <div class="visual-icon floating-icon" aria-hidden="true">⏱️</div>
       </div>
 
-      <!-- Feature 2: Smart Search -->
-      <div class="bento-item">
+      <!-- Feature 2: Natural Language Search -->
+      <div class="bento-item item-2">
         <div class="bento-content">
-          <h3>Precision Search</h3>
+          <h3>AI Semantic Search</h3>
           <p>
-            Find foods that match your chemistry. Filter by <em>"High Magnesium"</em> or <em>"Alkaline"</em> to support your body's pH balance.
+            Use natural-language queries such as <em>"vegetarian, rich in iron"</em> and combine them with filters
+            for allergens, age groups, or specific nutrients to quickly find suitable foods.
           </p>
         </div>
-        <div class="visual-icon">🔍</div>
+        <div class="visual-icon" aria-hidden="true">🧠</div>
       </div>
 
       <!-- Feature 3: Storage & Inventory -->
-      <div class="bento-item">
+      <div class="bento-item item-3">
         <div class="bento-content">
-          <h3>Recipe Library</h3>
+          <h3>Smart Pantry &amp; Storage</h3>
           <p>
-            Save your culinary wins. Add photos, notes, and track the exact nutritional breakdown of your homemade favorites.
+            Maintain a clear overview of foods at home by tracking batches, quantities, and expiry dates. Log
+            consumption so you always know what is available when planning meals.
           </p>
         </div>
-        <div class="visual-icon">🍲</div>
+        <div class="visual-icon" aria-hidden="true">🧊</div>
       </div>
 
-      <!-- Feature 4: Training -->
-      <div class="bento-item large dark">
+      <!-- Feature 4: Muscle & Bio-Feedback -->
+      <div class="bento-item large item-4">
         <div class="bento-content">
-          <h3>Data-Driven Wellness</h3>
+          <h3>Training &amp; Bio-Feedback</h3>
           <p>
-            Estimates are based on the USDA database, giving you a scientific baseline.
-            While individual biology varies, Wise Eating gives you the most accurate map available without a lab coat.
+            Describe your training sessions with targeted muscle groups and link them to your journal entries.
+            Over time you can review how specific meals and training patterns relate to your mood, energy,
+            recovery, or symptoms.
           </p>
         </div>
-        <div class="visual-icon">📈</div>
+        <div class="visual-icon" aria-hidden="true">🏋️‍♂️</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUTRITION SCIENCE / EDUCATION -->
+<section id="why-nutrition" class="info-section">
+  <div class="container info-grid">
+    <div class="info-text">
+      <span class="info-eyebrow">Food for everyday wellbeing</span>
+      <h2>Why nutrients – not just calories – matter</h2>
+
+      <p>
+        Modern nutrition research and practical experience both point to the same thing:
+        consistent food choices matter. That often means choosing some foods more often and limiting others,
+        especially in large amounts.
+      </p>
+      <p>
+        Diet is one of the foundations of wellbeing—along with exercise, sleep, and recovery from everyday stress.
+        It’s worth the effort to build habits you can actually stick with.
+      </p>
+      <p>
+        Your body relies on dozens of micronutrients to function well. When your intake is consistently low,
+        it can contribute to feeling “off” and make it harder to perform and recover.
+      </p>
+      <p>
+        Wise Eating helps you visualize how your meals contribute to essentials like Zinc, Magnesium, Vitamin B6,
+        and Iron—based on food composition databases and standard reference values.
+      </p>
+
+      <p class="micro-disclaimer inline">
+        Information shown is educational and approximate. It should not be used as medical advice.
+      </p>
+    </div>
+
+    <div class="info-image">
+      <div class="screenshot-frame">
+        <img
+          src="assets/wise_eating_nutrients.png"
+          alt="Wise Eating nutrient dashboard screenshot"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS THIS FOR -->
+<section id="who-for" class="info-section alt-bg">
+  <div class="container info-grid info-grid-reverse">
+    <div class="info-text">
+      <span class="info-eyebrow">Who is this app for?</span>
+      <h2>Designed for individuals, professionals, and teams</h2>
+
+      <ul class="bullet-list">
+        <li>
+          <div class="bullet-icon" aria-hidden="true">👤</div>
+          <div>
+            <strong>Individuals &amp; Families</strong>
+            <p>People who want to eat wisely, check for allergens, and track how food relates to mood and energy.</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="bullet-icon" aria-hidden="true">🩺</div>
+          <div>
+            <strong>Health Professionals</strong>
+            <p>Nutritionists and coaches who want structured logging and clear reference data for plans.</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="bullet-icon" aria-hidden="true">🏢</div>
+          <div>
+            <strong>Employers &amp; Teams</strong>
+            <p>Organizations exploring tools for wellbeing, habits, and sustainable performance.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="info-image">
+      <div class="screenshot-frame">
+        <img
+          src="assets/wise-eating-search.png"
+          alt="Wise Eating food search and lists screenshot"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA, LIMITATIONS & MINDSET -->
+<section id="science" class="info-section">
+  <div class="container narrow">
+    <div class="section-header">
+      <h2>Science-based estimates, not medical diagnostics</h2>
+      <p>Wise Eating helps you review and improve your diet, but it does not replace professional medical advice.</p>
+    </div>
+
+    <div class="info-text-wide">
+      <p>
+        Micronutrient calculations are general estimates based on public food composition databases (including USDA and
+        similar sources), typical preparation assumptions, and the completeness of logged foods.
+      </p>
+      <p>
+        Use the application wisely: let it help you make more informed choices, but remember your wellbeing is influenced
+        by more than diet—movement, sleep, relationships, and stress management all matter.
+      </p>
+
+      <p class="micro-disclaimer inline">
+        No claims are made about preventing, treating, or curing medical conditions. Results vary.
+      </p>
     </div>
   </div>
 </section>
@@ -207,14 +294,32 @@
 <section class="cta-section">
   <div class="container">
     <div class="cta-box">
-      <div class="cta-bg-pattern"></div>
-      <h2>Your body is talking. <br>Are you listening?</h2>
-      <p style="color: rgba(255,255,255,0.9); margin-bottom: 32px; position: relative; z-index: 2; font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-        Join the movement towards intelligent nutrition. Prevent deficiencies and build a life of vitality.
-      </p>
-      <a href="https://apps.apple.com/us/app/wiseeating/id6751406823" target="_blank" class="btn-white">
-        <span class="btn-icon"></span> Download on App Store
-      </a>
+      <div class="cta-inner">
+        <h2>Ready to eat – and live – wiser?</h2>
+
+        <p>
+          Start building meal and training plans that actually fit your life, not someone else’s template.
+        </p>
+
+        <div class="cta-actions">
+          <a
+            href="https://apps.apple.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-white"
+          >
+            View in App Store
+          </a>
+
+<!--          <nav class="legal-links" aria-label="Legal links">-->
+<!--            <a href="/privacy" class="legal-link">Privacy Policy</a>-->
+<!--            <span class="dot" aria-hidden="true">•</span>-->
+<!--            <a href="/terms" class="legal-link">Terms</a>-->
+<!--            <span class="dot" aria-hidden="true">•</span>-->
+<!--            <a href="/disclaimer" class="legal-link">Medical Disclaimer</a>-->
+<!--          </nav>-->
+        </div>
+      </div>
     </div>
   </div>
 </section>
