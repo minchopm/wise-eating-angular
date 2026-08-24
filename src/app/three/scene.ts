@@ -89,7 +89,7 @@ const FAMILIES: readonly { color: string; weight: number }[] = [
   { color: '#EAFFF6', weight: 0.06 },
 ];
 
-const GLOBE_RADIUS = 12.4;
+const GLOBE_RADIUS = 15.5;
 
 /** How fast an arc pulse travels, in cycles per second. */
 const ARC_RATE = 0.16;
@@ -643,22 +643,28 @@ export class HeroScene {
   }
 
   /**
-   * Where the globe sits in the frame.
+   * Where the globe sits in the frame, and how big it is.
    *
    * On a wide screen it is pushed to the right, because the headline occupies
-   * the left and a globe centred behind type is a globe nobody can see. On a
-   * portrait screen there is no room beside it, so it moves up and the copy
-   * sits underneath.
+   * the left and a globe centred behind type is a globe nobody can see. As the
+   * viewport narrows there is less room beside the type, so it shrinks and
+   * climbs; on a phone it sits above the copy entirely.
+   *
+   * Scaled through the group rather than by rebuilding the geometry — the
+   * point positions are fixed at construction and this runs on every resize.
    */
   private layout(): void {
     const aspect = this.opts.width / Math.max(1, this.opts.height);
 
-    if (aspect >= 1.15) {
-      this.globe.position.set(15.5, 0.5, -4);
-    } else if (aspect >= 0.85) {
-      this.globe.position.set(6, 3, -6);
+    if (aspect >= 1.3) {
+      this.globe.position.set(14, 0, 0);
+      this.globe.scale.setScalar(1);
+    } else if (aspect >= 0.9) {
+      this.globe.position.set(9, 3, -4);
+      this.globe.scale.setScalar(0.86);
     } else {
-      this.globe.position.set(0, 15, -14);
+      this.globe.position.set(0.5, 15, -10);
+      this.globe.scale.setScalar(0.8);
     }
   }
 

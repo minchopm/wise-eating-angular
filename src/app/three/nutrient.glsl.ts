@@ -32,19 +32,17 @@ float snoise(vec2 p) {
   return dot(n, vec3(70.0));
 }
 
-/// Three octaves, not five. This runs per pixel across the whole ribbon plane
-/// and is the hottest loop in the scene; at the scale the ribbons are blurred
-/// to, the last two octaves are invisible.
+/// Two octaves, not five, and not three.
+///
+/// This is the hottest code in the scene by a wide margin: it runs per pixel
+/// over a plane that covers the whole viewport, and the ribbons are blurred to
+/// the point where the third octave contributes about a percent of the result
+/// for a third of the cost. Hiding the canvas took a frame from 33ms to 9ms,
+/// which is what proved the scene was fill-bound rather than CPU-bound.
 float fbm(vec2 p) {
-  float v = 0.0;
-  float a = 0.5;
-  mat2 rot = mat2(1.6, 1.2, -1.2, 1.6);
-  for (int i = 0; i < 3; i++) {
-    v += a * snoise(p);
-    p = rot * p;
-    a *= 0.5;
-  }
-  return v;
+  float v = snoise(p) * 0.5;
+  p = mat2(1.6, 1.2, -1.2, 1.6) * p;
+  return v + snoise(p) * 0.25;
 }
 
 /// Single octave, for detail only ever seen through heavy blur.
@@ -238,7 +236,7 @@ void main() {
   vec3 col = vec3(0.0);
   float alpha = 0.0;
 
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 2; i++) {
     float fi = float(i);
 
     vec2 q = vec2(uv.x * 2.05 + fi * 4.7, uv.y * 1.3 - t * (0.5 + fi * 0.22));
@@ -250,17 +248,15 @@ void main() {
     float band = 1.0 - abs(uv.y - centre) * (2.4 + fi * 0.55);
     band = pow(clamp(band, 0.0, 1.0), 4.2 + fi * 2.0);
 
-    vec3 base = mix(uColorA, uColorB, 0.35 + 0.45 * sin(fi * 1.7 + t * 1.3));
-    base = mix(base, uColorC, 0.35 + 0.4 * sin(fi * 2.5 - t * 0.85));
+    // Two bands rather than three, so both colour mixes have to travel the
+    // whole palette or the third colour drops out of the scene entirely.
+    vec3 base = mix(uColorA, uColorB, 0.35 + 0.45 * sin(fi * 2.1 + t * 1.3));
+    base = mix(base, uColorC, 0.35 + 0.4 * sin(fi * 3.1 - t * 0.85));
 
-    float w = 1.0 - fi * 0.2;
+    float w = 1.0 - fi * 0.15;
     col += base * band * w;
     alpha += band * w;
   }
-
-  // Vertical shimmer, the thing that stops a ribbon looking like a gradient.
-  float streak = fbm1(vec2(uv.x * 22.0, uv.y * 2.0 - t * 2.2));
-  col += uColorB * smoothstep(0.4, 1.0, streak) * 0.05;
 
   float edgeX = smoothstep(0.0, 0.26, uv.x) * smoothstep(1.0, 0.74, uv.x);
   float edgeY = smoothstep(0.0, 0.20, uv.y) * smoothstep(1.0, 0.62, uv.y);

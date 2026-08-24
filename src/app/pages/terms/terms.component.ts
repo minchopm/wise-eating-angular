@@ -15,10 +15,12 @@ const UPDATED = '2026-08-24';
  * data app and said nothing about nutrition advice, which is the one thing
  * this product actually needs to disclaim.
  *
- * ⚠ Two clauses need a lawyer rather than a developer: the governing law,
- * which should name the state the LLC is actually organised in rather than
- * referring to it obliquely, and the limitation of liability, which has to be
- * checked against that state's law.
+ * The governing law names Wyoming because that is where WiseEating LLC is
+ * organised — Articles of Organization filed with the Wyoming Secretary of
+ * State on 12 December 2025.
+ *
+ * ⚠ The limitation of liability is boilerplate and has not been checked
+ * against Wyoming law by anyone qualified to do so.
  */
 @Component({
   selector: 'we-terms',
@@ -29,7 +31,7 @@ const UPDATED = '2026-08-24';
     <we-page-head
       title="Terms of Service"
       eyebrow="Legal"
-      lede="The agreement between you and Wise Eating LLC for the use of the app and this site."
+      lede="The agreement between you and WiseEating LLC for the use of the app and this site."
       meta="Last updated 24 August 2026"
     />
 
@@ -164,10 +166,16 @@ const UPDATED = '2026-08-24';
 
         <h2>11. Governing law</h2>
         <p>
-          These Terms are governed by the laws of the United States and of the state in which
-          {{ site.company }} is organised, without regard to conflict-of-law rules. Any dispute will
-          be brought in the courts of that state, unless the consumer-protection law of your own
-          country gives you the right to bring it elsewhere.
+          {{ site.company }} is a limited liability company organised under the laws of the State of
+          {{ site.companyState }}, {{ site.companyCountry }}. These Terms are governed by
+          {{ site.companyState }} law and applicable United States federal law, without regard to
+          conflict-of-law rules, and any dispute will be brought in the state or federal courts
+          sitting in {{ site.companyState }}.
+        </p>
+        <p>
+          If you are a consumer resident in the European Union, the United Kingdom or another
+          jurisdiction whose law gives you the right to bring proceedings locally and to the
+          protection of your own consumer law, nothing here takes that right away.
         </p>
 
         <h2>12. Changes</h2>
@@ -179,7 +187,10 @@ const UPDATED = '2026-08-24';
 
         <h2>13. Contact</h2>
         <p>
-          {{ site.company }} —
+          {{ site.company }}<br />
+          {{ site.address.street }}<br />
+          {{ site.address.city }}, {{ site.address.region }} {{ site.address.postalCode }},
+          {{ site.companyCountry }}<br />
           <a [href]="'mailto:' + site.contactEmail">{{ site.contactEmail }}</a>
         </p>
         <p>

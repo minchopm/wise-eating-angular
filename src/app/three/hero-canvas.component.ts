@@ -670,11 +670,16 @@ export class HeroCanvasComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
-   * Deliberately below the display's native ratio. The scene is a field of
-   * soft glows, so the extra pixels cost real milliseconds and show nothing.
+   * Deliberately well below the display's native ratio.
+   *
+   * The scene is fill-bound — a full-viewport noise field with a globe of
+   * additive sprites over it — so this number is the single biggest lever on
+   * frame time, and it costs almost nothing visually: every edge in the scene
+   * is a soft glow that was going to be blurry at any resolution. 1.15 rather
+   * than 2 is a 3x reduction in pixels shaded.
    */
   private ratio(): number {
-    return Math.min(window.devicePixelRatio || 1, 1.4);
+    return Math.min(window.devicePixelRatio || 1, 1.15);
   }
 
   private measure(host: HTMLElement): { width: number; height: number } {

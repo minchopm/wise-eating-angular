@@ -15,7 +15,7 @@ import { StoreButtonComponent } from '../../shared/store-button';
   template: `
     <we-page-head
       title="About"
-      eyebrow="Wise Eating LLC"
+      eyebrow="WiseEating LLC"
       lede="A small company with one product and a fairly narrow opinion about how food software
             ought to behave."
     />
@@ -39,9 +39,9 @@ import { StoreButtonComponent } from '../../shared/store-button';
 
         <h2>Who we are</h2>
         <p>
-          {{ site.company }} is registered in the {{ site.companyCountry }}. The product is built by
-          a small team; there is no growth department and nobody whose job is to increase your
-          session length.
+          {{ site.company }} is a limited liability company organised in
+          {{ site.companyState }}, {{ site.companyCountry }}. The product is built by a small team;
+          there is no growth department and nobody whose job is to increase your session length.
         </p>
         <p>
           The App Store listing is currently published under the developer account of

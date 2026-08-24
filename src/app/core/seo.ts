@@ -117,7 +117,15 @@ export class Seo {
       },
       image: { '@id': url('/#logo') },
       email: SITE.contactEmail,
-      address: { '@type': 'PostalAddress', addressCountry: 'US' },
+      foundingDate: SITE.incorporated,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: SITE.address.street,
+        addressLocality: SITE.address.city,
+        addressRegion: SITE.address.region,
+        postalCode: SITE.address.postalCode,
+        addressCountry: SITE.address.country,
+      },
     };
 
     const website = {

@@ -29,25 +29,41 @@ export const SITE = {
   origin: 'https://www.wise-eating.com',
 
   /**
-   * The company. The US entity is the publisher of record for this site.
+   * The company, exactly as the Wyoming Secretary of State has it.
    *
-   * The App Store listing is still under the original developer account, so
+   * "WiseEating LLC" is one word: that is the name on the Articles of
+   * Organization filed 12 December 2025, and a legal name is not something to
+   * tidy up for looks. The product is still spoken about as "Wise Eating".
+   *
+   * The App Store listing is under the original developer account, so
    * `storeSeller` is what Apple shows and `company` is who runs the product.
    * Saying both is the honest version until the listing is transferred.
    */
-  company: 'Wise Eating LLC',
+  company: 'WiseEating LLC',
   companyShort: 'Wise Eating',
+  companyState: 'Wyoming',
   companyCountry: 'United States',
+  incorporated: '2025-12-12',
+  /** The registered office. Public record with the state; the founder's own
+   *  address is not, and does not belong on a website. */
+  address: {
+    street: '30 N Gould St, Ste R',
+    city: 'Sheridan',
+    region: 'WY',
+    postalCode: '82801',
+    country: 'US',
+  },
   storeSeller: 'Arte Soft Ltd',
 
   /**
    * The support address Apple requires, and the one Privacy and Terms name.
    *
-   * Deliberately the address that actually receives mail: wise-eating.com has
-   * no MX records at the time of writing, so support@wise-eating.com would
-   * bounce. Point this at the branded address the moment mail is routed.
+   * Deliberately an address that actually receives mail: wise-eating.com has
+   * no MX records at the time of writing, so anything@wise-eating.com would
+   * bounce. arte-soft.com is on Google Workspace and does. Point this at the
+   * branded address the moment mail is routed for the new domain.
    */
-  contactEmail: 'mincho.milev@gmail.com',
+  contactEmail: 'mincho.milev@arte-soft.com',
 
   appStoreId: '6751406823',
   appStore: 'https://apps.apple.com/us/app/wise-eating-nutrients/id6751406823',

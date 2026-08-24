@@ -15,7 +15,7 @@ const UPDATED = '2026-08-24';
  * runs analytics. The previous text said neither, which is the kind of gap
  * that turns an App Store privacy label into a review problem.
  *
- * ⚠ Wise Eating LLC should have this reviewed by counsel before it is relied
+ * ⚠ WiseEating LLC should have this reviewed by counsel before it is relied
  * on, and the App Store privacy questionnaire re-checked against it — in
  * particular the categories the advertising SDK collects.
  */
@@ -49,8 +49,10 @@ const UPDATED = '2026-08-24';
 
         <h2>Who we are</h2>
         <p>
-          {{ site.name }} is operated by {{ site.company }}, a company registered in the
-          {{ site.companyCountry }}. The App Store listing is currently published under the
+          {{ site.name }} is operated by {{ site.company }}, a limited liability company
+          organised in the State of {{ site.companyState }}, {{ site.companyCountry }}, at
+          {{ site.address.street }}, {{ site.address.city }}, {{ site.address.region }}
+          {{ site.address.postalCode }}. The App Store listing is currently published under the
           developer account of {{ site.storeSeller }}. You can reach us at
           <a [href]="'mailto:' + site.contactEmail">{{ site.contactEmail }}</a
           >.
@@ -177,7 +179,10 @@ const UPDATED = '2026-08-24';
 
         <h2>Contact</h2>
         <p>
-          {{ site.company }} —
+          {{ site.company }}<br />
+          {{ site.address.street }}<br />
+          {{ site.address.city }}, {{ site.address.region }} {{ site.address.postalCode }},
+          {{ site.companyCountry }}<br />
           <a [href]="'mailto:' + site.contactEmail">{{ site.contactEmail }}</a>
         </p>
       </div>
