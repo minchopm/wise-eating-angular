@@ -75,7 +75,7 @@ const FAQ = [
     <section class="section section--tight">
       <div class="wrap contact" appReveal="up">
         <div class="card contact__card">
-          <span class="card__icon" aria-hidden="true">✉</span>
+          <span class="card__icon" aria-hidden="true"><img src="/assets/icons/mail.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
           <h2>Write to us</h2>
           <p>
             Bug reports, questions, refunds you cannot get from Apple, and disagreements about
@@ -87,7 +87,7 @@ const FAQ = [
         </div>
 
         <div class="card contact__card">
-          <span class="card__icon" aria-hidden="true">🧾</span>
+          <span class="card__icon" aria-hidden="true"><img src="/assets/icons/list.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
           <h2>Billing &amp; refunds</h2>
           <p>
             Subscriptions are sold and billed by Apple, so cancellations and refunds go through them

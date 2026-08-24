@@ -60,6 +60,6 @@ export class AppComponent {
     this.doc.body.classList.toggle('screenshot-mode', bare);
 
     // The status bar behind a Safari page, and the browser UI tint on Android.
-    this.meta.updateTag({ name: 'theme-color', content: bare ? '#000000' : '#030C09' });
+    this.meta.updateTag({ name: 'theme-color', content: bare ? '#000000' : '#08090B' });
   }
 }

@@ -81,11 +81,11 @@ export interface Hover {
  * is the app icon's: mint and lilac glass with warm gems inside it.
  */
 const FAMILIES: readonly { color: string; weight: number }[] = [
-  { color: '#26D07C', weight: 0.3 },
-  { color: '#6EE7B7', weight: 0.22 },
-  { color: '#5EEAD4', weight: 0.14 },
+  { color: '#4ADE9A', weight: 0.3 },
+  { color: '#86EFC5', weight: 0.22 },
+  { color: '#67E8F9', weight: 0.14 },
   { color: '#FBBF24', weight: 0.15 },
-  { color: '#A78BFA', weight: 0.13 },
+  { color: '#B39DFB', weight: 0.13 },
   { color: '#EAFFF6', weight: 0.06 },
 ];
 
@@ -234,7 +234,7 @@ export class HeroScene {
 
     const golden = Math.PI * (3 - Math.sqrt(5));
     const at = { x: 0, y: 0, z: 0 };
-    const sea = new Color('#1d7a5f');
+    const sea = new Color('#2a6b7a');
 
     for (let i = 0; i < candidates; i++) {
       const y = 1 - (i / Math.max(1, candidates - 1)) * 2;
@@ -316,7 +316,7 @@ export class HeroScene {
       uniforms: {
         uTime: { value: 0 },
         uOpacity: { value: 1 },
-        uColor: { value: new Color('#8FF3D0') },
+        uColor: { value: new Color('#A6EFEA') },
       },
       transparent: true,
       depthWrite: false,
@@ -505,9 +505,9 @@ export class HeroScene {
         uScroll: { value: 0 },
         uIntensity: { value: this.opts.intensity },
         uMouse: { value: new Vector2() },
-        uColorA: { value: new Color('#1FBF74') },
+        uColorA: { value: new Color('#2FC98A') },
         uColorB: { value: new Color('#F2B01E') },
-        uColorC: { value: new Color('#8B5CF6') },
+        uColorC: { value: new Color('#9B7CF8') },
       },
       transparent: true,
       depthWrite: false,
@@ -581,8 +581,8 @@ export class HeroScene {
         uTime: { value: 0 },
         uScroll: { value: 0 },
         uOpacity: { value: 1 },
-        uColor: { value: new Color('#12684A') },
-        uColorHot: { value: new Color('#4DE3A6') },
+        uColor: { value: new Color('#1F5A6B') },
+        uColorHot: { value: new Color('#5FD9E8') },
       },
       transparent: true,
       depthWrite: false,

@@ -28,12 +28,12 @@ SHOTS = PUBLIC / "assets/shots"
 ICONS = PUBLIC / "assets"
 
 # The brand, as the stylesheet has it.
-INK = (3, 12, 9)
-LEAF = (38, 208, 124)
-MINT = (110, 231, 183)
-VIOLET = (167, 139, 250)
-TEXT = (234, 245, 240)
-DIM = (138, 163, 154)
+INK = (8, 9, 11)
+LEAF = (74, 222, 154)
+MINT = (134, 239, 197)
+VIOLET = (179, 157, 251)
+TEXT = (238, 241, 244)
+DIM = (146, 155, 168)
 
 # Phone screenshots. Rendered at twice the largest size the device frame is
 # ever given, which is what a 2x display needs and nothing more.
@@ -56,6 +56,15 @@ FULL = ["nutritions_details_view", "workouts_timeline_iphone"]
 
 # The App Store icon, at the sizes iOS and the web manifest ask for.
 ICON_SIZES = [180, 192, 512]
+
+# The crystal icon set, cut from the generated sheet by tools/cut-icons.py.
+# Displayed in a 52px tile, so 128 is generous even on a 2x display — and the
+# extra headroom means the tile can grow without the icons going soft.
+ICON_SET = [
+    "nutrients", "search", "plan", "training", "pantry", "baby", "list",
+    "person", "clinician", "team", "trend", "mail", "leaf",
+]
+ICON_SET_PX = 128
 
 
 def load(name: str) -> Image.Image:
@@ -82,6 +91,25 @@ def as_webp(image: Image.Image, out: pathlib.Path, quality: int) -> None:
         flat.paste(image.convert("RGB"))
     flat.save(out, "WEBP", quality=quality, method=6)
     print(f"  {out.relative_to(ROOT)}  {out.stat().st_size / 1024:.0f} KB")
+
+
+def build_icon_set() -> None:
+    """
+    The crystal icons, at display size, with their alpha intact.
+
+    Not routed through as_webp(): that flattens onto the page ground, which is
+    right for a photograph and fatal for a translucent glass object that has to
+    sit on a tile whose colour is not the page's.
+    """
+    print("icon set →")
+    out_dir = ICONS / "icons"
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    for name in ICON_SET:
+        source = load(f"icon-{name}").convert("RGBA")
+        out = out_dir / f"{name}.webp"
+        resize(source, ICON_SET_PX).save(out, "WEBP", quality=88, method=6)
+        print(f"  {out.relative_to(ROOT)}  {out.stat().st_size / 1024:.0f} KB")
 
 
 def build_screenshots() -> None:
@@ -220,6 +248,7 @@ def build_og() -> None:
 
 
 if __name__ == "__main__":
+    build_icon_set()
     build_screenshots()
     build_full()
     build_wide()

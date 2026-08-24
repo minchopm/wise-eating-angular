@@ -9,6 +9,7 @@ import { StoreButtonComponent } from '../../shared/store-button';
 
 interface Group {
   readonly id: string;
+  /** File stem in /assets/icons/. */
   readonly icon: string;
   readonly title: string;
   readonly lede: string;
@@ -20,7 +21,7 @@ interface Group {
 const GROUPS: readonly Group[] = [
   {
     id: 'data',
-    icon: '🧬',
+    icon: 'nutrients',
     title: 'The food database',
     lede:
       'Every food is a full composition record, not a calorie figure with a label attached. It is ' +
@@ -37,7 +38,7 @@ const GROUPS: readonly Group[] = [
   },
   {
     id: 'search',
-    icon: '⌕',
+    icon: 'search',
     title: 'Search that reads English',
     lede:
       'Type the constraint rather than the keyword. Quantities, comparisons, negations and diets ' +
@@ -52,7 +53,7 @@ const GROUPS: readonly Group[] = [
   },
   {
     id: 'planning',
-    icon: '🗓️',
+    icon: 'plan',
     title: 'Planning, by AI or by hand',
     lede:
       'Ask for a week and adjust it, or build it yourself a meal at a time. Either way the plan is ' +
@@ -67,7 +68,7 @@ const GROUPS: readonly Group[] = [
   },
   {
     id: 'training',
-    icon: '🏋️',
+    icon: 'training',
     title: 'Training',
     lede:
       'The other half of the equation, in the same app and on the same timeline as the food.',
@@ -81,7 +82,7 @@ const GROUPS: readonly Group[] = [
   },
   {
     id: 'kitchen',
-    icon: '🧊',
+    icon: 'pantry',
     title: 'Pantry, shopping and budget',
     lede:
       'The part between a plan and a meal — what you already own, what you still need, and what it ' +
@@ -97,7 +98,7 @@ const GROUPS: readonly Group[] = [
   },
   {
     id: 'noticing',
-    icon: '📈',
+    icon: 'trend',
     title: 'Noticing what happened',
     lede:
       'Tracking is only worth the effort if it eventually answers a question. This is the part that ' +
@@ -140,7 +141,16 @@ const GROUPS: readonly Group[] = [
       <section class="section group" [id]="group.id" [class.group--alt]="i % 2 === 1">
         <div class="wrap group__grid">
           <div class="group__head" appReveal="up">
-            <span class="card__icon" aria-hidden="true">{{ group.icon }}</span>
+            <span class="card__icon" aria-hidden="true">
+              <img
+                [src]="'/assets/icons/' + group.icon + '.webp'"
+                alt=""
+                width="30"
+                height="30"
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
             <h2>{{ group.title }}</h2>
             <p>{{ group.lede }}</p>
             @if (group.more) {

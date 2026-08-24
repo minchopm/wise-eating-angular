@@ -455,7 +455,7 @@ void main() {
   // Bloom in fast, hold, fade out. Everything is a function of age, so the
   // CPU never touches this and the picture cannot desynchronise from the arc.
   float rise = smoothstep(0.0, 0.05, age);
-  float fall = 1.0 - smoothstep(0.20, 0.34, age);
+  float fall = 1.0 - smoothstep(0.11, 0.21, age);
   vBloom = rise * fall * aActive * vFront;
 
   // Atlas coordinates for this marker's tile, in units of one tile.
@@ -471,7 +471,7 @@ void main() {
   // than no plate at all. Gated on the projected position rather than on a
   // world-space guess, so it holds at any viewport and any rotation.
   float ndcX = gl_Position.x / max(gl_Position.w, 0.0001);
-  vBloom *= smoothstep(0.16, 0.40, ndcX);
+  vBloom *= smoothstep(0.30, 0.52, ndcX);
 
   float dot = 5.0 + aActive * 2.0;
   float picture = 76.0 * vBloom;
