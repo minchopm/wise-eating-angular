@@ -1,0 +1,577 @@
+/**
+ * The home page.
+ *
+ * Only the things unique to this page live here — buttons, cards, chips and
+ * section rhythm all come from the global stylesheet, so this file is about
+ * composition rather than about looks.
+ */
+
+/* ---------------------------------------------------------------- hero */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* svh rather than vh: on mobile Safari, vh is the *largest* viewport, so a
+     100vh hero is taller than the screen until the URL bar retracts and the
+     call to action starts life below the fold. */
+  min-height: 100svh;
+  padding-block: clamp(112px, 14vh, 150px) clamp(72px, 10vh, 120px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  /* Narrow enough that the globe, which sits in the right of the frame on a
+     wide screen, is never behind the type. */
+  max-width: 720px;
+}
+
+.hero__eyebrow {
+  margin-bottom: 28px;
+}
+
+.hero__title {
+  margin-bottom: 26px;
+  font-weight: 500;
+}
+
+.hero__lede {
+  max-width: 60ch;
+  margin-bottom: 38px;
+  font-size: var(--step-1);
+  color: var(--text-soft);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+/**
+ * The line that tells you the globe is interactive.
+ *
+ * Hidden on coarse pointers, because there is nothing to hover with and an
+ * instruction you cannot follow is worse than silence.
+ */
+.hero__hint {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--text-faint);
+  font-size: var(--step--1);
+
+  span {
+    color: var(--mint);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 900px) {
+  .hero__hint {
+    display: flex;
+  }
+}
+
+/** The scroll cue: a line that runs down its own track, forever. */
+.hero__cue {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  z-index: 1;
+  width: 26px;
+  height: 44px;
+  transform: translateX(-50%);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+
+  span {
+    position: absolute;
+    left: 50%;
+    top: 9px;
+    width: 2px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--mint);
+    transform: translateX(-50%);
+    animation: cue 2.1s ease-in-out infinite;
+  }
+}
+
+@keyframes cue {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -4px);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 16px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__cue span {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------- stats */
+
+.stats {
+  border-block: 1px solid var(--line);
+  background: rgba(7, 20, 16, 0.5);
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 34px 24px;
+  text-align: center;
+}
+
+@media (min-width: 760px) {
+  .stats__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ----------------------------------------------------------- statement */
+
+.statement {
+  text-align: center;
+
+  h2 {
+    margin-bottom: 36px;
+  }
+}
+
+/**
+ * The struck-through phrase.
+ *
+ * The rule is drawn as a gradient pseudo-element rather than with
+ * `text-decoration: line-through`, because a decoration inherits the text
+ * colour and this one has to be the brand green to read as a correction
+ * rather than as a deletion.
+ */
+.statement__strike {
+  position: relative;
+  color: var(--text-dim);
+  white-space: nowrap;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: -2%;
+    right: -2%;
+    top: 55%;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--grad-brand);
+    transform: rotate(-1.4deg);
+  }
+}
+
+.statement__body {
+  max-width: 58ch;
+  margin-inline: auto;
+  text-align: left;
+
+  p {
+    font-size: var(--step-1);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* -------------------------------------------------------------- search */
+
+.search__grid {
+  display: grid;
+  gap: clamp(40px, 6vw, 76px);
+  align-items: center;
+}
+
+.search__text {
+  .eyebrow {
+    margin-bottom: 22px;
+  }
+
+  h2 {
+    margin-bottom: 22px;
+  }
+
+  .btn {
+    margin-top: 12px;
+  }
+}
+
+@media (min-width: 900px) {
+  .search__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/** The mock search field and its list of example queries. */
+.query-card {
+  padding: 0;
+}
+
+.query-card__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(4, 16, 12, 0.5);
+}
+
+.query-card__glyph {
+  color: var(--mint);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.query-card__caret {
+  width: 2px;
+  height: 20px;
+  background: var(--leaf);
+  animation: blink 1.15s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.query-card__list {
+  padding: 12px 0;
+
+  li {
+    padding: 13px 24px 13px 52px;
+    position: relative;
+    color: var(--text-soft);
+    font-size: 0.98rem;
+    transition:
+      background-color 0.25s var(--ease),
+      color 0.25s var(--ease);
+  }
+
+  li::before {
+    content: '↳';
+    position: absolute;
+    left: 26px;
+    color: var(--leaf);
+    opacity: 0.65;
+  }
+
+  li:hover {
+    background: rgba(38, 208, 124, 0.06);
+    color: var(--text);
+  }
+}
+
+.query-card__foot {
+  margin: 0;
+  padding: 16px 24px 20px;
+  border-top: 1px solid var(--line);
+  color: var(--text-faint);
+  font-size: var(--step--1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .query-card__caret {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------ timeline */
+
+.timeline__grid {
+  display: grid;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+
+.timeline__shot,
+.usda__shot {
+  display: flex;
+  justify-content: center;
+}
+
+.timeline__text {
+  .eyebrow,
+  h2 {
+    margin-bottom: 22px;
+  }
+
+  .ticks {
+    margin-block: 26px 30px;
+  }
+}
+
+@media (min-width: 900px) {
+  .timeline__grid {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------- bento */
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 20px;
+}
+
+.bento__cell {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    flex: 1;
+  }
+}
+
+.bento__more {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--mint);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: transform 0.28s var(--ease-out);
+}
+
+.bento__cell:hover .bento__more {
+  transform: translateX(4px);
+}
+
+@media (min-width: 980px) {
+  .bento {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .bento__cell--wide {
+    grid-column: span 2;
+  }
+}
+
+/* --------------------------------------------------------------- usda */
+
+.usda__grid {
+  display: grid;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+
+  h2 {
+    margin-bottom: 22px;
+  }
+
+  .eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .disclaimer {
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 900px) {
+  .usda__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  }
+}
+
+/* ---------------------------------------------------------------- who */
+
+.who {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* ---------------------------------------------------------------- faq */
+
+.faq__list {
+  border-top: 1px solid var(--line);
+}
+
+.faq__item {
+  border-bottom: 1px solid var(--line);
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 0;
+    cursor: pointer;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  h3 {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    transition: color 0.25s var(--ease);
+  }
+
+  summary:hover h3 {
+    color: var(--mint);
+  }
+
+  p {
+    margin: 0;
+    padding-bottom: 26px;
+    max-width: 68ch;
+    color: var(--text-dim);
+  }
+}
+
+/** The plus that becomes a minus. Two bars, one of which rotates away. */
+.faq__mark {
+  position: relative;
+  flex: none;
+  width: 16px;
+  height: 16px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto;
+    height: 1.6px;
+    border-radius: 2px;
+    background: var(--mint);
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  &::after {
+    transform: rotate(90deg);
+  }
+}
+
+.faq__item[open] .faq__mark::after {
+  transform: rotate(0deg);
+}
+
+/* ---------------------------------------------------------------- cta */
+
+.cta__box {
+  position: relative;
+  padding: clamp(44px, 7vw, 88px) var(--gutter);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(70% 130% at 50% 0%, rgba(38, 208, 124, 0.18), transparent 66%),
+    radial-gradient(50% 100% at 84% 100%, rgba(167, 139, 250, 0.14), transparent 70%),
+    var(--surface);
+
+  h2 {
+    margin-bottom: 18px;
+  }
+
+  p {
+    max-width: 48ch;
+    margin-inline: auto;
+    margin-bottom: 34px;
+    font-size: var(--step-1);
+  }
+}
+
+.cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* ------------------------------------------------------------- gallery */
+
+.gallery {
+  overflow: hidden;
+}
+
+/**
+ * The screenshot rail.
+ *
+ * Horizontal scroll with snap points rather than a grid: nine tall phone
+ * screens laid out as a grid become a contact sheet, where a rail keeps each
+ * one at a size the text inside it can actually be read at. Focusable, so it
+ * can be scrolled from the keyboard as well as by dragging.
+ */
+.gallery__rail {
+  display: flex;
+  gap: 28px;
+  padding-inline: max(var(--gutter), calc((100vw - var(--measure)) / 2 + var(--gutter)));
+  padding-block: 8px 24px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+.gallery__rail::-webkit-scrollbar {
+  height: 6px;
+}
+
+.gallery__rail::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: var(--line-strong);
+}
+
+.gallery__item {
+  flex: 0 0 auto;
+  width: 252px;
+  scroll-snap-align: center;
+}
+
+.gallery__item .device {
+  max-width: 252px;
+  margin-bottom: 20px;
+}
+
+.gallery__caption {
+  max-width: 252px;
+
+  h3 {
+    margin-bottom: 8px;
+    font-size: var(--step-0);
+    font-family: var(--font-body);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+}

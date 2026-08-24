@@ -1,0 +1,161 @@
+/**
+ * Long-form pages: Privacy, Terms, and the articles.
+ *
+ * These are read rather than scanned, so the rules here are about the reading
+ * — a narrow measure, generous leading, and headings that stay out of the way.
+ */
+
+.prose {
+  max-width: 74ch;
+
+  h2 {
+    margin-top: 2.6em;
+    margin-bottom: 0.6em;
+    font-size: var(--step-2);
+  }
+
+  h3 {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    font-size: var(--step-1);
+    font-family: var(--font-body);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  h2:first-child,
+  h3:first-child {
+    margin-top: 0;
+  }
+
+  p,
+  li {
+    color: var(--text-soft);
+    line-height: 1.75;
+  }
+
+  a {
+    color: var(--mint);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(110, 231, 183, 0.45);
+
+    &:hover {
+      text-decoration-color: var(--mint);
+    }
+  }
+
+  ul,
+  ol {
+    margin: 0 0 1.4em;
+    padding-left: 1.4em;
+  }
+
+  ul {
+    list-style: disc;
+  }
+  ol {
+    list-style: decimal;
+  }
+
+  li {
+    margin-bottom: 0.55em;
+    padding-left: 0.3em;
+
+    &::marker {
+      color: var(--leaf);
+    }
+  }
+
+  blockquote {
+    margin: 1.8em 0;
+    padding: 4px 0 4px 24px;
+    border-left: 2px solid var(--leaf-dim);
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  table {
+    width: 100%;
+    margin-bottom: 1.6em;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+  }
+
+  th,
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+
+  th {
+    color: var(--text);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+}
+
+/** The header block on a legal or article page. */
+.page-head {
+  padding-top: clamp(112px, 14vw, 168px);
+  padding-bottom: clamp(28px, 4vw, 48px);
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(70% 120% at 50% -20%, rgba(38, 208, 124, 0.14), transparent 68%),
+    var(--ink);
+
+  h1 {
+    font-size: var(--step-4);
+    margin-bottom: 16px;
+  }
+
+  p {
+    max-width: 60ch;
+    color: var(--text-dim);
+    margin-bottom: 0;
+  }
+}
+
+.page-head__meta {
+  display: block;
+  margin-top: 20px;
+  color: var(--text-faint);
+  font-size: var(--step--1);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/** Breadcrumbs, shown above the title on every page but the home page. */
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  font-size: var(--step--1);
+  color: var(--text-faint);
+
+  a:hover {
+    color: var(--mint);
+  }
+
+  li:not(:last-child)::after {
+    content: '/';
+    margin-left: 8px;
+    color: var(--text-faint);
+    opacity: 0.6;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  li:last-child {
+    color: var(--text-soft);
+  }
+}

@@ -41,3 +41,11 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Source imagery for tools/build-images.py.
+#
+# The App Store screenshots are re-downloadable from the live listing — see
+# tools/fetch-store-shots.mjs — so thirty megabytes of PNG that go stale on
+# every release do not belong in history. Everything else in art/ is an
+# original that exists nowhere else and is committed.
+/art/store-*.png

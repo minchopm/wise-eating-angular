@@ -1,29 +1,72 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LMC0BG8SLB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <head>
+    <meta charset="utf-8" />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    gtag('config', 'G-LMC0BG8SLB');
-  </script>
-  <meta charset="utf-8">
-  <title>Wise Eating</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="manifest" href="/manifest.webmanifest">
+    <!--
+      The title and description here are the fallback. Every route overwrites
+      them through core/seo.ts before the page is prerendered, so what ships in
+      each HTML file is that page's own.
+    -->
+    <title>Wise Eating — a USDA nutrition &amp; training app for iPhone and iPad</title>
+    <meta
+      name="description"
+      content="12,601 foods from USDA FoodData Central, with every vitamin and mineral, natural-language search, AI meal and training plans, and a pantry that knows what you already own."
+    />
 
-  <!-- Already useful for iOS full-screen feel -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3759868960530173"
-          crossorigin="anonymous"></script>
-</head>
-<body>
-  <app-root></app-root>
-</body>
+    <meta name="theme-color" content="#030C09" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Wise Eating" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/icon-180.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!--
+      Google's tag is loaded after the page is interactive rather than in the
+      head. It is analytics: nothing on the page depends on it, and putting it
+      first means every visitor waits on a third-party host before the site
+      they asked for can start rendering.
+    -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-LMC0BG8SLB');
+
+      addEventListener('load', function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LMC0BG8SLB';
+        document.head.appendChild(s);
+      });
+    </script>
+  </head>
+
+  <body>
+    <app-root></app-root>
+
+    <!--
+      AdSense, on the same terms: after load, and only in a browser. The script
+      is here rather than in the head because a page that has not finished
+      painting has nothing to put an advert next to.
+    -->
+    <script>
+      addEventListener('load', function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.crossOrigin = 'anonymous';
+        s.src =
+          'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3759868960530173';
+        document.head.appendChild(s);
+      });
+    </script>
+  </body>
 </html>

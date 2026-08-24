@@ -1,6 +1,9 @@
 // baby-feeding.component.ts
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { Seo } from '../../core/seo';
+import { url } from '../../core/site';
 
 type SubList = {
   label: string;
@@ -38,6 +41,41 @@ type Recipe = {
   styleUrls: ['./baby-feeding.component.scss'],
 })
 export class BabyFeedingComponent {
+  constructor() {
+    // The article is the site's strongest organic-search asset — a real
+    // question with real recipes attached — so it gets an Article entity of
+    // its own rather than inheriting the generic page metadata.
+    inject(Seo).apply({
+      title: 'Calcium for babies: why it matters, and what to cook',
+      path: '/baby-feeding',
+      updated: '2026-01-05',
+      description:
+        'How much calcium a baby needs from birth to three years, which foods carry it, and ' +
+        'step-by-step recipes for each stage — with the safety rules that go with introducing ' +
+        'new foods.',
+      crumbs: [],
+      entities: [
+        {
+          '@type': 'Article',
+          '@id': `${url('/baby-feeding')}#article`,
+          headline: 'Why calcium-rich meals matter for your baby every day',
+          description:
+            'Calcium requirements from birth to three years, calcium-rich foods, and recipes ' +
+            'for each stage of weaning.',
+          image: url('/assets/shots/baby-feeding.webp'),
+          datePublished: '2026-01-05',
+          dateModified: '2026-01-05',
+          inLanguage: 'en',
+          isPartOf: { '@id': url('/#website') },
+          author: { '@id': url('/#organization') },
+          publisher: { '@id': url('/#organization') },
+          about: { '@type': 'Thing', name: 'Infant nutrition' },
+          mainEntityOfPage: { '@id': `${url('/baby-feeding')}#webpage` },
+        },
+      ],
+    });
+  }
+
   // STRICT: use the values exactly as provided in the article
   calciumGuidance = [
     { age: '0 to 0.5 months', amount: '210 mg' },

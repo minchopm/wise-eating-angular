@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { Seo } from '../../core/seo';
 
 @Component({
   selector: 'app-app-store-screenshot-hero-workouts',
@@ -22,7 +24,7 @@ import { CommonModule } from '@angular/common';
 
         <div class="hero-visual">
           <img
-            src="assets/workouts_timeline_iphone.png"
+            src="/assets/shots/workouts_timeline_iphone.full.webp"
             alt="Wise Eating – workouts timeline with calories burned and muscle groups"
             class="app-screenshot"
           />
@@ -107,4 +109,16 @@ import { CommonModule } from '@angular/common';
     }
   `]
 })
-export class AppStoreScreenshotHeroWorkoutsComponent {}
+export class AppStoreScreenshotHeroWorkoutsComponent {
+  constructor() {
+    // Not a page for readers: it renders one frame that gets captured and
+    // uploaded to App Store Connect. Keeping it out of the index stops a
+    // headless screenshot rig from becoming a search result.
+    inject(Seo).apply({
+      title: 'App Store preview',
+      path: '/app-store-workouts',
+      noindex: true,
+      description: 'Internal App Store screenshot frame.',
+    });
+  }
+}

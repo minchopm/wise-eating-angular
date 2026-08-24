@@ -1,195 +1,30 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+/**
+ * The global stylesheet.
+ *
+ * Split into parts by what they are for rather than by page, and loaded in
+ * dependency order: tokens define the custom properties everything else reads,
+ * base sets the document, and the rest builds on both.
+ *
+ * Fonts are not imported here — they are separate entries in angular.json, so
+ * the build fingerprints the woff2 files and the browser can start fetching
+ * them without waiting for this file to be parsed first.
+ */
 
-:root {
-  /* Brand Colors - Adapted from the Crystal Apple */
+@use 'styles/tokens';
+@use 'styles/base';
+@use 'styles/reveal';
+@use 'styles/components';
+@use 'styles/legal';
 
-  /* The Leaf: A vibrant, life-affirming green */
-  --primary-green: #26D07C;
-  --primary-dark: #059669;
-  --primary-light: #6EE7B7;
-
-  /* The Spiral: Accents pulled from the internal gems */
-  --accent-purple: #8B5CF6; /* From the purple gems */
-  --accent-gold: #FBBF24;   /* From the golden/orange gems */
-
-  /* Base Colors */
-  --text-main: #1F2937;     /* Softened black */
-  --text-muted: #64748B;    /* Cool grey */
-  --bg-light: #F8FAFC;      /* Very cool white/slate tint */
-  --white: #ffffff;
-
-  /* Gradients - "Prismatic Flow" */
-  /* Blends the Leaf Green with the Gemstone Purple for a modern, magical tech feel */
-  --gradient-main: linear-gradient(135deg, #26D07C 0%, #8B5CF6 100%);
-  /* A softer background gradient mimicking the studio lighting */
-  --gradient-hero: linear-gradient(135deg, #F0FDF4 0%, #F5F3FF 100%);
-
-  /* Shadows & Glass Effects */
-  --shadow-sm: 0 2px 4px 0 rgba(139, 92, 246, 0.05);
-  --shadow-lg: 0 10px 25px -3px rgba(38, 208, 124, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-glow: 0 0 25px rgba(38, 208, 124, 0.4);
-
-  /* Glassmorphism Variables (New) */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.5);
-  --glass-blur: blur(12px);
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-light); /* Default site background */
-  color: var(--text-main);
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-/* 🔹 Dark mode ONLY for the screenshot page (body class is set in AppComponent) */
+/**
+ * The App Store screenshot routes.
+ *
+ * These render a single frame that is captured and uploaded to App Store
+ * Connect, so they have no header, no footer, and a hard black ground rather
+ * than the site's near-black — Apple's screenshot frames sit on true black and
+ * anything else shows as a seam.
+ */
 body.screenshot-mode {
-  background-color: #000000;
-  color: #F9FAFB;
-}
-
-body.screenshot-mode p {
-  color: #E5E7EB;
-}
-
-body.screenshot-mode a {
-  color: #F9FAFB;
-}
-
-/* Base elements */
-a { text-decoration: none; color: inherit; transition: 0.3s; }
-ul { list-style: none; padding: 0; margin: 0; }
-
-/* Typography */
-h1, h2, h3, h4 {
-  margin: 0;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  background: var(--gradient-main);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block; /* Added gradient text effect to headers */
-}
-
-p {
-  line-height: 1.6;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-}
-
-/* Utility Classes */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-/* NEW: Glass Card Utility */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-lg);
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 32px;
-  font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none; /* Ensure no border on primary */
-
-  &.btn-primary {
-    background: var(--gradient-main); /* Uses the Green-to-Purple gradient */
-    color: var(--white);
-    box-shadow: 0 4px 15px rgba(38, 208, 124, 0.3); /* Green glow */
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(139, 92, 246, 0.4); /* Shifts to Purple glow on hover */
-    }
-  }
-
-  &.btn-outline {
-    background: transparent;
-    border: 2px solid #E2E8F0;
-    color: var(--text-main);
-
-    &:hover {
-      border-color: var(--primary-green);
-      color: var(--primary-green);
-      background: rgba(38, 208, 124, 0.05);
-    }
-  }
-}
-
-/* Animations */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
-
-.animate-fade-up { animation: fadeInUp 0.8s ease-out forwards; }
-.animate-float { animation: float 6s ease-in-out infinite; }
-
-/* Legal Pages / Card Base */
-.legal-wrapper {
-  padding: 120px 0 60px;
-  background: var(--gradient-hero); /* Subtle Green-to-Purple tint */
-  min-height: 100vh;
-}
-
-.legal-card {
-  background: var(--white);
-  padding: 40px;
-  border-radius: 24px;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(255,255,255,0.8); /* Subtle rim */
-
-  /* Reset gradient text for legal content readability */
-  h1 {
-    margin-bottom: 20px;
-    background: none;
-    -webkit-text-fill-color: initial;
-    color: var(--primary-dark);
-  }
-
-  h3 {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    color: var(--text-main);
-    background: none;
-    -webkit-text-fill-color: initial;
-  }
-
-  ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin-bottom: 20px;
-  }
-
-  li {
-    margin-bottom: 8px;
-    color: var(--text-muted);
-  }
+  background: #000;
+  overflow: hidden;
 }

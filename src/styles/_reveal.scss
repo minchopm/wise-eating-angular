@@ -1,0 +1,98 @@
+/**
+ * Scroll reveals.
+ *
+ * The directive in core/reveal.directive.ts does nothing but set
+ * `data-reveal="kind"` and add `.is-revealed` when the element enters the
+ * viewport; everything about how the reveal actually looks lives here, so the
+ * animation runs on the compositor and the markup stays declarative.
+ */
+
+[data-reveal] {
+  --reveal-delay: 0ms;
+  --reveal-duration: 900ms;
+
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity var(--reveal-duration) var(--ease-out) var(--reveal-delay),
+    transform var(--reveal-duration) var(--ease-out) var(--reveal-delay);
+}
+
+[data-reveal='up'] {
+  transform: translate3d(0, 34px, 0);
+}
+[data-reveal='fade'] {
+  transform: none;
+}
+[data-reveal='zoom'] {
+  transform: scale(0.94);
+}
+[data-reveal='left'] {
+  transform: translate3d(-38px, 0, 0);
+}
+[data-reveal='right'] {
+  transform: translate3d(38px, 0, 0);
+}
+[data-reveal='rotate'] {
+  transform: perspective(1200px) rotateX(9deg) translate3d(0, 40px, 0);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  /* Dropped once the element has arrived: leaving will-change on pins a
+     composited layer per element for the rest of the session. */
+  will-change: auto;
+}
+
+/* Nothing to reveal if the reader asked for stillness — show it all at once. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------- floats */
+
+@keyframes we-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes we-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes we-sheen {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.float {
+  animation: we-float 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float {
+    animation: none;
+  }
+}

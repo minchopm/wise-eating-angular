@@ -1,0 +1,417 @@
+<!-- ═══════════════════════════════════════════════════════════════ HERO ══ -->
+
+<section class="hero">
+  <we-hero-canvas [foodCount]="4600" [intensity]="0.6" />
+
+  <div class="wrap hero__inner">
+    <p class="eyebrow hero__eyebrow">
+      <span class="eyebrow__dot"></span>
+      Built on {{ data.source }}
+    </p>
+
+    <h1 class="hero__title">
+      {{ data.foods.toLocaleString('en-US') }} foods.<br />
+      <span class="shine">Measured, not guessed.</span>
+    </h1>
+
+    <p class="hero__lede">
+      Not every food on earth — the ones that have actually been through a laboratory. Every entry
+      in {{ site.name }} comes from {{ data.source }}, with {{ data.nutrientFields }} nutrient
+      fields each: {{ data.vitamins }} vitamins, {{ data.minerals }} minerals, and the macros.
+      Search them the way you think, plan the week from them, and put your training on the same
+      timeline.
+    </p>
+
+    <div class="hero__actions">
+      <we-store-button />
+      <a class="btn btn--ghost" routerLink="/features">See what it does</a>
+    </div>
+
+    <ul class="hero__facts">
+      <li class="chip">Free to download</li>
+      <li class="chip">iPhone &amp; iPad</li>
+      <li class="chip">{{ site.minimumOs }}+</li>
+      <li class="chip">Works offline</li>
+    </ul>
+
+    <p class="hero__hint">
+      <span aria-hidden="true">↗</span>
+      Every dot is a food. Hover a city to see what it eats.
+    </p>
+  </div>
+
+  <a class="hero__cue" href="#truth" aria-label="Scroll to the next section">
+    <span></span>
+  </a>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════ STATS ══ -->
+
+<section class="section section--tight stats" aria-label="What is in the database">
+  <div class="wrap stats__grid" appRevealStagger="80">
+    <div class="stat" appReveal="up">
+      <span class="stat__value">{{ data.foods.toLocaleString('en-US') }}</span>
+      <span class="stat__label">Foods, offline</span>
+    </div>
+    <div class="stat" appReveal="up">
+      <span class="stat__value">{{ data.nutrientFields }}</span>
+      <span class="stat__label">Nutrient fields each</span>
+    </div>
+    <div class="stat" appReveal="up">
+      <span class="stat__value">{{ data.vitamins }}</span>
+      <span class="stat__label">Vitamins tracked</span>
+    </div>
+    <div class="stat" appReveal="up">
+      <span class="stat__value">{{ data.minerals }}</span>
+      <span class="stat__label">Minerals tracked</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════ TRUTH ══ -->
+
+<section id="truth" class="section statement">
+  <div class="wrap wrap--narrow">
+    <h2 appReveal="up">
+      A calorie count tells you<br />
+      <span class="statement__strike">almost nothing</span>
+      about what you ate.
+    </h2>
+
+    <div class="statement__body" appReveal="up" [revealDelay]="120">
+      <p>
+        Two meals can land on the same number and do entirely different things to you. One carries
+        iron, magnesium, B6 and fibre. The other carries sugar and a headache at four o'clock.
+      </p>
+      <p>
+        Wise Eating starts from the composition data instead — the same tables dietitians and food
+        scientists work from — so you can see what a meal actually contains before you decide
+        whether to eat it twice a week.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════════════ SEARCH ══ -->
+
+<section class="section search">
+  <div class="wrap search__grid">
+    <div class="search__text" appReveal="up">
+      <p class="eyebrow"><span class="eyebrow__dot"></span>Natural language search</p>
+      <h2>Ask for food the way you'd ask a person.</h2>
+      <p>
+        Type the constraint, not the keyword. The search reads quantities, comparisons, negations
+        and diets, and filters {{ data.foods.toLocaleString('en-US') }} foods on the device — no
+        round trip, no waiting.
+      </p>
+      <p>
+        Stack it with filters for allergens, diets, pH and alkalinity, and age suitability, and the
+        columns you constrained stay visible in the results so you can see <em>why</em> something
+        matched.
+      </p>
+      <a class="btn btn--ghost" routerLink="/nutrients">How the data works</a>
+    </div>
+
+    <div class="search__demo" appReveal="zoom" [revealDelay]="140" appTilt [tiltMax]="6">
+      <div class="query-card card card--lit">
+        <div class="query-card__bar">
+          <span class="query-card__glyph" aria-hidden="true">⌕</span>
+          <span class="query-card__caret" aria-hidden="true"></span>
+        </div>
+
+        <ul class="query-card__list">
+          @for (q of queries; track q) {
+            <li>{{ q }}</li>
+          }
+        </ul>
+
+        <p class="query-card__foot">
+          Every one of these is a query the app understands as written.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ TIMELINE ══ -->
+
+<section class="section timeline">
+  <div class="wrap timeline__grid">
+    <div class="timeline__shot" appReveal="left">
+      <div class="device">
+        <img
+          src="/assets/shots/store-01.webp"
+          alt="The Wise Eating timeline, showing meals and a workout on the same day"
+          width="640"
+          height="1391"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <div class="timeline__text" appReveal="right" [revealDelay]="120">
+      <p class="eyebrow"><span class="eyebrow__dot"></span>One day, one line</p>
+      <h2>Food and training stop being two apps.</h2>
+      <p>
+        Meals, snacks, workouts, symptoms and notes go on a single timeline in the order they
+        happened. That is the only way the interesting question becomes answerable: what did the
+        week you felt good actually look like?
+      </p>
+
+      <ul class="ticks">
+        <li>Log sets, reps, time and perceived effort against the session</li>
+        <li>Mark mood, energy and symptoms as they happen, not from memory</li>
+        <li>Compare weeks rather than days — habits show up at that scale</li>
+      </ul>
+
+      <a class="btn btn--ghost" routerLink="/workouts">Training in detail</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ GALLERY ══ -->
+
+<section id="screens" class="section gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow"><span class="eyebrow__dot"></span>Every screen</p>
+      <h2>This is the whole app.</h2>
+      <p>
+        No mock-ups and no renders — these are the screenshots from the App Store listing, in the
+        order you would meet them.
+      </p>
+    </div>
+  </div>
+
+  <!-- Scrolled rather than gridded: nine tall screens in a grid would be a
+       page of thumbnails, where a rail keeps them at a size you can read. -->
+  <ul class="gallery__rail" tabindex="0" aria-label="App screenshots, scrollable">
+    @for (shot of shots; track shot.file) {
+      <li class="gallery__item">
+        <div class="device">
+          <img
+            [src]="'/assets/shots/' + shot.file + '.webp'"
+            [alt]="shot.alt"
+            width="640"
+            height="1391"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="gallery__caption">
+          <h3>{{ shot.title }}</h3>
+          <p>{{ shot.body }}</p>
+        </div>
+      </li>
+    }
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ CAPACITY ══ -->
+
+<section id="features" class="section">
+  <div class="wrap">
+    <div class="section-head section-head--centre">
+      <p class="eyebrow"><span class="eyebrow__dot"></span>What it does</p>
+      <h2>Everything between deciding and eating.</h2>
+      <p>
+        Planning, shopping, storing, cooking, training and noticing — the parts a food tracker
+        usually leaves to you.
+      </p>
+    </div>
+
+    <div class="bento" appRevealStagger="70">
+      <a class="bento__cell bento__cell--wide card card--interactive card--lit" routerLink="/nutrients" appReveal="up" appTilt [tiltMax]="5">
+        <span class="card__icon" aria-hidden="true">🧬</span>
+        <h3>The whole nutrient panel</h3>
+        <p>
+          Per serving and per 100 g, with {{ data.vitamins }} vitamins and {{ data.minerals }}
+          minerals shown honestly — a dash where the data is missing rather than a zero that
+          pretends otherwise.
+        </p>
+        <span class="bento__more">Nutrients &amp; USDA data →</span>
+      </a>
+
+      <a class="bento__cell card card--interactive card--lit" routerLink="/features" appReveal="up" appTilt [tiltMax]="5">
+        <span class="card__icon" aria-hidden="true">🗓️</span>
+        <h3>AI weekly plans</h3>
+        <p>
+          Meal plans and training weeks generated from real foods and your own constraints — goal,
+          age, diet, allergens, equipment.
+        </p>
+        <span class="bento__more">All features →</span>
+      </a>
+
+      <a class="bento__cell card card--interactive card--lit" routerLink="/pantry" appReveal="up" appTilt [tiltMax]="5">
+        <span class="card__icon" aria-hidden="true">🧊</span>
+        <h3>A pantry that remembers</h3>
+        <p>
+          Batches, quantities and expiry dates for what is actually in the house, so a plan can be
+          built from what you own before it asks you to shop.
+        </p>
+        <span class="bento__more">Pantry &amp; shopping →</span>
+      </a>
+
+      <a class="bento__cell bento__cell--wide card card--interactive card--lit" routerLink="/workouts" appReveal="up" appTilt [tiltMax]="5">
+        <span class="card__icon" aria-hidden="true">🏋️</span>
+        <h3>Training that knows what you ate</h3>
+        <p>
+          Strength, hypertrophy, fat loss, mobility or general fitness. Pick the goal, the
+          equipment and the days; adjust the template whenever it stops fitting.
+        </p>
+        <span class="bento__more">Training →</span>
+      </a>
+
+      <a class="bento__cell card card--interactive card--lit" routerLink="/baby-feeding" appReveal="up" appTilt [tiltMax]="5">
+        <span class="card__icon" aria-hidden="true">🍼</span>
+        <h3>Feeding a baby</h3>
+        <p>
+          Age-suitability floors on every food, a hard honey rule under twelve months, and allergens
+          rolled up through recipes.
+        </p>
+        <span class="bento__more">Read the guide →</span>
+      </a>
+
+      <a class="bento__cell card card--interactive card--lit" routerLink="/pantry" appReveal="up" appTilt [tiltMax]="5">
+        <span class="card__icon" aria-hidden="true">🧾</span>
+        <h3>Shopping &amp; budget</h3>
+        <p>
+          Lists that fall out of the plan, and optional price tracking so the week's food has a
+          number attached before you are standing in the shop.
+        </p>
+        <span class="bento__more">See how →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ USDA ══ -->
+
+<section class="section section--raised usda">
+  <div class="wrap usda__grid">
+    <div appReveal="up">
+      <p class="eyebrow"><span class="eyebrow__dot"></span>The data</p>
+      <h2>American data. Global appetite.</h2>
+      <p>
+        {{ data.source }} is published by the United States Department of Agriculture, and it is
+        the most complete public food composition database in existence. Canada leans on it.
+        Researchers everywhere cite it. Most countries have nothing of the kind of their own.
+      </p>
+      <p>
+        That is why {{ site.name }} is not a US-only tool. Composition is a property of the food,
+        not of the border it crossed — a lentil in Sofia and a lentil in Seattle are the same
+        lentil. What changes is soil, storage and how you cooked it, and the app says so rather
+        than hiding it.
+      </p>
+
+      <div class="disclaimer">
+        <p>
+          Nutrient figures are estimates. Actual content varies with variety, soil, season, storage
+          and preparation. For anything that matters clinically, use laboratory testing and
+          professional advice.
+        </p>
+      </div>
+    </div>
+
+    <div class="usda__shot" appReveal="zoom" [revealDelay]="120">
+      <div class="device">
+        <img
+          src="/assets/shots/store-08.webp"
+          alt="A nutrient panel in Wise Eating showing vitamins and minerals for a food"
+          width="640"
+          height="1391"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ WHO ══ -->
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head section-head--centre">
+      <p class="eyebrow"><span class="eyebrow__dot"></span>Who uses it</p>
+      <h2>Built for one person. Useful to a practice.</h2>
+    </div>
+
+    <div class="who" appRevealStagger="80">
+      <div class="card" appReveal="up">
+        <span class="card__icon" aria-hidden="true">👤</span>
+        <h3>People &amp; families</h3>
+        <p>
+          Cover the nutrients you keep missing, check allergens before you cook, and see how the
+          weeks you felt good were different from the ones you didn't.
+        </p>
+      </div>
+      <div class="card" appReveal="up">
+        <span class="card__icon" aria-hidden="true">🩺</span>
+        <h3>Health professionals</h3>
+        <p>
+          Dietitians, paediatricians, gastroenterologists, endocrinologists and therapists who want
+          structured logging and a reference table they can defend.
+        </p>
+      </div>
+      <div class="card" appReveal="up">
+        <span class="card__icon" aria-hidden="true">🏋️</span>
+        <h3>Coaches &amp; trainers</h3>
+        <p>
+          Design programmes, try variations, and keep the nutrition side of a client's week in the
+          same place as the training side.
+        </p>
+      </div>
+      <div class="card" appReveal="up">
+        <span class="card__icon" aria-hidden="true">🏢</span>
+        <h3>Employers &amp; teams</h3>
+        <p>
+          Wellbeing programmes that give people a real tool rather than a leaflet, and no
+          requirement to hand over health data to get it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ FAQ ══ -->
+
+<section class="section faq">
+  <div class="wrap wrap--narrow">
+    <div class="section-head">
+      <p class="eyebrow"><span class="eyebrow__dot"></span>Questions</p>
+      <h2>The things people ask first.</h2>
+    </div>
+
+    <div class="faq__list" appRevealStagger="60">
+      @for (item of faq; track item.q) {
+        <details class="faq__item" appReveal="up">
+          <summary>
+            <h3>{{ item.q }}</h3>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </summary>
+          <p>{{ item.a }}</p>
+        </details>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ CTA ══ -->
+
+<section class="section cta">
+  <div class="wrap">
+    <div class="cta__box" appReveal="zoom">
+      <h2>Start with one meal.</h2>
+      <p>
+        Look up something you ate today. See what was actually in it. That is usually enough to
+        change what you cook on Thursday.
+      </p>
+      <div class="cta__actions">
+        <we-store-button />
+        <a class="btn btn--ghost" routerLink="/pricing">What it costs</a>
+      </div>
+    </div>
+  </div>
+</section>
