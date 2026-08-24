@@ -3,7 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { NUTRIENT_FOODS, NutrientTable } from '../../content/nutrient-foods';
 import { FACTS, NutrientFacts } from '../../content/nutrient-facts';
-import { LIVE_LOCALES, contentFor } from '../../content/registry';
+import { CONTENT, LIVE_LOCALES, contentFor } from '../../content/registry';
 import { ArticleChrome, LocalisedArticle } from '../../content/types';
 import { DEFAULT_LOCALE, Locale, localePath, storeUrl } from '../../core/locales';
 import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.directive';
@@ -640,14 +640,21 @@ export class NutrientComponent {
     this.reviewed = this.formatDate(facts.updated);
 
     const path = `/nutrients/${slug}`;
-    const alternates = LIVE_LOCALES.map((locale) => ({
+
+    // Only the languages this particular article has been written in. A
+    // language that has magnesium but not selenium belongs in the hreflang set
+    // of one and not of the other; listing it on both points at a page that
+    // was never built.
+    const translated = LIVE_LOCALES.filter((locale) => slug in CONTENT[locale.code].articles);
+
+    const alternates = translated.map((locale) => ({
       hreflang: locale.hreflang,
       path: localePath(locale, path),
     }));
 
-    this.others = LIVE_LOCALES.filter((locale) => locale.code !== this.locale.code).map(
-      (locale) => ({ locale, path: localePath(locale, path) }),
-    );
+    this.others = translated
+      .filter((locale) => locale.code !== this.locale.code)
+      .map((locale) => ({ locale, path: localePath(locale, path) }));
 
     const self = localePath(this.locale, path);
 

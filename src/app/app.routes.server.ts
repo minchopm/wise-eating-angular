@@ -1,7 +1,6 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 
-import { NUTRIENT_SLUGS } from './content/nutrient-facts';
-import { LIVE_LOCALES } from './content/registry';
+import { CONTENT, LIVE_LOCALES } from './content/registry';
 
 /**
  * Which routes the build renders, and how.
@@ -11,16 +10,16 @@ import { LIVE_LOCALES } from './content/registry';
  * the build has no way to know that `/nutrients/:slug` stands for two dozen
  * real pages, and would ship none of them.
  */
-const slugs = async () => NUTRIENT_SLUGS.map((slug) => ({ slug }));
-
 export const serverRoutes: ServerRoute[] = [
-  // One entry per language. Angular matches these against the routes the
-  // application declares, so the two lists have to be generated from the same
-  // source or a language silently ships zero pages.
+  // One entry per language, and each one prerenders only the articles that
+  // language actually has. Handing every locale the full slug list would build
+  // a page for every unwritten translation — blank, indexed, and linked to
+  // from the hreflang set of the article that does exist.
   ...LIVE_LOCALES.map((locale) => ({
     path: locale.slug ? `${locale.slug}/nutrients/:slug` : 'nutrients/:slug',
     renderMode: RenderMode.Prerender,
-    getPrerenderParams: slugs,
+    getPrerenderParams: async () =>
+      Object.keys(CONTENT[locale.code].articles).map((slug) => ({ slug })),
   })),
   {
     path: '**',
