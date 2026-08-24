@@ -14,7 +14,8 @@
     "deploy:invalidate": "INVALIDATE_ONLY=1 ./scripts/deploy.sh",
     "provision": "./scripts/provision.sh",
     "shots": "node tools/fetch-store-shots.mjs && python3 tools/build-images.py",
-    "globe": "python3 tools/build-globe.py"
+    "globe": "python3 tools/build-globe.py",
+    "content": "python3 tools/build-nutrient-data.py"
   },
   "private": true,
   "dependencies": {

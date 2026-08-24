@@ -27,6 +27,11 @@ export const routes: Routes = [
       import('./pages/nutrients/nutrients.component').then((m) => m.NutrientsComponent),
   },
   {
+    path: 'nutrients/:slug',
+    loadComponent: () =>
+      import('./pages/nutrient/nutrient.component').then((m) => m.NutrientComponent),
+  },
+  {
     path: 'workouts',
     loadComponent: () =>
       import('./pages/workouts/workouts.component').then((m) => m.WorkoutsComponent),

@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 
 import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.directive';
 import { faqEntity, Seo } from '../../core/seo';
+import { NUTRIENTS as ARTICLES } from '../../content/nutrients';
 import { DATA, SITE, url } from '../../core/site';
 import { PageHeadComponent } from '../../shared/page-head';
 import { StoreButtonComponent } from '../../shared/store-button';
@@ -195,6 +196,30 @@ const FAQ = [
       </div>
     </section>
 
+    <section class="section section--raised">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__dot"></span>One nutrient at a time</p>
+          <h2>What each one actually does</h2>
+          <p>
+            What it is for, how much you need at each age, the foods that carry the most of it —
+            ranked from the same USDA records the app ships — and something to cook with it.
+          </p>
+        </div>
+
+        <div class="index" appRevealStagger="60">
+          @for (n of articles; track n.slug) {
+            <a class="index__item card card--interactive" [routerLink]="'/nutrients/' + n.slug" appReveal="up">
+              <span class="index__family">{{ n.family }}</span>
+              <h3>{{ n.name }}</h3>
+              <p>{{ n.lede }}</p>
+              <span class="index__more">Read →</span>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="wrap wrap--narrow">
         <div class="section-head">
@@ -224,6 +249,49 @@ const FAQ = [
   `,
   styles: [
     `
+      .index {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 18px;
+      }
+
+      .index__item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .index__family {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-faint);
+      }
+
+      .index__item h3 {
+        margin-block: 10px 12px;
+        font-size: var(--step-1);
+      }
+
+      .index__item p {
+        flex: 1;
+        font-size: 0.86rem;
+        line-height: 1.6;
+        color: var(--text-dim);
+      }
+
+      .index__more {
+        margin-top: 16px;
+        color: var(--mint);
+        font-size: 0.86rem;
+        font-weight: 600;
+        transition: transform 0.28s var(--ease-out);
+      }
+
+      .index__item:hover .index__more {
+        transform: translateX(4px);
+      }
+
       .grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
@@ -345,6 +413,7 @@ export class NutrientsComponent {
   readonly data = DATA;
   readonly nutrients = NUTRIENTS;
   readonly faq = FAQ;
+  readonly articles = ARTICLES;
 
   constructor() {
     inject(Seo).apply({

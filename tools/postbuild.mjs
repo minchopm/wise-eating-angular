@@ -31,6 +31,20 @@ const PAGES = [
   { path: '/terms', priority: '0.4', changefreq: 'yearly' },
 ];
 
+// The nutrient articles are discovered from what the build actually produced,
+// rather than listed here. A hand-kept list in a sitemap eventually promises a
+// page that no longer exists, which is a soft 404 we advertised ourselves.
+const articles = (await readdir(join(OUT, 'nutrients'), { withFileTypes: true }))
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => ({
+    path: `/nutrients/${entry.name}`,
+    priority: '0.8',
+    changefreq: 'yearly',
+  }))
+  .sort((a, b) => a.path.localeCompare(b.path));
+
+PAGES.push(...articles);
+
 const today = new Date().toISOString().slice(0, 10);
 
 const urls = PAGES.map(
