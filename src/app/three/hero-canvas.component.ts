@@ -310,6 +310,23 @@ type Caption = Hover & Marker;
         opacity: 0.85;
       }
 
+      /* On a portrait screen there is no room beside the type, so the globe
+         sits behind it. Deepen the wash under the words rather than moving the
+         globe away — the alternative is a hero with nothing in it on a phone. */
+      @media (max-aspect-ratio: 17 / 20) {
+        .stage__vignette {
+          background:
+            linear-gradient(
+              180deg,
+              rgba(3, 12, 9, 0.86) 0%,
+              rgba(3, 12, 9, 0.62) 34%,
+              rgba(3, 12, 9, 0.5) 52%,
+              rgba(3, 12, 9, 0.9) 88%,
+              rgba(3, 12, 9, 0.98) 100%
+            );
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .tag {
           animation: none;
@@ -369,19 +386,34 @@ export class HeroCanvasComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (!this.browser || !canRunHeavyScene()) return;
 
-    // Never block first paint on the 3D scene.
-    const boot = () =>
+    // Never block first paint on the 3D scene — but do not let it be starved
+    // either. `requestIdleCallback` does not fire in a hidden document, and
+    // its timeout does not rescue it, so a page opened in a background tab
+    // (a middle-click, "open in new tab") would show the gradient for ever.
+    // Three routes to the same guarded call: idle, a hard timer, and the
+    // moment the tab is first looked at.
+    let booted = false;
+    const boot = () => {
+      if (booted || this.destroyed) return;
+      booted = true;
+      document.removeEventListener('visibilitychange', onShown);
       this.zone.runOutsideAngular(() => {
         void this.init();
       });
+    };
+
+    const onShown = () => {
+      if (!document.hidden) boot();
+    };
 
     if ('requestIdleCallback' in window) {
       (
         window as Window & { requestIdleCallback: (cb: () => void, o?: object) => number }
       ).requestIdleCallback(boot, { timeout: 900 });
-    } else {
-      setTimeout(boot, 220);
     }
+
+    setTimeout(boot, document.hidden ? 4000 : 260);
+    document.addEventListener('visibilitychange', onShown);
   }
 
   ngOnDestroy(): void {
