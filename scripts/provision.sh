@@ -21,14 +21,22 @@
 #
 # Idempotent. Run it again and it re-asserts rather than duplicating.
 #
-#   ./scripts/provision.sh            apply
-#   DRY_RUN=1 ./scripts/provision.sh  print what it would change
+#   ./scripts/provision.sh                 apply
+#   DRY_RUN=1 ./scripts/provision.sh        print what it would change
+#   WITH_HEADERS=1 ./scripts/provision.sh   also attach the security headers
+#
+# The headers policy is opt-in because its Content-Security-Policy has to name
+# every host AdSense pulls from, and AdSense pulls from a lot of them. Getting
+# it wrong does not break the page — it silently stops the adverts loading,
+# which is the kind of failure nobody notices for a week. Attach it once there
+# is a live page to check the ad slots against.
 #
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ENV_FILE="${ENV_FILE:-$ROOT_DIR/.env}"
 DRY_RUN="${DRY_RUN:-0}"
+WITH_HEADERS="${WITH_HEADERS:-0}"
 
 log()  { printf '\033[36m▸\033[0m %s\n' "$*"; }
 skip() { printf '\033[90m  already there: %s\033[0m\n' "$*"; }
@@ -143,7 +151,10 @@ HEADERS="$(aws_read cloudfront list-response-headers-policies --type custom \
   --query "ResponseHeadersPolicyList.Items[?ResponseHeadersPolicy.ResponseHeadersPolicyConfig.Name=='$HEADERS_NAME'].ResponseHeadersPolicy.Id | [0]" \
   --output text 2>/dev/null || true)"
 
-if [[ -n "$HEADERS" && "$HEADERS" != "None" ]]; then
+if [[ "$WITH_HEADERS" != "1" && ( -z "$HEADERS" || "$HEADERS" == "None" ) ]]; then
+  log "Skipping the security headers policy (WITH_HEADERS=1 to create and attach it)."
+  HEADERS=""
+elif [[ -n "$HEADERS" && "$HEADERS" != "None" ]]; then
   skip "response headers policy $HEADERS"
 else
   log "Creating the response headers policy…"
@@ -166,7 +177,7 @@ JSON
     --response-headers-policy-config "file://$TMP/headers.json" \
     --query 'ResponseHeadersPolicy.Id' --output text)"
 fi
-log "Response headers policy: $HEADERS"
+[[ -n "$HEADERS" ]] && log "Response headers policy: $HEADERS" || true
 
 # --------------------------------------------------- update the distribution
 
@@ -201,9 +212,9 @@ if config.get('CustomErrorResponses', {}).get('Items') != wanted:
     config['CustomErrorResponses'] = {'Quantity': len(wanted), 'Items': wanted}
     changes.append('answer 403/404 with the real /404.html and a 404 status')
 
-# 3. Security headers, only if nothing is attached — an existing policy was
-#    chosen deliberately and is not ours to replace.
-if not behaviour.get('ResponseHeadersPolicyId'):
+# 3. Security headers, only if we made one and nothing is attached already —
+#    an existing policy was chosen deliberately and is not ours to replace.
+if headers_id and not behaviour.get('ResponseHeadersPolicyId'):
     behaviour['ResponseHeadersPolicyId'] = headers_id
     changes.append('attach the security headers policy')
 
@@ -234,7 +245,7 @@ cat <<SUMMARY
 
   Distribution  $DIST
   Function      $FN_NAME
-  Headers       $HEADERS
+  Headers       ${HEADERS:-none (WITH_HEADERS=1 to add)}
   Serving       https://$SITE_DOMAIN
 
   Put CLOUDFRONT_DISTRIBUTION_ID=$DIST in .env to skip the alias lookup
