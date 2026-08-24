@@ -1,5 +1,24 @@
 import { Routes } from '@angular/router';
 
+import { LIVE_LOCALES } from './content/registry';
+
+/**
+ * The nutrient articles, once per language.
+ *
+ * Generated rather than listed, because the alternative is nine near-identical
+ * blocks that drift apart the first time one of them is edited. The locale
+ * travels on the route's `data`, so the component never has to parse it back
+ * out of the URL.
+ */
+const article = () =>
+  import('./pages/nutrient/nutrient.component').then((m) => m.NutrientComponent);
+
+const nutrientRoutes: Routes = LIVE_LOCALES.map((locale) => ({
+  path: locale.slug ? `${locale.slug}/nutrients/:slug` : 'nutrients/:slug',
+  loadComponent: article,
+  data: { locale },
+}));
+
 /**
  * The routes.
  *
@@ -26,11 +45,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/nutrients/nutrients.component').then((m) => m.NutrientsComponent),
   },
-  {
-    path: 'nutrients/:slug',
-    loadComponent: () =>
-      import('./pages/nutrient/nutrient.component').then((m) => m.NutrientComponent),
-  },
+  ...nutrientRoutes,
   {
     path: 'workouts',
     loadComponent: () =>

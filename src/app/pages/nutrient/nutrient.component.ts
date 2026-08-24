@@ -2,20 +2,32 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { NUTRIENT_FOODS, NutrientTable } from '../../content/nutrient-foods';
-import { NutrientArticle, nutrientBySlug } from '../../content/nutrients';
+import { FACTS, NutrientFacts } from '../../content/nutrient-facts';
+import { LIVE_LOCALES, contentFor } from '../../content/registry';
+import { ArticleChrome, LocalisedArticle } from '../../content/types';
+import { DEFAULT_LOCALE, Locale, localePath, storeUrl } from '../../core/locales';
 import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.directive';
 import { Seo } from '../../core/seo';
 import { SITE, url } from '../../core/site';
 import { PageHeadComponent } from '../../shared/page-head';
 import { StoreButtonComponent } from '../../shared/store-button';
 
+/** One row of the intake table: the number from facts, the words from a translation. */
+interface IntakeRow {
+  readonly who: string;
+  readonly amount: string;
+  readonly note: string;
+}
+
 /**
- * A single nutrient article.
+ * A single nutrient article, in one language.
  *
- * The prose is authored in content/nutrients.ts; the food table is computed in
- * content/nutrient-foods.ts from the catalogue the app ships. Keeping those
- * two apart is the point of the page: the writing is a person's, the numbers
- * are not, and neither can quietly become the other.
+ * Three inputs meet here and none of them can be confused for another. The
+ * numbers come from content/nutrient-facts.ts and are the same in every
+ * language. The prose comes from a per-locale file. The food table is computed
+ * from the catalogue the app ships. A translator touches only the middle one,
+ * which is the whole reason the split exists — see the note at the top of
+ * nutrient-facts.ts.
  */
 @Component({
   selector: 'we-nutrient',
@@ -32,16 +44,28 @@ import { StoreButtonComponent } from '../../shared/store-button';
     @if (article; as a) {
       <we-page-head
         [title]="a.name"
-        [eyebrow]="a.family"
+        [eyebrow]="family"
         [lede]="a.lede"
-        [meta]="'Last reviewed ' + reviewed(a.updated)"
-        [crumbs]="[{ label: 'Nutrients', path: '/nutrients' }]"
+        [meta]="chrome.reviewed + ' ' + reviewed"
+        [crumbs]="[{ label: 'Nutrients', path: localised('/nutrients') }]"
       />
+
+      <!-- ────────────────────────────────────────────── the switcher ─── -->
+      @if (others.length) {
+        <div class="wrap languages">
+          <span class="languages__label">{{ locale.native }}</span>
+          @for (other of others; track other.locale.code) {
+            <a class="chip" [routerLink]="other.path" [attr.hreflang]="other.locale.hreflang">{{
+              other.locale.native
+            }}</a>
+          }
+        </div>
+      }
 
       <!-- ─────────────────────────────────────────────── what it does ── -->
       <section class="section">
         <div class="wrap wrap--narrow prose" appReveal="up">
-          <h2>What it does</h2>
+          <h2>{{ chrome.whatItDoes }}</h2>
           @for (para of a.whatItDoes; track para) {
             <p>{{ para }}</p>
           }
@@ -52,27 +76,27 @@ import { StoreButtonComponent } from '../../shared/store-button';
       <section class="section section--raised">
         <div class="wrap wrap--narrow">
           <div class="section-head">
-            <h2>How much you need</h2>
+            <h2>{{ chrome.howMuch }}</h2>
           </div>
 
           <div class="table-wrap" appReveal="up">
             <table class="intake">
               <caption class="visually-hidden">
-                Recommended intake of {{ a.name }} by age and sex
+                {{ chrome.howMuch }} — {{ a.name }}
               </caption>
               <thead>
                 <tr>
-                  <th scope="col">Who</th>
-                  <th scope="col">Per day</th>
-                  <th scope="col">Note</th>
+                  <th scope="col">{{ chrome.colWho }}</th>
+                  <th scope="col">{{ chrome.colPerDay }}</th>
+                  <th scope="col">{{ chrome.colNote }}</th>
                 </tr>
               </thead>
               <tbody>
-                @for (band of a.intake; track band.who) {
+                @for (row of intake; track row.who) {
                   <tr>
-                    <th scope="row">{{ band.who }}</th>
-                    <td class="num">{{ band.amount }}</td>
-                    <td class="note">{{ band.note || '—' }}</td>
+                    <th scope="row">{{ row.who }}</th>
+                    <td class="num">{{ row.amount }}</td>
+                    <td class="note">{{ row.note }}</td>
                   </tr>
                 }
               </tbody>
@@ -89,8 +113,8 @@ import { StoreButtonComponent } from '../../shared/store-button';
       <section class="section">
         <div class="wrap">
           <div class="section-head">
-            <p class="eyebrow"><span class="eyebrow__dot"></span>From our own data</p>
-            <h2>The foods highest in {{ a.name.toLowerCase() }}</h2>
+            <p class="eyebrow"><span class="eyebrow__dot"></span>{{ chrome.fromOurData }}</p>
+            <h2>{{ foodsHeading }}</h2>
             <p>{{ a.foodsIntro }}</p>
           </div>
 
@@ -111,7 +135,7 @@ import { StoreButtonComponent } from '../../shared/store-button';
                   <span class="food__body">
                     <span class="food__name">{{ food.name }}</span>
                     <span class="food__meta">
-                      <b>{{ food.amount }}{{ t.unit }}</b> per 100 g
+                      <b>{{ food.amount }}{{ t.unit }}</b> / 100 g
                       @if (food.kcal) {
                         · {{ food.kcal }} kcal
                       }
@@ -119,17 +143,13 @@ import { StoreButtonComponent } from '../../shared/store-button';
                     <span class="food__bar">
                       <i [style.width.%]="food.percent > 100 ? 100 : food.percent"></i>
                     </span>
-                    <span class="food__dv">{{ food.percent }}% of the Daily Value</span>
+                    <span class="food__dv">{{ food.percent }}% · DV</span>
                   </span>
                 </li>
               }
             </ol>
 
-            <p class="foods__note">
-              Per 100 g, from {{ site.storeName }}'s copy of USDA FoodData Central, against a Daily
-              Value of {{ t.dailyValue }}{{ t.unit }}. Ranked by amount, not by how much of it your
-              body actually takes up — read the next section before you act on the order.
-            </p>
+            <p class="foods__note">{{ foodsFootnote }}</p>
           }
         </div>
       </section>
@@ -138,12 +158,12 @@ import { StoreButtonComponent } from '../../shared/store-button';
       <section class="section section--raised">
         <div class="wrap">
           <div class="section-head">
-            <h2>What helps, and what gets in the way</h2>
+            <h2>{{ chrome.absorption }}</h2>
           </div>
 
           <div class="pair">
             <div class="card" appReveal="up">
-              <h3>Helps</h3>
+              <h3>{{ chrome.helps }}</h3>
               <ul class="ticks">
                 @for (item of a.helps; track item) {
                   <li>{{ item }}</li>
@@ -152,7 +172,7 @@ import { StoreButtonComponent } from '../../shared/store-button';
             </div>
 
             <div class="card card--warn" appReveal="up" [revealDelay]="90">
-              <h3>Gets in the way</h3>
+              <h3>{{ chrome.hinders }}</h3>
               <ul class="ticks ticks--warn">
                 @for (item of a.hinders; track item) {
                   <li>{{ item }}</li>
@@ -162,9 +182,7 @@ import { StoreButtonComponent } from '../../shared/store-button';
           </div>
 
           @if (a.absorptionNote) {
-            <div class="wrap--narrow after-table" style="margin-inline: 0">
-              <p>{{ a.absorptionNote }}</p>
-            </div>
+            <p class="after-table absorption-note">{{ a.absorptionNote }}</p>
           }
         </div>
       </section>
@@ -173,11 +191,8 @@ import { StoreButtonComponent } from '../../shared/store-button';
       <section class="section">
         <div class="wrap wrap--narrow">
           <div class="section-head">
-            <h2>Who tends to fall short</h2>
-            <p>
-              Groups where intake or absorption is commonly lower than the reference. It is a list
-              of populations, not a list of symptoms — it cannot tell you anything about yourself.
-            </p>
+            <h2>{{ chrome.shortfall }}</h2>
+            <p>{{ chrome.shortfallLede }}</p>
           </div>
 
           <ul class="ticks" appReveal="up">
@@ -192,20 +207,20 @@ import { StoreButtonComponent } from '../../shared/store-button';
       <section class="section section--raised">
         <div class="wrap wrap--narrow">
           <div class="section-head">
-            <p class="eyebrow"><span class="eyebrow__dot"></span>Cook it</p>
+            <p class="eyebrow"><span class="eyebrow__dot"></span>{{ chrome.cookIt }}</p>
             <h2>{{ a.recipe.title }}</h2>
             <p>{{ a.recipe.serves }}</p>
           </div>
 
           <div class="recipe" appReveal="up">
-            <h3>Ingredients</h3>
+            <h3>{{ chrome.ingredients }}</h3>
             <ul class="ticks">
               @for (item of a.recipe.ingredients; track item) {
                 <li>{{ item }}</li>
               }
             </ul>
 
-            <h3 class="recipe__steps-head">Method</h3>
+            <h3 class="recipe__steps-head">{{ chrome.method }}</h3>
             <ol class="steps">
               @for (step of a.recipe.steps; track step.title; let i = $index) {
                 <li>
@@ -230,9 +245,9 @@ import { StoreButtonComponent } from '../../shared/store-button';
       <!-- ──────────────────────────────────────────────────── sources ── -->
       <section class="section">
         <div class="wrap wrap--narrow prose">
-          <h2>Sources</h2>
+          <h2>{{ chrome.sources }}</h2>
           <ul>
-            @for (source of a.sources; track source.url) {
+            @for (source of sources; track source.url) {
               <li>
                 <a [href]="source.url" target="_blank" rel="noopener noreferrer">{{
                   source.label
@@ -242,12 +257,7 @@ import { StoreButtonComponent } from '../../shared/store-button';
           </ul>
 
           <div class="disclaimer">
-            <p>
-              This page is education, not medical advice. It does not diagnose anything and it is
-              not a substitute for a clinician who knows your history. If you think you are short of
-              {{ a.name.toLowerCase() }}, the answer is a blood test and a conversation, not a
-              supplement bought on the strength of an article.
-            </p>
+            <p>{{ disclaimer }}</p>
           </div>
         </div>
       </section>
@@ -255,12 +265,13 @@ import { StoreButtonComponent } from '../../shared/store-button';
       <!-- ──────────────────────────────────────────────────────── cta ── -->
       <section class="section section--tight">
         <div class="wrap wrap--narrow centred">
-          <p class="cta-line">
-            Every food above, and {{ '12,601' }} more, with the full panel — in the app.
-          </p>
-          <we-store-button />
+          <p class="cta-line">{{ chrome.ctaLine }}</p>
+          <we-store-button [href]="store" />
+          @if (chrome.storeNotLocalised) {
+            <p class="cta-note">{{ chrome.storeNotLocalised }}</p>
+          }
           <p class="cta-back">
-            <a routerLink="/nutrients">All nutrients</a>
+            <a [routerLink]="localised('/nutrients')">{{ chrome.allNutrients }}</a>
           </p>
         </div>
       </section>
@@ -268,6 +279,27 @@ import { StoreButtonComponent } from '../../shared/store-button';
   `,
   styles: [
     `
+      /* -------------------------------------------------------- languages */
+
+      .languages {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        padding-block: 28px 0;
+      }
+
+      .languages__label {
+        margin-right: 4px;
+        color: var(--text-faint);
+        font-size: var(--step--1);
+      }
+
+      .languages .chip:hover {
+        border-color: var(--mint);
+        color: var(--mint);
+      }
+
       /* ------------------------------------------------------ intake table */
 
       .table-wrap {
@@ -323,9 +355,14 @@ import { StoreButtonComponent } from '../../shared/store-button';
       .after-table {
         margin-top: 22px;
         margin-bottom: 0;
+        max-width: 78ch;
         color: var(--text-dim);
         font-size: var(--step--1);
         line-height: 1.7;
+      }
+
+      .absorption-note {
+        margin-top: 26px;
       }
 
       /* ------------------------------------------------------- food list */
@@ -334,7 +371,6 @@ import { StoreButtonComponent } from '../../shared/store-button';
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 14px;
-        counter-reset: none;
       }
 
       .food {
@@ -518,6 +554,13 @@ import { StoreButtonComponent } from '../../shared/store-button';
         color: var(--text-soft);
       }
 
+      .cta-note {
+        margin-top: 18px;
+        margin-bottom: 0;
+        color: var(--text-faint);
+        font-size: var(--step--1);
+      }
+
       .cta-back {
         margin-top: 24px;
         margin-bottom: 0;
@@ -531,54 +574,124 @@ import { StoreButtonComponent } from '../../shared/store-button';
   ],
 })
 export class NutrientComponent {
-  readonly site = SITE;
-  readonly article: NutrientArticle | undefined;
+  readonly locale: Locale;
+  readonly chrome: ArticleChrome;
+  readonly article: LocalisedArticle | undefined;
+  readonly facts: NutrientFacts | undefined;
   readonly table: NutrientTable | undefined;
 
-  constructor() {
-    const slug = inject(ActivatedRoute).snapshot.paramMap.get('slug') ?? '';
-    this.article = nutrientBySlug(slug);
-    this.table = NUTRIENT_FOODS[slug];
+  readonly intake: IntakeRow[] = [];
+  readonly sources: { label: string; url: string }[] = [];
+  readonly others: { locale: Locale; path: string }[] = [];
 
-    if (!this.article) return;
-    const a = this.article;
+  readonly family: string = '';
+  readonly foodsHeading: string = '';
+  readonly foodsFootnote: string = '';
+  readonly disclaimer: string = '';
+  readonly reviewed: string = '';
+  readonly store: string = SITE.appStore;
+
+  constructor() {
+    const route = inject(ActivatedRoute).snapshot;
+    const slug = route.paramMap.get('slug') ?? '';
+
+    this.locale = (route.data['locale'] as Locale | undefined) ?? DEFAULT_LOCALE;
+    const content = contentFor(this.locale.code);
+    this.chrome = content.chrome;
+    this.article = content.articles[slug];
+    this.facts = FACTS[slug];
+    this.table = NUTRIENT_FOODS[slug];
+    this.store = storeUrl(this.locale, SITE.appStore);
+
+    if (!this.article || !this.facts) return;
+    const article = this.article;
+    const facts = this.facts;
+
+    // Numbers from facts, words from the translation, joined by id — so a row
+    // cannot end up with the wrong figure however the wording is edited.
+    this.intake = facts.intake.map((fact) => {
+      const wording = article.intake[fact.id];
+      return {
+        who: wording?.who ?? fact.id,
+        amount: fact.amount,
+        note: wording?.note ?? '—',
+      };
+    });
+
+    this.sources = facts.sources.map((source) => ({
+      url: source.url,
+      label: article.sources[source.id] ?? source.url,
+    }));
+
+    this.family =
+      facts.family === 'vitamin'
+        ? this.chrome.familyVitamin
+        : facts.family === 'mineral'
+          ? this.chrome.familyMineral
+          : this.chrome.familyMacronutrient;
+
+    this.foodsHeading = this.chrome.foodsHeading.replace('{n}', article.name.toLowerCase());
+    this.foodsFootnote = this.table
+      ? this.chrome.foodsFootnote
+          .replace('{dv}', String(this.table.dailyValue))
+          .replace('{unit}', this.table.unit)
+      : '';
+    this.disclaimer = this.chrome.disclaimer.replace('{n}', article.name.toLowerCase());
+    this.reviewed = this.formatDate(facts.updated);
+
+    const path = `/nutrients/${slug}`;
+    const alternates = LIVE_LOCALES.map((locale) => ({
+      hreflang: locale.hreflang,
+      path: localePath(locale, path),
+    }));
+
+    this.others = LIVE_LOCALES.filter((locale) => locale.code !== this.locale.code).map(
+      (locale) => ({ locale, path: localePath(locale, path) }),
+    );
+
+    const self = localePath(this.locale, path);
 
     inject(Seo).apply({
-      title: a.name,
-      path: `/nutrients/${a.slug}`,
-      description: a.description,
-      updated: a.updated,
-      crumbs: [{ label: 'Nutrients', path: '/nutrients' }],
+      title: article.name,
+      path: self,
+      description: article.description,
+      updated: facts.updated,
+      locale: this.locale.code,
+      alternates,
+      crumbs: [{ label: 'Nutrients', path: localePath(this.locale, '/nutrients') }],
       entities: [
         {
           '@type': 'Article',
-          '@id': `${url(`/nutrients/${a.slug}`)}#article`,
-          headline: a.title,
-          description: a.description,
-          datePublished: a.updated,
-          dateModified: a.updated,
-          inLanguage: 'en',
+          '@id': `${url(self)}#article`,
+          headline: article.title,
+          description: article.description,
+          datePublished: facts.updated,
+          dateModified: facts.updated,
+          inLanguage: this.locale.code,
           isPartOf: { '@id': url('/#website') },
+          // Attributed to the company, not to a person. Nobody here holds a
+          // nutrition qualification, and inventing a byline that implies one
+          // is the fastest way to deserve losing a reader's trust. What the
+          // page can claim is where its numbers come from, and it does.
           author: { '@id': url('/#organization') },
           publisher: { '@id': url('/#organization') },
-          about: { '@type': 'Thing', name: a.name },
-          // Named so a reader — and a search engine — can see the article is
-          // built on primary references rather than on other articles.
-          citation: a.sources.map((source) => ({
+          about: { '@type': 'Thing', name: article.name },
+          citation: this.sources.map((source) => ({
             '@type': 'CreativeWork',
             name: source.label,
             url: source.url,
           })),
-          mainEntityOfPage: { '@id': `${url(`/nutrients/${a.slug}`)}#webpage` },
+          mainEntityOfPage: { '@id': `${url(self)}#webpage` },
         },
         {
           '@type': 'Recipe',
-          '@id': `${url(`/nutrients/${a.slug}`)}#recipe`,
-          name: a.recipe.title,
-          description: a.recipe.serves,
+          '@id': `${url(self)}#recipe`,
+          name: article.recipe.title,
+          description: article.recipe.serves,
+          inLanguage: this.locale.code,
           author: { '@id': url('/#organization') },
-          recipeIngredient: [...a.recipe.ingredients],
-          recipeInstructions: a.recipe.steps.map((step) => ({
+          recipeIngredient: [...article.recipe.ingredients],
+          recipeInstructions: article.recipe.steps.map((step) => ({
             '@type': 'HowToStep',
             name: step.title,
             text: step.detail,
@@ -588,13 +701,22 @@ export class NutrientComponent {
     });
   }
 
-  /** "2026-08-25" → "25 August 2026". */
-  reviewed(iso: string): string {
+  /** A path in the current locale. */
+  localised(path: string): string {
+    return localePath(this.locale, path);
+  }
+
+  /** "2026-08-25" → a date the reader's language would write. */
+  private formatDate(iso: string): string {
     const [year, month, day] = iso.split('-').map(Number);
-    const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
-    ];
-    return `${day} ${months[month - 1]} ${year}`;
+    try {
+      return new Intl.DateTimeFormat(this.locale.code, {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }).format(new Date(Date.UTC(year, month - 1, day)));
+    } catch {
+      return iso;
+    }
   }
 }

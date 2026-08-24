@@ -1,6 +1,7 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 
-import { NUTRIENTS } from './content/nutrients';
+import { NUTRIENT_SLUGS } from './content/nutrient-facts';
+import { LIVE_LOCALES } from './content/registry';
 
 /**
  * Which routes the build renders, and how.
@@ -10,12 +11,17 @@ import { NUTRIENTS } from './content/nutrients';
  * the build has no way to know that `/nutrients/:slug` stands for two dozen
  * real pages, and would ship none of them.
  */
+const slugs = async () => NUTRIENT_SLUGS.map((slug) => ({ slug }));
+
 export const serverRoutes: ServerRoute[] = [
-  {
-    path: 'nutrients/:slug',
+  // One entry per language. Angular matches these against the routes the
+  // application declares, so the two lists have to be generated from the same
+  // source or a language silently ships zero pages.
+  ...LIVE_LOCALES.map((locale) => ({
+    path: locale.slug ? `${locale.slug}/nutrients/:slug` : 'nutrients/:slug',
     renderMode: RenderMode.Prerender,
-    getPrerenderParams: async () => NUTRIENTS.map((nutrient) => ({ slug: nutrient.slug })),
-  },
+    getPrerenderParams: slugs,
+  })),
   {
     path: '**',
     renderMode: RenderMode.Prerender,

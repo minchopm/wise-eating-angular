@@ -23,6 +23,16 @@ export interface PageMeta {
   readonly entities?: readonly Record<string, unknown>[];
   /** Keep this page out of the index. Used by the screenshot routes. */
   readonly noindex?: boolean;
+  /**
+   * The same page in other languages.
+   *
+   * Search engines treat hreflang as a claim each page makes about the whole
+   * group, and they discard a group whose members disagree about who is in
+   * it — so every page in a set has to list every member, including itself.
+   */
+  readonly alternates?: readonly { hreflang: string; path: string }[];
+  /** BCP 47 for this page. Sets <html lang>. */
+  readonly locale?: string;
 }
 
 /**
@@ -61,7 +71,12 @@ export class Seo {
     }
 
     this.setLink('canonical', canonical);
+    this.setAlternates(page);
     this.setJsonLd(this.graph(page, full, canonical));
+
+    if (page.locale) {
+      this.doc.documentElement.setAttribute('lang', page.locale.split('-')[0]);
+    }
   }
 
   private tags(page: PageMeta, full: string, canonical: string): Record<string, string> {
@@ -77,7 +92,7 @@ export class Seo {
 
       'og:type': 'website',
       'og:site_name': SITE.name,
-      'og:locale': 'en_US',
+      'og:locale': (page.locale ?? 'en-US').replace('-', '_'),
       'og:title': full,
       'og:description': page.description,
       'og:url': canonical,
@@ -231,6 +246,40 @@ export class Seo {
         ...(page.entities ?? []),
       ],
     };
+  }
+
+  /**
+   * The hreflang set.
+   *
+   * Rewritten from scratch on every navigation rather than updated in place:
+   * a leftover alternate from the previous page is a claim that two unrelated
+   * pages are translations of each other, and it is invisible until an index
+   * report says so months later.
+   */
+  private setAlternates(page: PageMeta): void {
+    for (const stale of Array.from(
+      this.doc.head.querySelectorAll('link[rel="alternate"][hreflang]'),
+    )) {
+      stale.remove();
+    }
+
+    if (!page.alternates?.length) return;
+
+    for (const alternate of page.alternates) {
+      const link = this.doc.createElement('link');
+      link.setAttribute('rel', 'alternate');
+      link.setAttribute('hreflang', alternate.hreflang);
+      link.setAttribute('href', url(alternate.path));
+      this.doc.head.appendChild(link);
+    }
+
+    // x-default is where a reader whose language is not in the set should
+    // land. That is the root, which is English.
+    const fallback = this.doc.createElement('link');
+    fallback.setAttribute('rel', 'alternate');
+    fallback.setAttribute('hreflang', 'x-default');
+    fallback.setAttribute('href', url(page.alternates[0].path));
+    this.doc.head.appendChild(fallback);
   }
 
   private setLink(rel: string, href: string): void {

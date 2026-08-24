@@ -3,7 +3,8 @@ import { RouterLink } from '@angular/router';
 
 import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.directive';
 import { faqEntity, Seo } from '../../core/seo';
-import { NUTRIENTS as ARTICLES } from '../../content/nutrients';
+import { FACTS, NUTRIENT_SLUGS } from '../../content/nutrient-facts';
+import { EN_US } from '../../content/nutrients.en-US';
 import { DATA, SITE, url } from '../../core/site';
 import { PageHeadComponent } from '../../shared/page-head';
 import { StoreButtonComponent } from '../../shared/store-button';
@@ -413,7 +414,19 @@ export class NutrientsComponent {
   readonly data = DATA;
   readonly nutrients = NUTRIENTS;
   readonly faq = FAQ;
-  readonly articles = ARTICLES;
+  /**
+   * The article index.
+   *
+   * English only, because this hub page is not translated yet — the articles
+   * are. Listing a Bulgarian article here in English would be worse than not
+   * listing it: the reader would follow it expecting English.
+   */
+  readonly articles = NUTRIENT_SLUGS.map((slug) => ({
+    slug,
+    family: FACTS[slug].family,
+    name: EN_US.articles[slug].name,
+    lede: EN_US.articles[slug].lede,
+  }));
 
   constructor() {
     inject(Seo).apply({

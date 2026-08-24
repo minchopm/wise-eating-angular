@@ -10,6 +10,23 @@ import { join } from 'node:path';
 const OUT = 'dist/wise-eating-web/browser';
 const ORIGIN = 'https://www.wise-eating.com';
 
+// Kept in step with src/app/core/locales.ts by hand — this file is plain
+// JavaScript run by node and cannot import a TypeScript module. If a language
+// is added there and not here, its pages are still built and still carry
+// hreflang; they just do not appear in the sitemap, which the count printed at
+// the end will show.
+const LOCALE_HREFLANG = {
+  'en-ca': 'en-CA',
+  es: 'es-US',
+  fr: 'fr-FR',
+  'fr-ca': 'fr-CA',
+  de: 'de-DE',
+  it: 'it-IT',
+  da: 'da-DK',
+  bg: 'bg-BG',
+};
+const LOCALE_SLUGS = Object.keys(LOCALE_HREFLANG);
+
 /**
  * Pages worth indexing, in the order a reader would meet them.
  *
@@ -34,18 +51,70 @@ const PAGES = [
 // The nutrient articles are discovered from what the build actually produced,
 // rather than listed here. A hand-kept list in a sitemap eventually promises a
 // page that no longer exists, which is a soft 404 we advertised ourselves.
-const articles = (await readdir(join(OUT, 'nutrients'), { withFileTypes: true }))
+//
+// Each one exists in several languages, and a sitemap is the right place to
+// say so: search engines accept hreflang from a sitemap as readily as from the
+// pages, and doing it here means the whole set is declared in one place where
+// the members cannot disagree about who is in it.
+const dirs = await readdir(OUT, { withFileTypes: true });
+
+/** URL prefix per language, discovered from the directories that exist. */
+const localeDirs = dirs
   .filter((entry) => entry.isDirectory())
-  .map((entry) => ({
-    path: `/nutrients/${entry.name}`,
-    priority: '0.8',
-    changefreq: 'yearly',
-  }))
-  .sort((a, b) => a.path.localeCompare(b.path));
+  .map((entry) => entry.name)
+  .filter((name) => LOCALE_SLUGS.includes(name));
+
+/** slug → [{ hreflang, path }] */
+const articleSets = new Map();
+
+const collect = async (prefix, hreflang) => {
+  const base = prefix ? join(OUT, prefix, 'nutrients') : join(OUT, 'nutrients');
+  let entries;
+  try {
+    entries = await readdir(base, { withFileTypes: true });
+  } catch {
+    return;
+  }
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const set = articleSets.get(entry.name) ?? [];
+    set.push({ hreflang, path: `${prefix ? `/${prefix}` : ''}/nutrients/${entry.name}` });
+    articleSets.set(entry.name, set);
+  }
+};
+
+await collect('', 'en-US');
+for (const slug of localeDirs) {
+  await collect(slug, LOCALE_HREFLANG[slug]);
+}
+
+const articles = [...articleSets.entries()]
+  .sort(([a], [b]) => a.localeCompare(b))
+  .flatMap(([, set]) =>
+    set.map((entry) => ({
+      path: entry.path,
+      priority: '0.8',
+      changefreq: 'yearly',
+      alternates: set,
+    })),
+  );
 
 PAGES.push(...articles);
 
 const today = new Date().toISOString().slice(0, 10);
+
+const alternatesFor = (page) => {
+  if (!page.alternates) return '';
+  const links = page.alternates.map(
+    (alt) =>
+      `    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${ORIGIN}${alt.path}"/>`,
+  );
+  // x-default points at English, which is the set's first member.
+  links.push(
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}${page.alternates[0].path}"/>`,
+  );
+  return links.join('\n') + '\n';
+};
 
 const urls = PAGES.map(
   (page) => `  <url>
@@ -53,13 +122,14 @@ const urls = PAGES.map(
     <lastmod>${today}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-  </url>`,
+${alternatesFor(page)}  </url>`,
 ).join('\n');
 
 await writeFile(
   join(OUT, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls}
 </urlset>
 `,
