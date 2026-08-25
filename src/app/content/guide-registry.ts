@@ -1,9 +1,11 @@
 import { LOCALES, Locale } from '../core/locales';
 import { GuideLocale } from './guide-types';
+import { GUIDES_DA_DK } from './guides.da-DK';
 import { GUIDES_DE_DE } from './guides.de-DE';
 import { GUIDES_EN_US } from './guides.en-US';
 import { GUIDES_ES_ES } from './guides.es-ES';
 import { GUIDES_FR_FR } from './guides.fr-FR';
+import { GUIDES_IT_IT } from './guides.it-IT';
 
 /**
  * Which languages have guides.
@@ -19,6 +21,8 @@ export const GUIDE_CONTENT: Readonly<Record<string, GuideLocale>> = {
   'es-ES': GUIDES_ES_ES,
   'fr-FR': GUIDES_FR_FR,
   'de-DE': GUIDES_DE_DE,
+  'it-IT': GUIDES_IT_IT,
+  'da-DK': GUIDES_DA_DK,
 };
 
 /** Locales with guides, in the order core/locales.ts lists them. */
