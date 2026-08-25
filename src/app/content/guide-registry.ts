@@ -1,5 +1,6 @@
 import { LOCALES, Locale } from '../core/locales';
 import { GuideLocale } from './guide-types';
+import { GUIDES_DE_DE } from './guides.de-DE';
 import { GUIDES_EN_US } from './guides.en-US';
 
 /**
@@ -13,6 +14,7 @@ import { GUIDES_EN_US } from './guides.en-US';
  */
 export const GUIDE_CONTENT: Readonly<Record<string, GuideLocale>> = {
   'en-US': GUIDES_EN_US,
+  'de-DE': GUIDES_DE_DE,
 };
 
 /** Locales with guides, in the order core/locales.ts lists them. */
