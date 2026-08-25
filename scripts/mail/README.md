@@ -64,12 +64,18 @@ thirty days.
 ## Running it
 
 ```bash
-MAIL_DOMAIN=example.com FORWARD_TO=you@gmail.com bash scripts/mail/provision.sh
+MAIL_DOMAIN=example.com FORWARD_TO=you@gmail.com bash provision.sh
 ```
 
 Both values also read from `.env`, which is where they belong — a forwarding
 destination is usually a personal address and has no business in git.
-`MAIL_DOMAIN` falls back to `SITE_DOMAIN` with any `www.` stripped.
+`MAIL_DOMAIN` falls back to `SITE_DOMAIN` with any `www.` stripped, and
+anything passed on the command line wins over the file.
+
+The scripts look for a `.env` beside themselves, one level up, and two, so
+they work the same whether this directory sits at `scripts/mail/` inside a
+project or on its own as a copied kit. Paths below are written for the kit;
+prefix them with `scripts/mail/` when it lives inside a repo.
 
 | Variable | Default | |
 |---|---|---|
@@ -107,7 +113,7 @@ Nothing is lost, but nothing arrives either, and SES does not retry once the
 address is confirmed. So after clicking:
 
 ```bash
-MAIL_DOMAIN=example.com bash scripts/mail/replay.sh
+MAIL_DOMAIN=example.com bash replay.sh
 ```
 
 That walks the bucket and hands each stored message to the forwarder, which
@@ -225,6 +231,51 @@ test is available before you have production access.
 
 ---
 
+## Several projects, one AWS account
+
+The normal case: a handful of apps, each with its own domain, all forwarding
+to the same inbox. Run `provision.sh` once per domain and it composes — but it
+is worth knowing what it creates fresh each time and what it joins.
+
+| Per app | Shared across all of them |
+|---|---|
+| SES domain identity + DKIM | The SES account's sandbox status and sending quota |
+| The domain's DNS records | The one active receipt rule set per region |
+| S3 bucket `mail.<domain>` | The verified forwarding destination, if it is the same inbox |
+| IAM role `<slug>-mail-forwarder` | |
+| Lambda `<slug>-mail-forwarder` | |
+| Receipt rule `forward-<slug>` | |
+
+So **each app gets its own forwarder**. That is deliberate rather than
+incidental: the function carries its domain's `FORWARD_TO` and `FORWARD_FROM`
+in its environment, so one app can later point somewhere else — a client, a
+shared inbox, a different person — without touching the others. It also means
+a bad deploy of one app's forwarder cannot take another app's mail down with
+it. The cost of the extra functions is nothing; they are idle until mail
+arrives.
+
+What is genuinely shared is worth watching:
+
+**The sending quota is account-wide.** In the sandbox that is 200 messages a
+day across every domain, which is plenty for contact-form volume and not
+plenty if one app starts sending transactional mail. Leaving the sandbox
+raises it for all of them at once.
+
+**Verify the destination once.** If every app forwards to the same inbox, the
+one confirmation covers all of them — the second domain onward needs no click.
+Different destinations mean either a click each, or production access.
+
+**Keep them in one region.** Same region means one rule set and one place to
+look when something is wrong. Spreading them across regions gives each its own
+active rule set and sidesteps the sharing entirely, at the cost of doubling
+the number of places you have to check.
+
+**Different AWS accounts change nothing except that nothing is shared.** No
+rule-set contention, no shared quota, and a separate sandbox to escape per
+account.
+
+---
+
 ## Things that will bite you
 
 **One active receipt rule set per region, per account.** Not per domain — per
@@ -254,10 +305,15 @@ the second succeeds, which is the most confusing possible failure.
 **Action order in the receipt rule matters.** S3 first, Lambda second — SES
 runs them in order and the function reads the object the first one wrote.
 
-**Forwarding is receive-only.** Replies come from whatever inbox you forward
-to, showing that address. If you need `support@` to be a genuine two-way
-address, that is a hosted mailbox (Google Workspace, Fastmail) and it replaces
-the receiving half of this, not the DNS.
+**Forwarding is receive-only, and for most sites that is the right shape.**
+Replies come from whatever inbox you forward to, showing that address. For a
+site whose job is to be findable and answerable — an app's marketing page, a
+company card — that is fine: `support@` exists so people can reach you and so
+Apple has an address to list, and you reply from whichever mailbox you already
+live in. Only reach for a hosted mailbox (Google Workspace, Fastmail) when
+customers need to see replies *come from* `support@` — a support desk with
+several people, or a domain sending transactional mail. That replaces the
+receiving half of this, not the DNS.
 
 **The S3 copy expires after 30 days.** It is a safety net for a failed
 forward, not an archive. A bucket slowly filling with other people's

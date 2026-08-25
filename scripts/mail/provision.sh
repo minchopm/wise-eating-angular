@@ -13,7 +13,18 @@ warn() { printf '\033[33m!\033[0m %s\n' "$1"; }
 fail() { printf '\033[31m✗\033[0m %s\n' "$1" >&2; exit 1; }
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
-[[ -f "${HERE}/../../.env" ]] && { set -a; . "${HERE}/../../.env"; set +a; }
+
+# Look for a .env beside the script, one level up, and two — so this works
+# both at scripts/mail/ inside a project and as a standalone kit copied
+# somewhere on its own. First one found wins; command-line variables still
+# override it, because `set -a` only exports, it does not overwrite what the
+# caller already set... it does, so the caller's values are re-read after.
+CALLER_DOMAIN="${MAIL_DOMAIN:-}"; CALLER_TO="${FORWARD_TO:-}"
+for candidate in "${HERE}/.env" "${HERE}/../.env" "${HERE}/../../.env"; do
+  [[ -f "$candidate" ]] && { set -a; . "$candidate"; set +a; break; }
+done
+[[ -n "$CALLER_DOMAIN" ]] && MAIL_DOMAIN="$CALLER_DOMAIN"
+[[ -n "$CALLER_TO" ]] && FORWARD_TO="$CALLER_TO"
 
 # ── what to build it for ──────────────────────────────────────────────────
 #
