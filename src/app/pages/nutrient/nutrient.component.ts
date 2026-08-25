@@ -106,6 +106,11 @@ interface IntakeRow {
           @if (a.intakeNote) {
             <p class="after-table">{{ a.intakeNote }}</p>
           }
+          @if (chrome.referenceNote) {
+            <div class="disclaimer reference-note">
+              <p>{{ chrome.referenceNote }}</p>
+            </div>
+          }
         </div>
       </section>
 
@@ -363,6 +368,10 @@ interface IntakeRow {
 
       .absorption-note {
         margin-top: 26px;
+      }
+
+      .reference-note {
+        margin-top: 22px;
       }
 
       /* ------------------------------------------------------- food list */

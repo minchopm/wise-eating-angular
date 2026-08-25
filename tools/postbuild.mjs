@@ -10,20 +10,22 @@ import { join } from 'node:path';
 const OUT = 'dist/wise-eating-web/browser';
 const ORIGIN = 'https://www.wise-eating.com';
 
+// URL prefix → hreflang value, for every locale that lives under a prefix.
+// The root locale is not here: it is emitted separately, as both `en` and
+// x-default.
+//
 // Kept in step with src/app/core/locales.ts by hand — this file is plain
 // JavaScript run by node and cannot import a TypeScript module. If a language
 // is added there and not here, its pages are still built and still carry
 // hreflang; they just do not appear in the sitemap, which the count printed at
 // the end will show.
 const LOCALE_HREFLANG = {
-  'en-ca': 'en-CA',
-  es: 'es-US',
-  fr: 'fr-FR',
-  'fr-ca': 'fr-CA',
-  de: 'de-DE',
-  it: 'it-IT',
-  da: 'da-DK',
-  bg: 'bg-BG',
+  es: 'es',
+  fr: 'fr',
+  de: 'de',
+  it: 'it',
+  da: 'da',
+  bg: 'bg',
 };
 const LOCALE_SLUGS = Object.keys(LOCALE_HREFLANG);
 
@@ -83,10 +85,36 @@ const collect = async (prefix, hreflang) => {
   }
 };
 
-await collect('', 'en-US');
+await collect('', 'en');
 for (const slug of localeDirs) {
   await collect(slug, LOCALE_HREFLANG[slug]);
 }
+
+// The hub itself, once per language that has one. Its alternates are the
+// indexes that were actually built, discovered the same way the articles are,
+// so a language cannot be advertised here before its index exists on disk.
+const hubSet = [{ hreflang: 'en', path: '/nutrients' }];
+for (const slug of localeDirs) {
+  try {
+    await stat(join(OUT, slug, 'nutrients', 'index.html'));
+    hubSet.push({ hreflang: LOCALE_HREFLANG[slug], path: `/${slug}/nutrients` });
+  } catch {
+    /* that language has articles but no index of its own yet */
+  }
+}
+
+const hub = PAGES.find((page) => page.path === '/nutrients');
+if (hub) hub.alternates = hubSet;
+PAGES.push(
+  ...hubSet
+    .filter((entry) => entry.path !== '/nutrients')
+    .map((entry) => ({
+      path: entry.path,
+      priority: '0.7',
+      changefreq: 'monthly',
+      alternates: hubSet,
+    })),
+);
 
 const articles = [...articleSets.entries()]
   .sort(([a], [b]) => a.localeCompare(b))

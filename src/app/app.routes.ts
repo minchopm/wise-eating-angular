@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { LIVE_LOCALES } from './content/registry';
+import { CONTENT, LIVE_LOCALES } from './content/registry';
 
 /**
  * The nutrient articles, once per language.
@@ -16,6 +16,25 @@ const article = () =>
 const nutrientRoutes: Routes = LIVE_LOCALES.map((locale) => ({
   path: locale.slug ? `${locale.slug}/nutrients/:slug` : 'nutrients/:slug',
   loadComponent: article,
+  data: { locale },
+}));
+
+/**
+ * The index each translated language needs.
+ *
+ * English's /nutrients is a hand-written page and is listed below with the
+ * rest. A prefixed locale gets one only if it has declared `hub` chrome —
+ * without that there is nothing to render, and silently serving an English
+ * index at /de/nutrients would be worse than the 404.
+ */
+const hubRoutes: Routes = LIVE_LOCALES.filter(
+  (locale) => locale.slug && CONTENT[locale.code].hub,
+).map((locale) => ({
+  path: `${locale.slug}/nutrients`,
+  loadComponent: () =>
+    import('./pages/locale-nutrients/locale-nutrients.component').then(
+      (m) => m.LocaleNutrientsComponent,
+    ),
   data: { locale },
 }));
 
@@ -45,6 +64,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/nutrients/nutrients.component').then((m) => m.NutrientsComponent),
   },
+  ...hubRoutes,
   ...nutrientRoutes,
   {
     path: 'workouts',
@@ -96,9 +116,9 @@ export const routes: Routes = [
   {
     path: 'app-store-workouts',
     loadComponent: () =>
-      import(
-        './app-store/app-app-store-screenshot-workout-feature/app-store-screenshot-hero-workouts.component'
-      ).then((m) => m.AppStoreScreenshotHeroWorkoutsComponent),
+      import('./app-store/app-app-store-screenshot-workout-feature/app-store-screenshot-hero-workouts.component').then(
+        (m) => m.AppStoreScreenshotHeroWorkoutsComponent,
+      ),
   },
 
   // A real page at a real path, so the CloudFront error response can point at

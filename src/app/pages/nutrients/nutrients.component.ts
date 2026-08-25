@@ -5,6 +5,8 @@ import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.direc
 import { faqEntity, Seo } from '../../core/seo';
 import { FACTS, NUTRIENT_SLUGS } from '../../content/nutrient-facts';
 import { EN_US } from '../../content/nutrients.en-US';
+import { CONTENT, LIVE_LOCALES } from '../../content/registry';
+import { localePath } from '../../core/locales';
 import { DATA, SITE, url } from '../../core/site';
 import { PageHeadComponent } from '../../shared/page-head';
 import { StoreButtonComponent } from '../../shared/store-button';
@@ -101,6 +103,19 @@ const FAQ = [
       [crumbs]="[]"
     />
 
+    <!-- The same switcher the articles carry, so a reader who arrives here
+         from search has a visible way into their own language. -->
+    @if (languages.length) {
+      <div class="wrap languages">
+        <span class="languages__label">English</span>
+        @for (other of languages; track other.code) {
+          <a class="chip" [routerLink]="other.path" [attr.hreflang]="other.hreflang">{{
+            other.native
+          }}</a>
+        }
+      </div>
+    }
+
     <section class="section">
       <div class="wrap wrap--narrow prose" appReveal="up">
         <h2>One database, and it is a good one</h2>
@@ -111,12 +126,11 @@ const FAQ = [
           it works on a plane, and nothing about what you searched for leaves the device.
         </p>
         <p>
-          Each food carries {{ data.nutrientFields }} nutrient fields:
-          {{ data.vitamins }} vitamins, {{ data.minerals }} minerals, the macronutrients, fibre and
-          sugars. Values are available per serving and per 100 g, and you can switch between the two
-          without leaving the panel — which matters more than it sounds, because almost every
-          argument about whether a food is "high" in something is really an argument about the
-          denominator.
+          Each food carries {{ data.nutrientFields }} nutrient fields: {{ data.vitamins }} vitamins,
+          {{ data.minerals }} minerals, the macronutrients, fibre and sugars. Values are available
+          per serving and per 100 g, and you can switch between the two without leaving the panel —
+          which matters more than it sounds, because almost every argument about whether a food is
+          "high" in something is really an argument about the denominator.
         </p>
 
         <h2>American data, global usefulness</h2>
@@ -210,7 +224,11 @@ const FAQ = [
 
         <div class="index" appRevealStagger="60">
           @for (n of articles; track n.slug) {
-            <a class="index__item card card--interactive" [routerLink]="'/nutrients/' + n.slug" appReveal="up">
+            <a
+              class="index__item card card--interactive"
+              [routerLink]="'/nutrients/' + n.slug"
+              appReveal="up"
+            >
               <span class="index__family">{{ n.family }}</span>
               <h3>{{ n.name }}</h3>
               <p>{{ n.lede }}</p>
@@ -243,12 +261,33 @@ const FAQ = [
           <we-store-button />
         </p>
         <p class="after-note">
-          Or read how the data is used to <a routerLink="/features">plan a week</a>.
+          Or read how the data is used to
+          <a routerLink="/features">plan a week</a>.
         </p>
       </div>
     </section>
   `,
   styles: [
+    `
+      .languages {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        padding-block: 28px 0;
+      }
+
+      .languages__label {
+        margin-right: 4px;
+        color: var(--text-faint);
+        font-size: var(--step--1);
+      }
+
+      .languages .chip:hover {
+        border-color: var(--mint);
+        color: var(--mint);
+      }
+    `,
     `
       .index {
         display: grid;
@@ -428,6 +467,16 @@ export class NutrientsComponent {
     lede: EN_US.articles[slug].lede,
   }));
 
+  /** Languages with an index of their own, English excluded. */
+  readonly languages = LIVE_LOCALES.filter((locale) => locale.slug && CONTENT[locale.code].hub).map(
+    (locale) => ({
+      code: locale.code,
+      native: locale.native,
+      hreflang: locale.hreflang,
+      path: localePath(locale, '/nutrients'),
+    }),
+  );
+
   constructor() {
     inject(Seo).apply({
       title: 'Nutrients & USDA data',
@@ -436,6 +485,16 @@ export class NutrientsComponent {
         `Where ${SITE.name}'s numbers come from: ${DATA.foods.toLocaleString('en-US')} foods from ` +
         `${DATA.source}, ${DATA.vitamins} vitamins and ${DATA.minerals} minerals per food, shown ` +
         'per serving and per 100 g — with missing data marked as missing rather than as zero.',
+      // The other languages' indexes point here; hreflang has to be returned
+      // or the set is one-directional and search engines discard it. The
+      // members are the locales that actually have an index, which is what
+      // `hub` records.
+      alternates: LIVE_LOCALES.filter((locale) => !locale.slug || CONTENT[locale.code].hub).map(
+        (locale) => ({
+          hreflang: locale.hreflang,
+          path: localePath(locale, '/nutrients'),
+        }),
+      ),
       entities: [faqEntity(url('/nutrients'), FAQ)],
     });
   }

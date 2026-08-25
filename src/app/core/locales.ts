@@ -1,7 +1,7 @@
 /**
  * The languages this site is published in.
  *
- * Nine, and the list is deliberate rather than "everything Apple supports".
+ * Seven, and the list is deliberate rather than "everything Apple supports".
  * A translated page has to be worth a crawler's time and a reader's trust; a
  * machine-translated page about how much iron to give a seven-month-old is
  * worth neither. Each of these was chosen because there is a market for the
@@ -37,27 +37,25 @@ export interface Locale {
 export const LOCALES: readonly Locale[] = [
   {
     code: 'en-US',
+    // The root, and x-default. Declared as plain `en` rather than en-US
+    // because there is one English edition and it serves every English market.
+    // A separate en-CA would have carried the same numbers — the Dietary
+    // Reference Intakes are a joint US–Canadian standard — differing only in
+    // spelling and in which health agency it linked to. Two near-identical
+    // pages on two URLs is a duplicate-content problem that hreflang mitigates
+    // rather than solves, for no reader benefit.
     slug: '',
-    hreflang: 'en-US',
-    label: 'English (United States)',
-    native: 'English (US)',
+    hreflang: 'en',
+    label: 'English',
+    native: 'English',
     storefront: 'us',
     storeLocalised: true,
   },
   {
-    code: 'en-CA',
-    slug: 'en-ca',
-    hreflang: 'en-CA',
-    label: 'English (Canada)',
-    native: 'English (CA)',
-    storefront: 'ca',
-    storeLocalised: true,
-  },
-  {
-    code: 'es-US',
+    code: 'es-ES',
     slug: 'es',
-    hreflang: 'es-US',
-    label: 'Spanish (United States)',
+    hreflang: 'es',
+    label: 'Spanish',
     native: 'Español',
     storefront: 'us',
     storeLocalised: true,
@@ -65,25 +63,16 @@ export const LOCALES: readonly Locale[] = [
   {
     code: 'fr-FR',
     slug: 'fr',
-    hreflang: 'fr-FR',
-    label: 'French (France)',
+    hreflang: 'fr',
+    label: 'French',
     native: 'Français',
     storefront: 'fr',
     storeLocalised: true,
   },
   {
-    code: 'fr-CA',
-    slug: 'fr-ca',
-    hreflang: 'fr-CA',
-    label: 'French (Canada)',
-    native: 'Français (CA)',
-    storefront: 'ca',
-    storeLocalised: true,
-  },
-  {
     code: 'de-DE',
     slug: 'de',
-    hreflang: 'de-DE',
+    hreflang: 'de',
     label: 'German',
     native: 'Deutsch',
     storefront: 'de',
@@ -92,7 +81,7 @@ export const LOCALES: readonly Locale[] = [
   {
     code: 'it-IT',
     slug: 'it',
-    hreflang: 'it-IT',
+    hreflang: 'it',
     label: 'Italian',
     native: 'Italiano',
     storefront: 'it',
@@ -101,7 +90,7 @@ export const LOCALES: readonly Locale[] = [
   {
     code: 'da-DK',
     slug: 'da',
-    hreflang: 'da-DK',
+    hreflang: 'da',
     label: 'Danish',
     native: 'Dansk',
     storefront: 'dk',
@@ -110,7 +99,7 @@ export const LOCALES: readonly Locale[] = [
   {
     code: 'bg-BG',
     slug: 'bg',
-    hreflang: 'bg-BG',
+    hreflang: 'bg',
     label: 'Bulgarian',
     native: 'Български',
     storefront: 'bg',

@@ -95,9 +95,59 @@ export interface ArticleChrome {
   readonly familyMacronutrient: string;
   /** Shown on locales where the App Store listing is not translated. */
   readonly storeNotLocalised?: string;
+  /**
+   * Which country's reference values these are.
+   *
+   * Non-English editions need this. The figures throughout are US Dietary
+   * Reference Intakes, because that is the standard the app's food data is
+   * compiled against — but a German reader will check them against the DGE
+   * values and an EU reader against EFSA's, and those differ. Saying so is
+   * cheaper and more honest than maintaining seven sets of numbers, which
+   * would reintroduce exactly the divergence nutrient-facts.ts exists to
+   * prevent.
+   */
+  readonly referenceNote?: string;
+}
+
+/**
+ * The per-language index at /{slug}/nutrients.
+ *
+ * English has its own hand-written hub — a long piece about where the data
+ * comes from — and does not use this. A translated language gets a leaner
+ * page: a short account of the database, the list of articles that language
+ * actually has, and a link onward to the English original for the rest. That
+ * is deliberately less than the English page rather than a machine-translated
+ * imitation of it, and it exists because twenty-four articles with no index
+ * are twenty-four orphans.
+ */
+export interface HubChrome {
+  readonly eyebrow: string;
+  readonly title: string;
+  readonly lede: string;
+  /** Meta description. Under 160 characters. */
+  readonly description: string;
+  readonly dataHeading: string;
+  /** Two or three paragraphs. {foods}, {fields}, {vitamins}, {minerals} and
+   *  {source} are replaced from core/site.ts, so no locale carries its own
+   *  copy of a number that can go stale. */
+  readonly dataBody: readonly string[];
+  readonly indexHeading: string;
+  readonly indexLede: string;
+  /** The link label on each card. */
+  readonly read: string;
+  readonly disclaimer: string;
+  /** Sends the reader to the fuller English page. {href} is the anchor. */
+  readonly englishNote: string;
+  readonly englishLink: string;
 }
 
 export interface LocaleContent {
   readonly chrome: ArticleChrome;
+  /**
+   * Absent for English, which has a richer hub of its own. A locale without
+   * one gets no index route, so the absence is visible rather than silent —
+   * see app.routes.ts.
+   */
+  readonly hub?: HubChrome;
   readonly articles: Readonly<Record<string, LocalisedArticle>>;
 }
