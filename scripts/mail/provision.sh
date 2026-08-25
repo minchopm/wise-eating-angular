@@ -1,77 +1,87 @@
 #!/usr/bin/env bash
 #
-# Give wise-eating.com a mailbox, without running a mail server.
+# Give a domain a mailbox, without running a mail server.
 #
-#     bash scripts/provision-mail.sh
+#     MAIL_DOMAIN=example.com FORWARD_TO=you@gmail.com bash scripts/mail/provision.sh
 #
-# Mail to support@ and its siblings is received by SES, written to a private
-# S3 bucket, and forwarded to a real inbox by a small Lambda. Everything lives
-# in the account that already owns the domain and the CloudFront distribution,
-# so there is no third-party service holding the company's mail and no moving
-# the DNS zone somewhere else to get it.
-#
-# Why not "just add MX records": an MX record only names the server that
-# accepts mail for a domain. Something still has to be listening. This script
-# is that something.
-#
-# Safe to re-run. Every step checks for what it would create.
+# Nothing in here is specific to this project — see README.md for what it
+# builds and how to point it at another domain. Safe to re-run.
 set -euo pipefail
 
 cyan() { printf '\033[36m▸\033[0m %s\n' "$1"; }
+warn() { printf '\033[33m!\033[0m %s\n' "$1"; }
 fail() { printf '\033[31m✗\033[0m %s\n' "$1" >&2; exit 1; }
 
-cd "$(dirname "$0")/.."
-[[ -f .env ]] || fail "no .env"
-set -a; . ./.env; set +a
+HERE="$(cd "$(dirname "$0")" && pwd)"
+[[ -f "${HERE}/../../.env" ]] && { set -a; . "${HERE}/../../.env"; set +a; }
 
-: "${FORWARD_TO:?set FORWARD_TO in .env — the inbox that should receive the mail}"
-
-export AWS_ACCESS_KEY_ID="${NG_DEPLOY_AWS_ACCESS_KEY_ID}"
-export AWS_SECRET_ACCESS_KEY="${NG_DEPLOY_AWS_SECRET_ACCESS_KEY}"
-
-# SES can only *receive* in a subset of regions, and us-east-1 is the one that
-# has always been in it. The website's bucket is in us-east-2; that is
-# unrelated and stays where it is.
-export AWS_DEFAULT_REGION=us-east-1
-REGION=us-east-1
-
-DOMAIN=wise-eating.com
-BUCKET="mail.${DOMAIN}"
-PREFIX="inbox/"
-ROLE=wise-eating-mail-forwarder
-FUNCTION=wise-eating-mail-forwarder
-RULE_SET=wise-eating
-RULE=forward-to-inbox
-FROM="forwarder@${DOMAIN}"
+# ── what to build it for ──────────────────────────────────────────────────
+#
+# Both can come from .env, the environment or the command line, so the same
+# script serves this repo and the next one without being edited.
+DOMAIN="${MAIL_DOMAIN:-${SITE_DOMAIN:-}}"
+DOMAIN="${DOMAIN#www.}"
+[[ -n "$DOMAIN" ]] || fail "set MAIL_DOMAIN (or SITE_DOMAIN in .env)"
+: "${FORWARD_TO:?set FORWARD_TO — the inbox that should receive the mail}"
 
 # The addresses the domain answers to.
 #
 # An explicit list rather than a catch-all: a catch-all on a public domain
-# collects every dictionary-attack address a spammer tries, and forwards all
-# of it. postmaster@ and abuse@ are here because RFC 2142 says any domain that
-# sends mail should answer on them, and because a blocklist operator with a
-# complaint should have somewhere to send it.
-ALIASES=(
-  "support@${DOMAIN}"
-  "hello@${DOMAIN}"
-  "privacy@${DOMAIN}"
-  "legal@${DOMAIN}"
-  "security@${DOMAIN}"
-  "press@${DOMAIN}"
-  "postmaster@${DOMAIN}"
-  "abuse@${DOMAIN}"
-  "mincho@${DOMAIN}"
-)
+# collects every address a dictionary attack tries and forwards all of it.
+# postmaster@ and abuse@ are here because RFC 2142 expects any domain that
+# sends mail to answer on them, and because a blocklist operator with a
+# complaint needs somewhere to send it. Override with MAIL_ALIASES.
+read -r -a LOCALS <<< "${MAIL_ALIASES:-support hello privacy legal security press postmaster abuse}"
+
+# SES can only *receive* in a subset of regions. us-east-1 has always been in
+# it. Whatever region the website's bucket is in is unrelated and stays there.
+REGION="${MAIL_REGION:-us-east-1}"
+export AWS_DEFAULT_REGION="$REGION"
+
+if [[ -n "${NG_DEPLOY_AWS_ACCESS_KEY_ID:-}" ]]; then
+  export AWS_ACCESS_KEY_ID="$NG_DEPLOY_AWS_ACCESS_KEY_ID"
+  export AWS_SECRET_ACCESS_KEY="$NG_DEPLOY_AWS_SECRET_ACCESS_KEY"
+fi
+
+SLUG="${DOMAIN//./-}"
+BUCKET="mail.${DOMAIN}"
+PREFIX="inbox/"
+ROLE="${SLUG}-mail-forwarder"
+FUNCTION="${SLUG}-mail-forwarder"
+# One rule *set* is active per region per account — not per domain. So the
+# set is shared and each domain gets its own rule inside it. Which set that
+# is gets decided below, from whatever is already active.
+RULE="forward-${SLUG}"
+FROM="forwarder@${DOMAIN}"
+
+ALIASES=()
+for local in "${LOCALS[@]}"; do ALIASES+=("${local}@${DOMAIN}"); done
 
 ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
 ZONE=$(aws route53 list-hosted-zones --query "HostedZones[?Name=='${DOMAIN}.'].Id" --output text | sed 's|/hostedzone/||')
 [[ -n "$ZONE" ]] || fail "no Route 53 hosted zone for ${DOMAIN}"
-cyan "account ${ACCOUNT}, zone ${ZONE}, region ${REGION}"
+
+# SES allows exactly one *active* receipt rule set per region per account.
+# Activating a fresh one for every domain would silently take the mail away
+# from the domain provisioned before it, which is a failure nobody notices
+# until a customer says they never got a reply. So: join whatever is already
+# active, and only create a set when there is nothing to join.
+ACTIVE=$(aws ses describe-active-receipt-rule-set --query 'Metadata.Name' --output text 2>/dev/null || echo None)
+if [[ "$ACTIVE" == "None" || -z "$ACTIVE" ]]; then
+  RULE_SET="${MAIL_RULE_SET:-inbound}"
+  ADOPTED=false
+else
+  RULE_SET="$ACTIVE"
+  ADOPTED=true
+fi
+
+cyan "account ${ACCOUNT}, domain ${DOMAIN}, zone ${ZONE}, region ${REGION}"
+$ADOPTED && cyan "joining the active rule set '${RULE_SET}' rather than replacing it"
 
 # ── 1. the domain identity ────────────────────────────────────────────────
 cyan "1/7  verifying ${DOMAIN} with SES"
 TOKEN=$(aws ses verify-domain-identity --domain "$DOMAIN" --query VerificationToken --output text)
-mapfile -t DKIM < <(aws ses verify-domain-dkim --domain "$DOMAIN" --query 'DkimTokens[]' --output text | tr '\t' '\n')
+read -r -a DKIM <<< "$(aws ses verify-domain-dkim --domain "$DOMAIN" --query 'DkimTokens[]' --output text)"
 [[ ${#DKIM[@]} -eq 3 ]] || fail "expected 3 DKIM tokens, got ${#DKIM[@]}"
 
 # ── 2. DNS ────────────────────────────────────────────────────────────────
@@ -80,9 +90,11 @@ mapfile -t DKIM < <(aws ses verify-domain-dkim --domain "$DOMAIN" --query 'DkimT
 # which the forwarder depends on. DMARC starts at p=none: it asks for reports
 # without asking anyone to reject on our behalf, which is the right setting
 # until the reports show the domain's mail is signing cleanly.
+#
+# UPSERT rather than CREATE throughout, so a re-run repairs rather than fails.
 cyan "2/7  writing DNS records"
 {
-  echo '{"Comment":"mail for wise-eating.com","Changes":['
+  echo '{"Comment":"mail for '"${DOMAIN}"'","Changes":['
   echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"'"${DOMAIN}"'","Type":"MX","TTL":300,'
   echo '"ResourceRecords":[{"Value":"10 inbound-smtp.'"${REGION}"'.amazonaws.com"}]}},'
   echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"'"${DOMAIN}"'","Type":"TXT","TTL":300,'
@@ -97,16 +109,21 @@ cyan "2/7  writing DNS records"
     [[ $i -lt 2 ]] && echo ',' || echo ''
   done
   echo ']}'
-} > /tmp/wise-mail-dns.json
+} > "/tmp/${SLUG}-dns.json"
 
 CHANGE=$(aws route53 change-resource-record-sets --hosted-zone-id "$ZONE" \
-  --change-batch "file:///tmp/wise-mail-dns.json" --query 'ChangeInfo.Id' --output text)
+  --change-batch "file:///tmp/${SLUG}-dns.json" --query 'ChangeInfo.Id' --output text)
 cyan "     change ${CHANGE} submitted"
 
 # ── 3. the bucket the mail lands in ───────────────────────────────────────
 cyan "3/7  bucket s3://${BUCKET}"
 if ! aws s3api head-bucket --bucket "$BUCKET" 2>/dev/null; then
-  aws s3api create-bucket --bucket "$BUCKET" --region "$REGION" >/dev/null
+  if [[ "$REGION" == "us-east-1" ]]; then
+    aws s3api create-bucket --bucket "$BUCKET" >/dev/null
+  else
+    aws s3api create-bucket --bucket "$BUCKET" --region "$REGION" \
+      --create-bucket-configuration "LocationConstraint=${REGION}" >/dev/null
+  fi
   aws s3api put-public-access-block --bucket "$BUCKET" \
     --public-access-block-configuration \
     'BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true' >/dev/null
@@ -138,28 +155,30 @@ if ! aws iam get-role --role-name "$ROLE" >/dev/null 2>&1; then
                   "Action":"sts:AssumeRole"}]}' >/dev/null
   aws iam attach-role-policy --role-name "$ROLE" \
     --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole >/dev/null
+  # IAM is eventually consistent and Lambda will refuse a role it cannot see
+  # yet. This wait is not superstition; without it the first run fails.
   cyan "     waiting for the role to propagate"
   sleep 12
 fi
 
-cat > /tmp/wise-mail-role.json <<POLICY
+cat > "/tmp/${SLUG}-role.json" <<POLICY
 {"Version":"2012-10-17","Statement":[
   {"Effect":"Allow","Action":"s3:GetObject","Resource":"arn:aws:s3:::${BUCKET}/*"},
   {"Effect":"Allow","Action":["ses:SendRawEmail"],"Resource":"*"}]}
 POLICY
 aws iam put-role-policy --role-name "$ROLE" --policy-name forward \
-  --policy-document file:///tmp/wise-mail-role.json >/dev/null
+  --policy-document "file:///tmp/${SLUG}-role.json" >/dev/null
 ROLE_ARN=$(aws iam get-role --role-name "$ROLE" --query Role.Arn --output text)
 
 # ── 5. the function ───────────────────────────────────────────────────────
 cyan "5/7  function ${FUNCTION}"
-rm -f /tmp/wise-mail.zip
-(cd scripts/mail && zip -q /tmp/wise-mail.zip forwarder.mjs)
+rm -f "/tmp/${SLUG}-fn.zip"
+(cd "$HERE" && zip -q "/tmp/${SLUG}-fn.zip" forwarder.mjs)
 
 ENVVARS="Variables={MAIL_BUCKET=${BUCKET},MAIL_PREFIX=${PREFIX},FORWARD_TO=${FORWARD_TO},FORWARD_FROM=${FROM}}"
 if aws lambda get-function --function-name "$FUNCTION" >/dev/null 2>&1; then
   aws lambda update-function-code --function-name "$FUNCTION" \
-    --zip-file fileb:///tmp/wise-mail.zip >/dev/null
+    --zip-file "fileb:///tmp/${SLUG}-fn.zip" >/dev/null
   aws lambda wait function-updated --function-name "$FUNCTION"
   aws lambda update-function-configuration --function-name "$FUNCTION" \
     --environment "$ENVVARS" >/dev/null
@@ -167,7 +186,7 @@ else
   aws lambda create-function --function-name "$FUNCTION" \
     --runtime nodejs20.x --role "$ROLE_ARN" --handler forwarder.handler \
     --timeout 30 --memory-size 256 \
-    --zip-file fileb:///tmp/wise-mail.zip --environment "$ENVVARS" >/dev/null
+    --zip-file "fileb:///tmp/${SLUG}-fn.zip" --environment "$ENVVARS" >/dev/null
   aws lambda wait function-active --function-name "$FUNCTION"
 fi
 
@@ -177,8 +196,12 @@ aws lambda add-permission --function-name "$FUNCTION" --statement-id ses-invoke 
 FN_ARN=$(aws lambda get-function --function-name "$FUNCTION" --query Configuration.FunctionArn --output text)
 
 # ── 6. the receipt rule ───────────────────────────────────────────────────
+#
+# The S3 action must come before the Lambda action: SES runs them in order,
+# and the function reads the object the first one wrote.
 cyan "6/7  receipt rule ${RULE_SET}/${RULE}"
 aws ses create-receipt-rule-set --rule-set-name "$RULE_SET" >/dev/null 2>&1 || true
+# Replace this domain's rule and leave every other domain's rule alone.
 aws ses delete-receipt-rule --rule-set-name "$RULE_SET" --rule-name "$RULE" >/dev/null 2>&1 || true
 
 RECIPIENTS=$(printf '"%s",' "${ALIASES[@]}" | sed 's/,$//')
@@ -189,21 +212,23 @@ aws ses create-receipt-rule --rule-set-name "$RULE_SET" --rule '{
     {"S3Action":{"BucketName":"'"${BUCKET}"'","ObjectKeyPrefix":"'"${PREFIX}"'"}},
     {"LambdaAction":{"FunctionArn":"'"${FN_ARN}"'","InvocationType":"Event"}}
   ]}' >/dev/null
-aws ses set-active-receipt-rule-set --rule-set-name "$RULE_SET" >/dev/null
+$ADOPTED || aws ses set-active-receipt-rule-set --rule-set-name "$RULE_SET" >/dev/null
 
 # ── 7. the destination ────────────────────────────────────────────────────
 #
 # SES starts every account in a sandbox where it will only send to addresses
 # that have confirmed they want mail. That applies to the forwarding
-# destination too, so this asks for the confirmation. It is one click, once.
+# destination too. It is one click, once, and nothing is delivered until it
+# happens — though nothing is lost either, see replay.sh.
 cyan "7/7  asking ${FORWARD_TO} to confirm"
 STATE=$(aws ses get-identity-verification-attributes --identities "$FORWARD_TO" \
   --query "VerificationAttributes.\"${FORWARD_TO}\".VerificationStatus" --output text 2>/dev/null || echo None)
-if [[ "$STATE" != "Success" ]]; then
-  aws ses verify-email-identity --email-address "$FORWARD_TO"
-  cyan "     a confirmation mail is on its way — nothing forwards until it is clicked"
-else
+if [[ "$STATE" == "Success" ]]; then
   cyan "     already confirmed"
+else
+  aws ses verify-email-identity --email-address "$FORWARD_TO"
+  warn "a confirmation mail is on its way to ${FORWARD_TO}"
+  warn "nothing is delivered until it is clicked — run replay.sh afterwards for anything that arrived meanwhile"
 fi
 
 echo

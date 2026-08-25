@@ -58,12 +58,16 @@ export const SITE = {
   /**
    * The support address Apple requires, and the one Privacy and Terms name.
    *
-   * Deliberately an address that actually receives mail: wise-eating.com has
-   * no MX records at the time of writing, so anything@wise-eating.com would
-   * bounce. arte-soft.com is on Google Workspace and does. Point this at the
-   * branded address the moment mail is routed for the new domain.
+   * On the company's own domain now that wise-eating.com receives mail — see
+   * scripts/mail/README.md for what makes that true. A support address on a
+   * different company's domain reads as a shell, and this one is also the
+   * address a privacy request or a legal notice will be sent to, which is a
+   * poor thing to have pointing somewhere it does not belong.
+   *
+   * It is forwarded rather than hosted: mail to it is received by SES and
+   * relayed to a real inbox. Replies come from that inbox, not from here.
    */
-  contactEmail: 'mincho.milev@arte-soft.com',
+  contactEmail: 'support@wise-eating.com',
 
   appStoreId: '6751406823',
   appStore: 'https://apps.apple.com/us/app/wise-eating-nutrients/id6751406823',
