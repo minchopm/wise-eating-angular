@@ -57,8 +57,16 @@ for key in "${KEYS[@]}"; do
   # The forwarder only reads messageId out of the event, so this is the whole
   # shape it needs.
   printf '{"Records":[{"ses":{"mail":{"messageId":"%s"}}}]}' "$id" > "/tmp/${SLUG}-replay.json"
-  OUT=$(aws lambda invoke --function-name "$FUNCTION" \
+  # The response body goes to a file, not /dev/stdout: sending it to stdout
+  # interleaves the function's own JSON with the --query output, and every
+  # invocation then looks like a failure whether or not it was one.
+  ERR=$(aws lambda invoke --function-name "$FUNCTION" \
     --cli-binary-format raw-in-base64-out \
-    --payload "file:///tmp/${SLUG}-replay.json" /dev/stdout --query 'FunctionError' --output text 2>/dev/null || echo Failed)
-  if [[ "$OUT" == "None" ]]; then cyan "  sent  ${id}"; else cyan "  FAILED ${id} — check CloudWatch"; fi
+    --payload "file:///tmp/${SLUG}-replay.json" "/tmp/${SLUG}-replay-out.json" \
+    --query 'FunctionError' --output text 2>/dev/null || echo Failed)
+  if [[ "$ERR" == "None" ]]; then
+    cyan "  sent  ${id}"
+  else
+    cyan "  FAILED ${id} — $(head -c 200 "/tmp/${SLUG}-replay-out.json" 2>/dev/null)"
+  fi
 done
