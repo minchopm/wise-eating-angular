@@ -41,60 +41,11 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 9534
       },
       {
-        "name": "Beef, New Zealand, imported, variety meats and by-products liver, cooked, boiled",
-        "amount": 21000.0,
-        "percent": 2335,
-        "kcal": 150,
-        "frame": 6192
-      },
-      {
-        "name": "Lamb, New Zealand, imported, liver, cooked, soaked and fried",
-        "amount": 19900.0,
-        "percent": 2208,
-        "kcal": 168,
-        "frame": 12349
-      },
-      {
-        "name": "Duck, domesticated, liver, raw",
-        "amount": 12000.0,
-        "percent": 1332,
-        "kcal": 136,
-        "frame": 13839
-      },
-      {
-        "name": "Turkey, all classes, liver, cooked, simmered",
-        "amount": 10800.0,
-        "percent": 1195,
-        "kcal": 189,
-        "frame": 2201
-      },
-      {
-        "name": "Goose, liver, raw",
-        "amount": 9310.0,
-        "percent": 1034,
-        "kcal": 133,
-        "frame": 2812
-      },
-      {
-        "name": "Liver, beef",
-        "amount": 7680.0,
-        "percent": 854,
-        "kcal": 174,
-        "frame": 7829
-      },
-      {
-        "name": "Pork, fresh, variety meats and by-products, liver, raw",
-        "amount": 6500.0,
-        "percent": 722,
-        "kcal": 134,
-        "frame": 3991
-      },
-      {
-        "name": "Liver cheese, pork",
-        "amount": 5250.0,
-        "percent": 584,
-        "kcal": 304,
-        "frame": 65
+        "name": "Turkey, whole, giblets, cooked, simmered",
+        "amount": 4620.0,
+        "percent": 513,
+        "kcal": 173,
+        "frame": 10875
       },
       {
         "name": "Pate, truffle flavor",
@@ -104,18 +55,67 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 5620
       },
       {
-        "name": "Chicken, capons, giblets, raw",
-        "amount": 4370.0,
-        "percent": 486,
-        "kcal": 130,
-        "frame": 1333
-      },
-      {
         "name": "Liverwurst",
         "amount": 4220.0,
         "percent": 469,
         "kcal": 327,
         "frame": 14052
+      },
+      {
+        "name": "Grape leaves, raw",
+        "amount": 1380.0,
+        "percent": 153,
+        "kcal": 93,
+        "frame": 6579
+      },
+      {
+        "name": "Sweet potato, frozen, cooked, baked, without salt",
+        "amount": 1040.0,
+        "percent": 116,
+        "kcal": 100,
+        "frame": 12633
+      },
+      {
+        "name": "Fish, eel, mixed species, raw",
+        "amount": 1040.0,
+        "percent": 116,
+        "kcal": 184,
+        "frame": 8408
+      },
+      {
+        "name": "Carrot juice, 100%",
+        "amount": 956.0,
+        "percent": 106,
+        "kcal": 40,
+        "frame": 3557
+      },
+      {
+        "name": "Ghee (Clarified Butter)",
+        "amount": 859.0,
+        "percent": 95,
+        "kcal": 899,
+        "frame": 4119
+      },
+      {
+        "name": "Pumpkin, canned, without salt",
+        "amount": 778.0,
+        "percent": 86,
+        "kcal": 34,
+        "frame": 5651
+      },
+      {
+        "name": "Dandelion greens, cooked, boiled, drained, with salt",
+        "amount": 727.0,
+        "percent": 81,
+        "kcal": 33,
+        "frame": 80
+      },
+      {
+        "name": "Garlic sauce",
+        "amount": 682.0,
+        "percent": 76,
+        "kcal": 683,
+        "frame": 1237
       }
     ]
   },
@@ -129,20 +129,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "percent": 1864,
         "kcal": 32,
         "frame": 2621
-      },
-      {
-        "name": "Acerola juice, raw",
-        "amount": 1600.0,
-        "percent": 1778,
-        "kcal": 23,
-        "frame": 3647
-      },
-      {
-        "name": "Rose Hips, wild (Northern Plains Indians)",
-        "amount": 426.0,
-        "percent": 473,
-        "kcal": 162,
-        "frame": 6198
       },
       {
         "name": "Rosehip (Mosqueta)",
@@ -159,41 +145,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 6578
       },
       {
-        "name": "Peppers, hot chili, green, raw",
-        "amount": 242.0,
-        "percent": 269,
-        "kcal": 40,
-        "frame": 8359
-      },
-      {
-        "name": "Chili Peppers (especially Scotch Bonnet)",
-        "amount": 242.0,
-        "percent": 269,
-        "kcal": 40,
-        "frame": 9928
-      },
-      {
-        "name": "Scotch Bonnet Peppers",
-        "amount": 242.0,
-        "percent": 269,
-        "kcal": 40,
-        "frame": 11532
-      },
-      {
-        "name": "Chili Peppers",
-        "amount": 242.0,
-        "percent": 269,
-        "kcal": 40,
-        "frame": 10493
-      },
-      {
-        "name": "Green chili",
-        "amount": 242.0,
-        "percent": 269,
-        "kcal": 32,
-        "frame": 5470
-      },
-      {
         "name": "Guava, raw",
         "amount": 228.0,
         "percent": 254,
@@ -201,11 +152,60 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 772
       },
       {
-        "name": "Guavas, common, raw",
-        "amount": 228.0,
-        "percent": 254,
-        "kcal": 68,
-        "frame": 816
+        "name": "Peppers, sweet, yellow, raw",
+        "amount": 184.0,
+        "percent": 204,
+        "kcal": 27,
+        "frame": 4408
+      },
+      {
+        "name": "Currants, european black, raw",
+        "amount": 181.0,
+        "percent": 201,
+        "kcal": 63,
+        "frame": 10159
+      },
+      {
+        "name": "Kiwifruit, ZESPRI SunGold, raw",
+        "amount": 161.0,
+        "percent": 179,
+        "kcal": 63,
+        "frame": 12980
+      },
+      {
+        "name": "Orange juice, 100%, frozen, not reconstituted",
+        "amount": 145.0,
+        "percent": 161,
+        "kcal": 148,
+        "frame": 9018
+      },
+      {
+        "name": "Drumstick pods, raw",
+        "amount": 141.0,
+        "percent": 157,
+        "kcal": 37,
+        "frame": 3014
+      },
+      {
+        "name": "Mustard spinach, (tendergreen), raw",
+        "amount": 130.0,
+        "percent": 144,
+        "kcal": 22,
+        "frame": 2632
+      },
+      {
+        "name": "Lemon peel, raw",
+        "amount": 129.0,
+        "percent": 143,
+        "kcal": 47,
+        "frame": 12941
+      },
+      {
+        "name": "Davidson's Plum",
+        "amount": 120.0,
+        "percent": 133,
+        "kcal": 55,
+        "frame": 2476
       }
     ]
   },
@@ -228,13 +228,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 7424
       },
       {
-        "name": "Mushroom, white, exposed to ultraviolet light, raw",
-        "amount": 26.2,
-        "percent": 131,
-        "kcal": 22,
-        "frame": 13092
-      },
-      {
         "name": "Salmon, sockeye, canned, drained solids, without skin and bones",
         "amount": 21.5,
         "percent": 108,
@@ -247,20 +240,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "percent": 40,
         "kcal": 126,
         "frame": 1830
-      },
-      {
-        "name": "Stewed salmon, Puerto Rican style",
-        "amount": 7.6,
-        "percent": 38,
-        "kcal": 146,
-        "frame": 14171
-      },
-      {
-        "name": "Salmon salad",
-        "amount": 7.4,
-        "percent": 37,
-        "kcal": 213,
-        "frame": 2067
       },
       {
         "name": "Cheese, American and Swiss blends",
@@ -277,25 +256,46 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 12120
       },
       {
-        "name": "Sushi roll, eel",
-        "amount": 5.7,
-        "percent": 29,
-        "kcal": 116,
-        "frame": 2735
-      },
-      {
-        "name": "Veal, external fat only, raw",
-        "amount": 5.5,
-        "percent": 28,
-        "kcal": 503,
-        "frame": 11144
-      },
-      {
-        "name": "Salmon cake sandwich",
-        "amount": 5.2,
+        "name": "Ceviche",
+        "amount": 5.1,
         "percent": 26,
-        "kcal": 279,
-        "frame": 9750
+        "kcal": 63,
+        "frame": 455
+      },
+      {
+        "name": "Anchovies",
+        "amount": 4.1,
+        "percent": 20,
+        "kcal": 210,
+        "frame": 11632
+      },
+      {
+        "name": "Ghee (Clarified Butter)",
+        "amount": 2.8,
+        "percent": 14,
+        "kcal": 899,
+        "frame": 4119
+      },
+      {
+        "name": "Pork, fresh, spareribs, separable lean and fat, cooked, braised",
+        "amount": 2.6,
+        "percent": 13,
+        "kcal": 397,
+        "frame": 7677
+      },
+      {
+        "name": "Flounder with crab stuffing",
+        "amount": 2.5,
+        "percent": 12,
+        "kcal": 136,
+        "frame": 790
+      },
+      {
+        "name": "Nutritional drink or shake, liquid, soy-based",
+        "amount": 2.3,
+        "percent": 12,
+        "kcal": 138,
+        "frame": 7419
       }
     ]
   },
@@ -304,88 +304,88 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
     "dailyValue": 15,
     "foods": [
       {
-        "name": "Wheat germ oil",
-        "amount": 149.0,
-        "percent": 996,
-        "kcal": 884,
-        "frame": 9274
-      },
-      {
-        "name": "Sunflower oil",
-        "amount": 68.5,
-        "percent": 457,
-        "kcal": 900,
-        "frame": 7907
-      },
-      {
-        "name": "Salad dressing, mayonnaise, regular",
-        "amount": 49.7,
-        "percent": 331,
-        "kcal": 680,
-        "frame": 7014
-      },
-      {
-        "name": "Safflower oil",
-        "amount": 46.0,
-        "percent": 306,
-        "kcal": 900,
-        "frame": 1139
-      },
-      {
-        "name": "Seeds, sunflower seed butter, with salt added (Includes foods for USDA's Food Distribution Program)",
+        "name": "Seeds, sunflower seed butter, with salt added",
         "amount": 45.0,
         "percent": 300,
         "kcal": 617,
         "frame": 7443
       },
       {
-        "name": "Snacks, popcorn, microwave, regular (butter) flavor, made with partially hydrogenated oil",
-        "amount": 40.2,
-        "percent": 268,
-        "kcal": 557,
-        "frame": 9895
+        "name": "Nuts, pecans",
+        "amount": 26.7,
+        "percent": 178,
+        "kcal": 691,
+        "frame": 5674
       },
       {
-        "name": "Almond oil",
-        "amount": 39.2,
-        "percent": 261,
-        "kcal": 884,
-        "frame": 12436
+        "name": "Almonds, unroasted",
+        "amount": 25.6,
+        "percent": 171,
+        "kcal": 626,
+        "frame": 3612
       },
       {
-        "name": "Cayenne/Red Pepper",
-        "amount": 29.8,
-        "percent": 199,
-        "kcal": 318,
-        "frame": 11418
+        "name": "Fruit juice, acai blend",
+        "amount": 22.2,
+        "percent": 148,
+        "kcal": 62,
+        "frame": 14131
       },
       {
-        "name": "Cayenne Pepper",
-        "amount": 29.8,
-        "percent": 199,
-        "kcal": 318,
-        "frame": 13848
+        "name": "Mixed seeds",
+        "amount": 19.7,
+        "percent": 131,
+        "kcal": 580,
+        "frame": 5666
       },
       {
-        "name": "Aleppo Pepper",
-        "amount": 29.8,
-        "percent": 199,
-        "kcal": 318,
-        "frame": 7303
+        "name": "Wheat germ",
+        "amount": 16.0,
+        "percent": 107,
+        "kcal": 382,
+        "frame": 2810
       },
       {
-        "name": "Cayenne",
-        "amount": 29.8,
-        "percent": 199,
-        "kcal": 318,
-        "frame": 7187
+        "name": "Hazelnuts",
+        "amount": 15.0,
+        "percent": 100,
+        "kcal": 628,
+        "frame": 453
       },
       {
-        "name": "Dry red chili",
-        "amount": 29.8,
-        "percent": 199,
-        "kcal": 318,
-        "frame": 6633
+        "name": "Hummus, commercial",
+        "amount": 15.0,
+        "percent": 100,
+        "kcal": 237,
+        "frame": 7831
+      },
+      {
+        "name": "Garlic bread, frozen",
+        "amount": 13.7,
+        "percent": 91,
+        "kcal": 350,
+        "frame": 2871
+      },
+      {
+        "name": "Restaurant, family style, chicken fingers, from kid's menu",
+        "amount": 13.6,
+        "percent": 91,
+        "kcal": 307,
+        "frame": 14065
+      },
+      {
+        "name": "Peppers, sweet, red, sauteed",
+        "amount": 13.2,
+        "percent": 88,
+        "kcal": 133,
+        "frame": 2512
+      },
+      {
+        "name": "Fish, fish sticks, frozen, prepared",
+        "amount": 13.1,
+        "percent": 87,
+        "kcal": 277,
+        "frame": 10974
       }
     ]
   },
@@ -415,27 +415,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 2510
       },
       {
-        "name": "Yerba Mate (as an ingredient/flavor)",
-        "amount": 771.0,
-        "percent": 642,
-        "kcal": 279,
-        "frame": 9715
-      },
-      {
-        "name": "Lemon Ironbark",
-        "amount": 771.0,
-        "percent": 642,
-        "kcal": null,
-        "frame": 4562
-      },
-      {
-        "name": "Lemon Myrtle",
-        "amount": 771.0,
-        "percent": 642,
-        "kcal": null,
-        "frame": 10496
-      },
-      {
         "name": "Native Lemongrass",
         "amount": 771.0,
         "percent": 642,
@@ -443,39 +422,60 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 3389
       },
       {
-        "name": "Old Man Saltbush",
+        "name": "Lovage",
         "amount": 771.0,
         "percent": 642,
-        "kcal": 344,
-        "frame": 5005
+        "kcal": 28,
+        "frame": 11635
       },
       {
-        "name": "Strawberry Gum",
+        "name": "Hoja santa (Mexico)",
         "amount": 771.0,
         "percent": 642,
-        "kcal": null,
-        "frame": 5197
+        "kcal": 40,
+        "frame": 13093
       },
       {
-        "name": "Curry Leaves",
+        "name": "Tamarind leaf",
         "amount": 771.0,
         "percent": 642,
-        "kcal": 108,
-        "frame": 11545
+        "kcal": 50,
+        "frame": 11718
       },
       {
-        "name": "Kunzea",
+        "name": "Licorice root",
         "amount": 771.0,
         "percent": 642,
-        "kcal": null,
-        "frame": 9314
+        "kcal": 350,
+        "frame": 13595
       },
       {
-        "name": "Lavender",
-        "amount": 771.0,
-        "percent": 642,
-        "kcal": 263,
-        "frame": 4029
+        "name": "Mustard greens, cooked, boiled, drained, without salt",
+        "amount": 593.0,
+        "percent": 494,
+        "kcal": 26,
+        "frame": 4187
+      },
+      {
+        "name": "Spinach, fresh, cooked, no added fat",
+        "amount": 566.0,
+        "percent": 472,
+        "kcal": 33,
+        "frame": 5849
+      },
+      {
+        "name": "Cress, cooked",
+        "amount": 566.0,
+        "percent": 472,
+        "kcal": 58,
+        "frame": 797
+      },
+      {
+        "name": "Sorrel",
+        "amount": 551.0,
+        "percent": 459,
+        "kcal": 21,
+        "frame": 11432
       }
     ]
   },
@@ -484,32 +484,11 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
     "dailyValue": 1.2,
     "foods": [
       {
-        "name": "Seeds, sunflower seed flour, partially defatted",
-        "amount": 3.19,
-        "percent": 266,
-        "kcal": 326,
-        "frame": 13828
-      },
-      {
-        "name": "Veggie burger patty, no bun",
-        "amount": 2.65,
-        "percent": 221,
-        "kcal": 177,
-        "frame": 2182
-      },
-      {
-        "name": "Veggie burgers or soyburgers, unprepared",
-        "amount": 2.65,
-        "percent": 221,
-        "kcal": 177,
-        "frame": 12015
-      },
-      {
-        "name": "Pasta mix, classic beef, unprepared",
-        "amount": 2.36,
-        "percent": 197,
-        "kcal": 354,
-        "frame": 7694
+        "name": "Seeds, sesame flour, high-fat",
+        "amount": 2.68,
+        "percent": 224,
+        "kcal": 526,
+        "frame": 4031
       },
       {
         "name": "Wheat germ, crude",
@@ -519,20 +498,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 6044
       },
       {
-        "name": "Veggie burger, on bun",
-        "amount": 1.68,
-        "percent": 140,
-        "kcal": 224,
-        "frame": 2941
-      },
-      {
-        "name": "Cereals ready-to-eat, wheat germ, toasted, plain",
-        "amount": 1.67,
-        "percent": 139,
-        "kcal": 382,
-        "frame": 6724
-      },
-      {
         "name": "Lamb, New Zealand, imported, liver, cooked, soaked and fried",
         "amount": 1.57,
         "percent": 131,
@@ -540,32 +505,67 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 12349
       },
       {
-        "name": "Corn flour, masa, enriched, white",
-        "amount": 1.48,
-        "percent": 123,
-        "kcal": 363,
-        "frame": 14450
+        "name": "Nuts, macadamia nuts, raw",
+        "amount": 1.2,
+        "percent": 100,
+        "kcal": 718,
+        "frame": 10315
       },
       {
-        "name": "Thousand Island dressing",
-        "amount": 1.45,
-        "percent": 120,
-        "kcal": 379,
-        "frame": 6272
+        "name": "Pork, fresh, shoulder, blade, boston (roasts), separable lean only, cooked, roasted",
+        "amount": 1.12,
+        "percent": 93,
+        "kcal": 232,
+        "frame": 3705
       },
       {
-        "name": "Salad dressing, thousand island, commercial, regular",
-        "amount": 1.45,
-        "percent": 120,
-        "kcal": 379,
-        "frame": 12851
+        "name": "Macaroni or noodles with cheese, microwaveable, unprepared",
+        "amount": 1.04,
+        "percent": 87,
+        "kcal": 388,
+        "frame": 5530
       },
       {
-        "name": "Snacks, crisped rice bar, almond",
-        "amount": 1.32,
-        "percent": 110,
-        "kcal": 458,
-        "frame": 226
+        "name": "Winged beans, mature seeds, raw",
+        "amount": 1.03,
+        "percent": 86,
+        "kcal": 409,
+        "frame": 4597
+      },
+      {
+        "name": "Tahini",
+        "amount": 0.993,
+        "percent": 83,
+        "kcal": 697,
+        "frame": 9007
+      },
+      {
+        "name": "Ham, canned",
+        "amount": 0.961,
+        "percent": 80,
+        "kcal": 167,
+        "frame": 6413
+      },
+      {
+        "name": "Soybeans, mature seeds, raw",
+        "amount": 0.874,
+        "percent": 73,
+        "kcal": 446,
+        "frame": 2078
+      },
+      {
+        "name": "Lentils, raw",
+        "amount": 0.873,
+        "percent": 73,
+        "kcal": 352,
+        "frame": 12204
+      },
+      {
+        "name": "Pistachios",
+        "amount": 0.87,
+        "percent": 72,
+        "kcal": 557,
+        "frame": 13827
       }
     ]
   },
@@ -581,60 +581,11 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 12349
       },
       {
-        "name": "Beef, variety meats and by-products, liver, cooked, braised",
-        "amount": 3.42,
-        "percent": 263,
-        "kcal": 191,
-        "frame": 732
-      },
-      {
-        "name": "Liver, beef",
-        "amount": 3.4,
-        "percent": 261,
-        "kcal": 174,
-        "frame": 7829
-      },
-      {
-        "name": "Veal, variety meats and by-products, liver, cooked, pan-fried",
-        "amount": 3.06,
-        "percent": 235,
-        "kcal": 193,
-        "frame": 922
-      },
-      {
-        "name": "Pork, fresh, variety meats and by-products, liver, raw",
-        "amount": 3.0,
-        "percent": 231,
-        "kcal": 134,
-        "frame": 3991
-      },
-      {
-        "name": "Kidney",
-        "amount": 2.95,
-        "percent": 227,
-        "kcal": 157,
-        "frame": 6932
-      },
-      {
-        "name": "Turkey, all classes, liver, cooked, simmered",
-        "amount": 2.69,
-        "percent": 207,
-        "kcal": 189,
-        "frame": 2201
-      },
-      {
-        "name": "Chicken, liver, all classes, cooked, pan-fried",
-        "amount": 2.31,
-        "percent": 178,
-        "kcal": 172,
-        "frame": 4340
-      },
-      {
-        "name": "Liver cheese, pork",
-        "amount": 2.23,
-        "percent": 171,
-        "kcal": 304,
-        "frame": 65
+        "name": "Beef, variety meats and by-products, kidneys, cooked, simmered",
+        "amount": 2.97,
+        "percent": 228,
+        "kcal": 158,
+        "frame": 5099
       },
       {
         "name": "Mollusks, cuttlefish, mixed species, cooked, moist heat",
@@ -642,6 +593,13 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "percent": 133,
         "kcal": 158,
         "frame": 1774
+      },
+      {
+        "name": "Turkey, whole, giblets, cooked, simmered",
+        "amount": 1.54,
+        "percent": 119,
+        "kcal": 173,
+        "frame": 10875
       },
       {
         "name": "Liverwurst",
@@ -656,6 +614,48 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "percent": 117,
         "kcal": 133,
         "frame": 7300
+      },
+      {
+        "name": "Grapes, muscadine, raw",
+        "amount": 1.5,
+        "percent": 115,
+        "kcal": 57,
+        "frame": 7709
+      },
+      {
+        "name": "Cheese, gjetost",
+        "amount": 1.38,
+        "percent": 106,
+        "kcal": 466,
+        "frame": 2809
+      },
+      {
+        "name": "Almonds, NFS",
+        "amount": 1.2,
+        "percent": 92,
+        "kcal": 598,
+        "frame": 7425
+      },
+      {
+        "name": "Soy flour, full-fat, raw",
+        "amount": 1.16,
+        "percent": 89,
+        "kcal": 434,
+        "frame": 3484
+      },
+      {
+        "name": "Soybeans, mature seeds, raw",
+        "amount": 0.87,
+        "percent": 67,
+        "kcal": 446,
+        "frame": 2078
+      },
+      {
+        "name": "Wheat germ",
+        "amount": 0.82,
+        "percent": 63,
+        "kcal": 382,
+        "frame": 2810
       }
     ]
   },
@@ -664,39 +664,11 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
     "dailyValue": 16,
     "foods": [
       {
-        "name": "Peanut flour, defatted",
-        "amount": 27.0,
-        "percent": 169,
-        "kcal": 327,
-        "frame": 7898
-      },
-      {
         "name": "Fish, tuna, cooked",
         "amount": 22.9,
         "percent": 143,
         "kcal": 176,
         "frame": 5248
-      },
-      {
-        "name": "Meat extender",
-        "amount": 22.0,
-        "percent": 138,
-        "kcal": 311,
-        "frame": 3098
-      },
-      {
-        "name": "Cereals ready-to-eat, frosted oat cereal with marshmallows",
-        "amount": 17.6,
-        "percent": 110,
-        "kcal": 400,
-        "frame": 5549
-      },
-      {
-        "name": "Snacks, crisped rice bar, almond",
-        "amount": 17.6,
-        "percent": 110,
-        "kcal": 458,
-        "frame": 226
       },
       {
         "name": "Beef, variety meats and by-products, liver, cooked, braised",
@@ -706,20 +678,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 732
       },
       {
-        "name": "Liver, beef",
-        "amount": 17.3,
-        "percent": 108,
-        "kcal": 174,
-        "frame": 7829
-      },
-      {
-        "name": "Lamb, variety meats and by-products, liver, cooked, pan-fried",
-        "amount": 16.7,
-        "percent": 104,
-        "kcal": 238,
-        "frame": 3187
-      },
-      {
         "name": "Peanut butter, lower sugar",
         "amount": 16.4,
         "percent": 102,
@@ -727,25 +685,67 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 10937
       },
       {
-        "name": "Peanut spread, reduced sugar",
-        "amount": 16.4,
-        "percent": 102,
-        "kcal": 650,
-        "frame": 1170
+        "name": "Chicken, broilers or fryers, breast, meat only, cooked, fried",
+        "amount": 14.8,
+        "percent": 92,
+        "kcal": 187,
+        "frame": 8173
       },
       {
-        "name": "Peanuts, spanish, raw",
-        "amount": 15.9,
-        "percent": 100,
-        "kcal": 570,
-        "frame": 4372
+        "name": "Anchovies",
+        "amount": 14.3,
+        "percent": 89,
+        "kcal": 210,
+        "frame": 11632
       },
       {
-        "name": "Pork, fresh, variety meats and by-products, liver, raw",
-        "amount": 15.3,
-        "percent": 96,
-        "kcal": 134,
-        "frame": 3991
+        "name": "Seeds, sesame flour, high-fat",
+        "amount": 13.4,
+        "percent": 84,
+        "kcal": 526,
+        "frame": 4031
+      },
+      {
+        "name": "Veal, leg (top round), separable lean only, cooked, pan-fried, not breaded",
+        "amount": 12.6,
+        "percent": 79,
+        "kcal": 183,
+        "frame": 6312
+      },
+      {
+        "name": "Turkey, all classes, light meat, cooked, roasted",
+        "amount": 11.8,
+        "percent": 73,
+        "kcal": 147,
+        "frame": 5408
+      },
+      {
+        "name": "Pork bacon, NS as to fresh, smoked or cured, reduced sodium, cooked",
+        "amount": 11.1,
+        "percent": 69,
+        "kcal": 541,
+        "frame": 1382
+      },
+      {
+        "name": "Venison, steak",
+        "amount": 10.7,
+        "percent": 67,
+        "kcal": 149,
+        "frame": 8846
+      },
+      {
+        "name": "Lamb, Australian, imported, fresh, tenderloin, boneless, separable lean only, trimmed to 1/8\" fat, cooked, roasted",
+        "amount": 9.58,
+        "percent": 60,
+        "kcal": 184,
+        "frame": 8165
+      },
+      {
+        "name": "Fruit juice, acai blend",
+        "amount": 9.06,
+        "percent": 57,
+        "kcal": 62,
+        "frame": 14131
       }
     ]
   },
@@ -761,20 +761,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 7120
       },
       {
-        "name": "Chicken, liver, all classes, cooked, pan-fried",
-        "amount": 8.31,
-        "percent": 166,
-        "kcal": 172,
-        "frame": 4340
-      },
-      {
-        "name": "Veal, variety meats and by-products, liver, cooked, pan-fried",
-        "amount": 7.08,
-        "percent": 142,
-        "kcal": 193,
-        "frame": 922
-      },
-      {
         "name": "Seeds, sunflower seed kernels, toasted, with salt added",
         "amount": 7.06,
         "percent": 141,
@@ -782,39 +768,11 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 5634
       },
       {
-        "name": "Pork, fresh, variety meats and by-products, liver, raw",
-        "amount": 6.65,
-        "percent": 133,
-        "kcal": 134,
-        "frame": 3991
-      },
-      {
-        "name": "Lamb, variety meats and by-products, liver, cooked, pan-fried",
-        "amount": 6.33,
-        "percent": 127,
-        "kcal": 238,
-        "frame": 3187
-      },
-      {
-        "name": "Turkey, all classes, liver, raw",
-        "amount": 6.28,
-        "percent": 126,
-        "kcal": 128,
-        "frame": 10273
-      },
-      {
-        "name": "Goose, liver, raw",
-        "amount": 6.18,
-        "percent": 124,
-        "kcal": 133,
-        "frame": 2812
-      },
-      {
-        "name": "Duck, domesticated, liver, raw",
-        "amount": 6.18,
-        "percent": 124,
-        "kcal": 136,
-        "frame": 13839
+        "name": "Chicken, broilers or fryers, giblets, cooked, fried",
+        "amount": 4.45,
+        "percent": 89,
+        "kcal": 277,
+        "frame": 13004
       },
       {
         "name": "Grape leaves, canned",
@@ -824,18 +782,60 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 14469
       },
       {
-        "name": "Emu, full rump, cooked, broiled",
-        "amount": 3.65,
-        "percent": 73,
-        "kcal": 168,
-        "frame": 4646
-      },
-      {
         "name": "Mushrooms, shiitake, cooked, without salt",
         "amount": 3.59,
         "percent": 72,
         "kcal": 56,
         "frame": 10165
+      },
+      {
+        "name": "Egg, yolk, raw, frozen, pasteurized",
+        "amount": 3.44,
+        "percent": 69,
+        "kcal": 296,
+        "frame": 12120
+      },
+      {
+        "name": "Cheese, gjetost",
+        "amount": 3.35,
+        "percent": 67,
+        "kcal": 466,
+        "frame": 2809
+      },
+      {
+        "name": "Mollusks, abalone, mixed species, raw",
+        "amount": 3.0,
+        "percent": 60,
+        "kcal": 105,
+        "frame": 3997
+      },
+      {
+        "name": "Liverwurst spread",
+        "amount": 2.95,
+        "percent": 59,
+        "kcal": 305,
+        "frame": 1292
+      },
+      {
+        "name": "Cornmeal, white (Navajo)",
+        "amount": 2.49,
+        "percent": 50,
+        "kcal": 398,
+        "frame": 13946
+      },
+      {
+        "name": "Wheat germ, crude",
+        "amount": 2.26,
+        "percent": 45,
+        "kcal": 360,
+        "frame": 6044
+      },
+      {
+        "name": "Lentils, raw",
+        "amount": 2.14,
+        "percent": 43,
+        "kcal": 352,
+        "frame": 12204
       }
     ]
   },
@@ -844,88 +844,88 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
     "dailyValue": 1.7,
     "foods": [
       {
-        "name": "Pasilla chili",
-        "amount": 3.73,
-        "percent": 219,
-        "kcal": 314,
-        "frame": 9527
+        "name": "Nuts, pistachio nuts, raw",
+        "amount": 1.7,
+        "percent": 100,
+        "kcal": 560,
+        "frame": 2148
       },
       {
-        "name": "Chipotle chili",
-        "amount": 3.55,
-        "percent": 209,
-        "kcal": 289,
-        "frame": 14379
+        "name": "Wheat germ, crude",
+        "amount": 1.3,
+        "percent": 76,
+        "kcal": 360,
+        "frame": 6044
       },
       {
-        "name": "Urfa Pepper",
-        "amount": 3.4,
-        "percent": 200,
-        "kcal": 318,
-        "frame": 12668
+        "name": "Garlic, raw",
+        "amount": 1.24,
+        "percent": 73,
+        "kcal": 149,
+        "frame": 6224
       },
       {
-        "name": "Piment d’Espelette",
-        "amount": 3.39,
-        "percent": 199,
-        "kcal": 318,
-        "frame": 12064
+        "name": "Drumstick leaves, raw",
+        "amount": 1.2,
+        "percent": 71,
+        "kcal": 64,
+        "frame": 12665
       },
       {
-        "name": "Dry red chili",
-        "amount": 3.38,
-        "percent": 199,
-        "kcal": 318,
-        "frame": 6633
+        "name": "Chicken, broiler or fryers, breast, skinless, boneless, meat only, cooked, grilled",
+        "amount": 1.16,
+        "percent": 68,
+        "kcal": 151,
+        "frame": 1066
       },
       {
-        "name": "Aleppo Pepper",
-        "amount": 3.27,
-        "percent": 192,
-        "kcal": 318,
-        "frame": 7303
+        "name": "Fruit juice, acai blend",
+        "amount": 1.1,
+        "percent": 65,
+        "kcal": 62,
+        "frame": 14131
       },
       {
-        "name": "Byadagi chili",
-        "amount": 2.91,
-        "percent": 171,
-        "kcal": 318,
-        "frame": 8417
+        "name": "Beef, variety meats and by-products, liver, raw",
+        "amount": 1.08,
+        "percent": 64,
+        "kcal": 135,
+        "frame": 1340
       },
       {
-        "name": "Crushed red pepper",
-        "amount": 2.78,
-        "percent": 164,
-        "kcal": 318,
-        "frame": 2728
+        "name": "Turkey, ground, fat free, pan-broiled crumbles",
+        "amount": 1.08,
+        "percent": 64,
+        "kcal": 151,
+        "frame": 186
       },
       {
-        "name": "Guntur chili",
-        "amount": 2.78,
-        "percent": 164,
-        "kcal": 318,
-        "frame": 7172
+        "name": "Fish, tuna, cooked",
+        "amount": 1.07,
+        "percent": 63,
+        "kcal": 176,
+        "frame": 5248
       },
       {
-        "name": "Kashmiri chili",
-        "amount": 2.46,
-        "percent": 145,
-        "kcal": 318,
-        "frame": 6322
+        "name": "Soy flour, low-fat",
+        "amount": 1.05,
+        "percent": 62,
+        "kcal": 372,
+        "frame": 3304
       },
       {
-        "name": "Cayenne/Red Pepper",
-        "amount": 2.45,
-        "percent": 144,
-        "kcal": 318,
-        "frame": 11418
+        "name": "Seeds, sesame butter, paste",
+        "amount": 0.816,
+        "percent": 48,
+        "kcal": 586,
+        "frame": 1297
       },
       {
-        "name": "Cayenne Pepper",
-        "amount": 2.45,
-        "percent": 144,
-        "kcal": 318,
-        "frame": 13848
+        "name": "Hearts of palm, raw",
+        "amount": 0.81,
+        "percent": 48,
+        "kcal": 115,
+        "frame": 6225
       }
     ]
   },
@@ -941,39 +941,11 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 7968
       },
       {
-        "name": "Beef, variety meats and by-products, liver, raw",
-        "amount": 59.3,
-        "percent": 2471,
-        "kcal": 135,
-        "frame": 1340
-      },
-      {
-        "name": "Lamb, New Zealand, imported, liver, raw",
-        "amount": 59.0,
-        "percent": 2458,
-        "kcal": 136,
-        "frame": 12582
-      },
-      {
-        "name": "Goose, liver, raw",
-        "amount": 54.0,
-        "percent": 2250,
-        "kcal": 133,
-        "frame": 2812
-      },
-      {
-        "name": "Duck, domesticated, liver, raw",
-        "amount": 54.0,
-        "percent": 2250,
-        "kcal": 136,
-        "frame": 13839
-      },
-      {
-        "name": "Liver, beef or calves, and onions",
-        "amount": 50.7,
-        "percent": 2111,
-        "kcal": 129,
-        "frame": 114
+        "name": "Lamb, New Zealand, imported, kidney, cooked, soaked and fried",
+        "amount": 55.6,
+        "percent": 2315,
+        "kcal": 112,
+        "frame": 4304
       },
       {
         "name": "Mollusks, clam, mixed species, cooked, breaded and fried",
@@ -983,39 +955,67 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 666
       },
       {
-        "name": "Turkey, all classes, liver, cooked, simmered",
-        "amount": 28.2,
-        "percent": 1174,
-        "kcal": 189,
-        "frame": 2201
+        "name": "Oysters, canned",
+        "amount": 20.8,
+        "percent": 866,
+        "kcal": 74,
+        "frame": 12742
       },
       {
-        "name": "Pork, fresh, variety meats and by-products, liver, raw",
-        "amount": 26.0,
-        "percent": 1083,
-        "kcal": 134,
-        "frame": 3991
+        "name": "Liverwurst",
+        "amount": 20.1,
+        "percent": 837,
+        "kcal": 327,
+        "frame": 14052
       },
       {
-        "name": "Kidney",
-        "amount": 24.7,
-        "percent": 1029,
-        "kcal": 157,
-        "frame": 6932
+        "name": "Fish, herring, Atlantic, kippered",
+        "amount": 18.7,
+        "percent": 779,
+        "kcal": 217,
+        "frame": 39
       },
       {
-        "name": "Liver cheese, pork",
-        "amount": 24.6,
-        "percent": 1023,
-        "kcal": 304,
-        "frame": 65
+        "name": "Turkey, whole, giblets, cooked, simmered",
+        "amount": 15.9,
+        "percent": 662,
+        "kcal": 173,
+        "frame": 10875
       },
       {
-        "name": "Chicken, liver, all classes, cooked, pan-fried",
-        "amount": 21.1,
-        "percent": 880,
-        "kcal": 172,
-        "frame": 4340
+        "name": "Octopus",
+        "amount": 12.9,
+        "percent": 540,
+        "kcal": 226,
+        "frame": 10850
+      },
+      {
+        "name": "Mussels",
+        "amount": 12.9,
+        "percent": 538,
+        "kcal": 109,
+        "frame": 6469
+      },
+      {
+        "name": "Crustaceans, crab, alaska king, cooked, moist heat",
+        "amount": 11.5,
+        "percent": 479,
+        "kcal": 97,
+        "frame": 956
+      },
+      {
+        "name": "Beef, plate steak, boneless, outside skirt, separable lean only, trimmed to 0\" fat, choice, cooked, grilled",
+        "amount": 8.18,
+        "percent": 341,
+        "kcal": 291,
+        "frame": 5594
+      },
+      {
+        "name": "Seafood sauce",
+        "amount": 8.08,
+        "percent": 337,
+        "kcal": 203,
+        "frame": 12173
       }
     ]
   },
@@ -1031,81 +1031,81 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 2812
       },
       {
-        "name": "Duck, domesticated, liver, raw",
-        "amount": 738.0,
-        "percent": 184,
-        "kcal": 136,
-        "frame": 13839
-      },
-      {
-        "name": "Turkey, all classes, liver, cooked, simmered",
-        "amount": 691.0,
-        "percent": 173,
-        "kcal": 189,
-        "frame": 2201
-      },
-      {
-        "name": "Yardlong beans, mature seeds, raw",
-        "amount": 658.0,
-        "percent": 164,
-        "kcal": 347,
-        "frame": 6194
-      },
-      {
-        "name": "Mothbeans, mature seeds, raw",
-        "amount": 649.0,
-        "percent": 162,
-        "kcal": 343,
-        "frame": 2760
-      },
-      {
-        "name": "Cowpeas, catjang, mature seeds, raw",
-        "amount": 639.0,
-        "percent": 160,
-        "kcal": 343,
-        "frame": 14186
-      },
-      {
-        "name": "Mung beans, mature seeds, raw",
-        "amount": 625.0,
-        "percent": 156,
-        "kcal": 347,
-        "frame": 6097
-      },
-      {
-        "name": "Beans, adzuki, mature seeds, raw",
-        "amount": 622.0,
-        "percent": 156,
-        "kcal": 329,
-        "frame": 12167
-      },
-      {
-        "name": "Chicken, liver, all classes, raw",
-        "amount": 588.0,
-        "percent": 147,
-        "kcal": 119,
-        "frame": 2572
-      },
-      {
-        "name": "Cereals ready-to-eat, frosted oat cereal with marshmallows",
-        "amount": 587.0,
-        "percent": 147,
-        "kcal": 400,
-        "frame": 5549
-      },
-      {
-        "name": "Liver, chicken",
-        "amount": 580.0,
-        "percent": 145,
-        "kcal": 189,
-        "frame": 8305
-      },
-      {
         "name": "Chickpeas (garbanzo beans, bengal gram), mature seeds, raw",
         "amount": 557.0,
         "percent": 139,
         "kcal": 378,
         "frame": 2262
+      },
+      {
+        "name": "Lentils, raw",
+        "amount": 479.0,
+        "percent": 120,
+        "kcal": 352,
+        "frame": 12204
+      },
+      {
+        "name": "Chicken, capons, giblets, cooked, simmered",
+        "amount": 414.0,
+        "percent": 103,
+        "kcal": 164,
+        "frame": 3100
+      },
+      {
+        "name": "Rice, white, short-grain, enriched, uncooked",
+        "amount": 389.0,
+        "percent": 97,
+        "kcal": 358,
+        "frame": 8634
+      },
+      {
+        "name": "Cornmeal, white, self-rising, degermed, enriched",
+        "amount": 375.0,
+        "percent": 94,
+        "kcal": 355,
+        "frame": 14419
+      },
+      {
+        "name": "Soybeans, mature seeds, raw",
+        "amount": 375.0,
+        "percent": 94,
+        "kcal": 446,
+        "frame": 2078
+      },
+      {
+        "name": "Lupins, mature seeds, raw",
+        "amount": 355.0,
+        "percent": 89,
+        "kcal": 371,
+        "frame": 13398
+      },
+      {
+        "name": "Wheat germ",
+        "amount": 352.0,
+        "percent": 88,
+        "kcal": 382,
+        "frame": 2810
+      },
+      {
+        "name": "Soy flour, full-fat, raw",
+        "amount": 345.0,
+        "percent": 86,
+        "kcal": 434,
+        "frame": 3484
+      },
+      {
+        "name": "Arrowroot, raw",
+        "amount": 338.0,
+        "percent": 84,
+        "kcal": 65,
+        "frame": 13367
+      },
+      {
+        "name": "Macaroni or noodles with cheese, microwaveable, unprepared",
+        "amount": 334.0,
+        "percent": 84,
+        "kcal": 388,
+        "frame": 5530
       }
     ]
   },
@@ -1128,62 +1128,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 5099
       },
       {
-        "name": "Kidney",
-        "amount": 509.0,
-        "percent": 93,
-        "kcal": 157,
-        "frame": 6932
-      },
-      {
-        "name": "Caviar",
-        "amount": 491.0,
-        "percent": 89,
-        "kcal": 264,
-        "frame": 12689
-      },
-      {
-        "name": "Fish, caviar, black and red, granular",
-        "amount": 491.0,
-        "percent": 89,
-        "kcal": 264,
-        "frame": 9231
-      },
-      {
-        "name": "Brains",
-        "amount": 487.0,
-        "percent": 89,
-        "kcal": 150,
-        "frame": 11288
-      },
-      {
-        "name": "Pork, fresh, variety meats and by-products, chitterlings, cooked, simmered",
-        "amount": 471.0,
-        "percent": 86,
-        "kcal": 233,
-        "frame": 256
-      },
-      {
-        "name": "Chitterlings",
-        "amount": 467.0,
-        "percent": 85,
-        "kcal": 231,
-        "frame": 9250
-      },
-      {
-        "name": "Liver, beef",
-        "amount": 415.0,
-        "percent": 75,
-        "kcal": 174,
-        "frame": 7829
-      },
-      {
-        "name": "Veal, variety meats and by-products, liver, cooked, pan-fried",
-        "amount": 411.0,
-        "percent": 75,
-        "kcal": 193,
-        "frame": 922
-      },
-      {
         "name": "Chicken, liver, all classes, cooked, pan-fried",
         "amount": 327.0,
         "percent": 59,
@@ -1191,11 +1135,67 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 4340
       },
       {
-        "name": "Hog maws",
-        "amount": 307.0,
-        "percent": 56,
-        "kcal": 250,
-        "frame": 3496
+        "name": "Liverwurst",
+        "amount": 256.0,
+        "percent": 47,
+        "kcal": 327,
+        "frame": 14052
+      },
+      {
+        "name": "Soy flour, low-fat",
+        "amount": 192.0,
+        "percent": 35,
+        "kcal": 372,
+        "frame": 3304
+      },
+      {
+        "name": "Wheat germ",
+        "amount": 179.0,
+        "percent": 32,
+        "kcal": 382,
+        "frame": 2810
+      },
+      {
+        "name": "Turkey, whole, giblets, raw",
+        "amount": 160.0,
+        "percent": 29,
+        "kcal": 124,
+        "frame": 11472
+      },
+      {
+        "name": "Veal, leg, top round, cap off, cutlet, boneless, cooked, grilled",
+        "amount": 160.0,
+        "percent": 29,
+        "kcal": 151,
+        "frame": 707
+      },
+      {
+        "name": "Peas, green, split, mature seeds, raw",
+        "amount": 157.0,
+        "percent": 29,
+        "kcal": 364,
+        "frame": 10289
+      },
+      {
+        "name": "Pork jerky",
+        "amount": 143.0,
+        "percent": 26,
+        "kcal": 412,
+        "frame": 7462
+      },
+      {
+        "name": "Crustaceans, shrimp, mixed species, cooked, moist heat (may contain additives to retain moisture)",
+        "amount": 135.0,
+        "percent": 25,
+        "kcal": 119,
+        "frame": 8278
+      },
+      {
+        "name": "Bacon bits",
+        "amount": 135.0,
+        "percent": 25,
+        "kcal": 476,
+        "frame": 2126
       }
     ]
   },
@@ -1204,34 +1204,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
     "dailyValue": 1300,
     "foods": [
       {
-        "name": "Nigella seed",
-        "amount": 1860.0,
-        "percent": 143,
-        "kcal": 344,
-        "frame": 14361
-      },
-      {
-        "name": "Lovage seed (you had lovage leaf, but not seed)",
-        "amount": 1780.0,
-        "percent": 137,
-        "kcal": 401,
-        "frame": 8056
-      },
-      {
-        "name": "Old Man Saltbush",
-        "amount": 1700.0,
-        "percent": 131,
-        "kcal": 344,
-        "frame": 5005
-      },
-      {
-        "name": "Kasuri methi",
-        "amount": 1700.0,
-        "percent": 131,
-        "kcal": 323,
-        "frame": 367
-      },
-      {
         "name": "Poppy Seeds",
         "amount": 1440.0,
         "percent": 111,
@@ -1239,53 +1211,81 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 12318
       },
       {
-        "name": "Poppy Seeds (Mohn)",
-        "amount": 1440.0,
-        "percent": 111,
-        "kcal": 525,
-        "frame": 6681
-      },
-      {
-        "name": "Poppy Seeds (Posto)",
-        "amount": 1440.0,
-        "percent": 111,
-        "kcal": 525,
-        "frame": 4317
-      },
-      {
-        "name": "Poppy seed (Posto)",
-        "amount": 1440.0,
-        "percent": 111,
-        "kcal": 525,
-        "frame": 6873
-      },
-      {
-        "name": "Cheese, processed cheese food",
-        "amount": 1380.0,
-        "percent": 106,
-        "kcal": 307,
-        "frame": 8168
-      },
-      {
-        "name": "Carom seed",
-        "amount": 1340.0,
-        "percent": 103,
-        "kcal": 333,
-        "frame": 489
-      },
-      {
-        "name": "Chinese Five Spice",
-        "amount": 1260.0,
-        "percent": 97,
-        "kcal": 269,
-        "frame": 461
-      },
-      {
         "name": "Toasted sesame seed",
         "amount": 1260.0,
         "percent": 97,
         "kcal": 615,
         "frame": 11802
+      },
+      {
+        "name": "Cheese, parmesan, shredded",
+        "amount": 1250.0,
+        "percent": 96,
+        "kcal": 415,
+        "frame": 5361
+      },
+      {
+        "name": "Tofu, salted and fermented (fuyu), prepared with calcium sulfate",
+        "amount": 1230.0,
+        "percent": 95,
+        "kcal": 116,
+        "frame": 9136
+      },
+      {
+        "name": "Bread, whole grain white, toasted",
+        "amount": 752.0,
+        "percent": 58,
+        "kcal": 262,
+        "frame": 10288
+      },
+      {
+        "name": "Queso cotija",
+        "amount": 700.0,
+        "percent": 54,
+        "kcal": 351,
+        "frame": 12741
+      },
+      {
+        "name": "Chia seeds",
+        "amount": 631.0,
+        "percent": 49,
+        "kcal": 486,
+        "frame": 9339
+      },
+      {
+        "name": "Stinging Nettles, blanched (Northern Plains Indians)",
+        "amount": 481.0,
+        "percent": 37,
+        "kcal": 42,
+        "frame": 1018
+      },
+      {
+        "name": "Agave, cooked (Southwest)",
+        "amount": 460.0,
+        "percent": 35,
+        "kcal": 135,
+        "frame": 129
+      },
+      {
+        "name": "Winged beans, mature seeds, raw",
+        "amount": 440.0,
+        "percent": 34,
+        "kcal": 409,
+        "frame": 4597
+      },
+      {
+        "name": "Fireweed, leaves, raw",
+        "amount": 429.0,
+        "percent": 33,
+        "kcal": 103,
+        "frame": 13782
+      },
+      {
+        "name": "Fish, sardines, canned",
+        "amount": 382.0,
+        "percent": 29,
+        "kcal": 208,
+        "frame": 5793
       }
     ]
   },
@@ -1301,81 +1301,81 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 3029
       },
       {
-        "name": "Lovage seed (you had lovage leaf, but not seed)",
-        "amount": 44.0,
-        "percent": 244,
-        "kcal": 401,
-        "frame": 8056
+        "name": "Goose, liver, raw",
+        "amount": 30.5,
+        "percent": 170,
+        "kcal": 133,
+        "frame": 2812
       },
       {
-        "name": "Bay Leaves",
-        "amount": 43.0,
-        "percent": 239,
-        "kcal": 313,
-        "frame": 13671
+        "name": "Seeds, sesame butter, paste",
+        "amount": 19.2,
+        "percent": 107,
+        "kcal": 586,
+        "frame": 1297
       },
       {
-        "name": "Laurel",
-        "amount": 43.0,
-        "percent": 239,
-        "kcal": 313,
-        "frame": 10562
+        "name": "Baking chocolate, unsweetened, squares",
+        "amount": 17.4,
+        "percent": 97,
+        "kcal": 642,
+        "frame": 13118
       },
       {
-        "name": "Lamb, variety meats and by-products, spleen, raw",
-        "amount": 41.9,
-        "percent": 233,
-        "kcal": 101,
-        "frame": 433
+        "name": "Soybeans, mature seeds, raw",
+        "amount": 15.7,
+        "percent": 87,
+        "kcal": 446,
+        "frame": 2078
       },
       {
-        "name": "Kasuri methi",
-        "amount": 41.0,
-        "percent": 228,
-        "kcal": 323,
-        "frame": 367
+        "name": "Lamb, New Zealand, imported, kidney, cooked, soaked and fried",
+        "amount": 14.7,
+        "percent": 82,
+        "kcal": 112,
+        "frame": 4304
       },
       {
-        "name": "Chinese Five Spice",
-        "amount": 38.6,
-        "percent": 215,
-        "kcal": 269,
-        "frame": 461
+        "name": "Mollusks, clam, mixed species, cooked, breaded and fried",
+        "amount": 13.9,
+        "percent": 77,
+        "kcal": 202,
+        "frame": 666
       },
       {
-        "name": "Anise",
-        "amount": 37.0,
-        "percent": 205,
-        "kcal": 337,
-        "frame": 7490
+        "name": "Winged beans, mature seeds, raw",
+        "amount": 13.4,
+        "percent": 75,
+        "kcal": 409,
+        "frame": 4597
       },
       {
-        "name": "Five-spice components",
-        "amount": 36.9,
-        "percent": 205,
-        "kcal": 269,
-        "frame": 11695
+        "name": "Garden cress seed",
+        "amount": 13.0,
+        "percent": 72,
+        "kcal": 454,
+        "frame": 8221
       },
       {
-        "name": "Berbere spice",
-        "amount": 35.8,
-        "percent": 199,
-        "kcal": 374,
-        "frame": 9871
+        "name": "Mushrooms, morel, raw",
+        "amount": 12.2,
+        "percent": 68,
+        "kcal": 31,
+        "frame": 9098
       },
       {
-        "name": "Mitmita",
-        "amount": 35.8,
-        "percent": 199,
-        "kcal": 374,
-        "frame": 4191
+        "name": "Liverwurst",
+        "amount": 11.2,
+        "percent": 62,
+        "kcal": 327,
+        "frame": 14052
       },
       {
-        "name": "Chemen (spice mix)",
-        "amount": 33.5,
-        "percent": 186,
-        "kcal": 323,
-        "frame": 2170
+        "name": "Chicken, broilers or fryers, giblets, cooked, fried",
+        "amount": 10.3,
+        "percent": 57,
+        "kcal": 277,
+        "frame": 13004
       }
     ]
   },
@@ -1389,20 +1389,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "percent": 167,
         "kcal": 553,
         "frame": 12570
-      },
-      {
-        "name": "Wheat bran",
-        "amount": 611.0,
-        "percent": 145,
-        "kcal": 216,
-        "frame": 9179
-      },
-      {
-        "name": "Pepita spice (ground pumpkin seeds)",
-        "amount": 592.0,
-        "percent": 141,
-        "kcal": 574,
-        "frame": 11723
       },
       {
         "name": "Pumpkin seeds, NFS",
@@ -1419,41 +1405,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 3484
       },
       {
-        "name": "Old Man Saltbush",
-        "amount": 400.0,
-        "percent": 95,
-        "kcal": 344,
-        "frame": 5005
-      },
-      {
-        "name": "Fennel Seed (Mouri)",
-        "amount": 385.0,
-        "percent": 92,
-        "kcal": 345,
-        "frame": 13922
-      },
-      {
-        "name": "Fennel seed (for seafood)",
-        "amount": 385.0,
-        "percent": 92,
-        "kcal": 345,
-        "frame": 4323
-      },
-      {
-        "name": "Annatto seed",
-        "amount": 384.0,
-        "percent": 91,
-        "kcal": 370,
-        "frame": 13184
-      },
-      {
-        "name": "Mothbeans, mature seeds, raw",
-        "amount": 381.0,
-        "percent": 91,
-        "kcal": 343,
-        "frame": 2760
-      },
-      {
         "name": "Brazil nuts",
         "amount": 376.0,
         "percent": 90,
@@ -1466,6 +1417,55 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "percent": 89,
         "kcal": 545,
         "frame": 10709
+      },
+      {
+        "name": "Garden cress seed",
+        "amount": 370.0,
+        "percent": 88,
+        "kcal": 454,
+        "frame": 8221
+      },
+      {
+        "name": "Tahini",
+        "amount": 357.0,
+        "percent": 85,
+        "kcal": 697,
+        "frame": 9007
+      },
+      {
+        "name": "White sesame",
+        "amount": 351.0,
+        "percent": 84,
+        "kcal": 573,
+        "frame": 12918
+      },
+      {
+        "name": "Poppy Seeds",
+        "amount": 347.0,
+        "percent": 83,
+        "kcal": 525,
+        "frame": 12318
+      },
+      {
+        "name": "Chia seeds",
+        "amount": 335.0,
+        "percent": 80,
+        "kcal": 486,
+        "frame": 9339
+      },
+      {
+        "name": "Baking chocolate, unsweetened, squares",
+        "amount": 327.0,
+        "percent": 78,
+        "kcal": 642,
+        "frame": 13118
+      },
+      {
+        "name": "Wheat germ",
+        "amount": 320.0,
+        "percent": 76,
+        "kcal": 382,
+        "frame": 2810
       }
     ]
   },
@@ -1486,13 +1486,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "percent": 94,
         "kcal": 574,
         "frame": 11716
-      },
-      {
-        "name": "Pepita spice (ground pumpkin seeds)",
-        "amount": 1170.0,
-        "percent": 94,
-        "kcal": 574,
-        "frame": 11723
       },
       {
         "name": "Mixed seeds",
@@ -1516,32 +1509,11 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 2810
       },
       {
-        "name": "Cereals ready-to-eat, wheat germ, toasted, plain",
-        "amount": 1150.0,
-        "percent": 92,
-        "kcal": 382,
-        "frame": 6724
-      },
-      {
-        "name": "Wheat bran",
-        "amount": 1010.0,
-        "percent": 81,
-        "kcal": 216,
-        "frame": 9179
-      },
-      {
         "name": "Melon Seeds (egusi)",
         "amount": 940.0,
         "percent": 75,
         "kcal": 590,
         "frame": 3
-      },
-      {
-        "name": "Cheese spread, American or Cheddar cheese base, reduced fat",
-        "amount": 931.0,
-        "percent": 74,
-        "kcal": 176,
-        "frame": 1805
       },
       {
         "name": "Poppy Seeds",
@@ -1551,11 +1523,39 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 12318
       },
       {
-        "name": "Poppy Seeds (Mohn)",
-        "amount": 870.0,
-        "percent": 70,
-        "kcal": 525,
-        "frame": 6681
+        "name": "Chia seeds",
+        "amount": 860.0,
+        "percent": 69,
+        "kcal": 486,
+        "frame": 9339
+      },
+      {
+        "name": "Black mustard",
+        "amount": 841.0,
+        "percent": 67,
+        "kcal": 508,
+        "frame": 6058
+      },
+      {
+        "name": "Cheese, American, reduced fat",
+        "amount": 829.0,
+        "percent": 66,
+        "kcal": 240,
+        "frame": 4749
+      },
+      {
+        "name": "Brazil nuts",
+        "amount": 725.0,
+        "percent": 58,
+        "kcal": 659,
+        "frame": 11584
+      },
+      {
+        "name": "Tahini",
+        "amount": 719.0,
+        "percent": 58,
+        "kcal": 697,
+        "frame": 9007
       }
     ]
   },
@@ -1571,81 +1571,81 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 3484
       },
       {
-        "name": "Soy meal, defatted, raw",
-        "amount": 2490.0,
-        "percent": 53,
-        "kcal": 337,
-        "frame": 3257
+        "name": "Hearts of palm, raw",
+        "amount": 1810.0,
+        "percent": 38,
+        "kcal": 115,
+        "frame": 6225
       },
       {
-        "name": "Akudjura (Bush Tomato)",
-        "amount": 2120.0,
-        "percent": 45,
-        "kcal": 276,
-        "frame": 5670
+        "name": "Soybeans, mature seeds, raw",
+        "amount": 1800.0,
+        "percent": 38,
+        "kcal": 446,
+        "frame": 2078
       },
       {
-        "name": "Cayenne/Red Pepper",
-        "amount": 2010.0,
-        "percent": 43,
-        "kcal": 318,
-        "frame": 11418
+        "name": "Molasses",
+        "amount": 1460.0,
+        "percent": 31,
+        "kcal": 290,
+        "frame": 10944
       },
       {
-        "name": "Cayenne Pepper",
-        "amount": 2010.0,
-        "percent": 43,
-        "kcal": 318,
-        "frame": 13848
+        "name": "Cheese, gjetost",
+        "amount": 1410.0,
+        "percent": 30,
+        "kcal": 466,
+        "frame": 2809
       },
       {
-        "name": "Aleppo Pepper",
-        "amount": 2010.0,
-        "percent": 43,
-        "kcal": 318,
-        "frame": 7303
+        "name": "Garden cress seed",
+        "amount": 1400.0,
+        "percent": 30,
+        "kcal": 454,
+        "frame": 8221
       },
       {
-        "name": "Urfa Pepper",
-        "amount": 2010.0,
-        "percent": 43,
-        "kcal": 318,
-        "frame": 12668
+        "name": "Salami, pork, beef, less sodium",
+        "amount": 1370.0,
+        "percent": 29,
+        "kcal": 396,
+        "frame": 6561
       },
       {
-        "name": "Dry red chili",
-        "amount": 2010.0,
-        "percent": 43,
-        "kcal": 318,
-        "frame": 6633
+        "name": "Lambsquarters, raw (Northern Plains Indians)",
+        "amount": 1270.0,
+        "percent": 27,
+        "kcal": 47,
+        "frame": 13778
       },
       {
-        "name": "Crushed red pepper",
-        "amount": 2010.0,
-        "percent": 43,
-        "kcal": 318,
-        "frame": 2728
+        "name": "Potato sticks, plain",
+        "amount": 1240.0,
+        "percent": 26,
+        "kcal": 522,
+        "frame": 1124
       },
       {
-        "name": "Piment d’Espelette",
-        "amount": 2010.0,
-        "percent": 43,
-        "kcal": 318,
-        "frame": 12064
+        "name": "Seeds, hemp seed, hulled",
+        "amount": 1200.0,
+        "percent": 26,
+        "kcal": 553,
+        "frame": 12570
       },
       {
-        "name": "Guntur chili",
-        "amount": 2010.0,
-        "percent": 43,
-        "kcal": 318,
-        "frame": 7172
+        "name": "Baking chocolate, unsweetened, liquid",
+        "amount": 1170.0,
+        "percent": 25,
+        "kcal": 472,
+        "frame": 13655
       },
       {
-        "name": "Chipotle chili (smoked)",
-        "amount": 2010.0,
-        "percent": 43,
-        "kcal": 318,
-        "frame": 13863
+        "name": "Apricot, dried",
+        "amount": 1160.0,
+        "percent": 25,
+        "kcal": 241,
+        "frame": 6244
       }
     ]
   },
@@ -1661,32 +1661,11 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 12742
       },
       {
-        "name": "Mollusks, oyster, eastern, canned",
-        "amount": 91.0,
-        "percent": 827,
-        "kcal": 68,
-        "frame": 3118
-      },
-      {
-        "name": "Oysters Rockefeller",
-        "amount": 18.8,
-        "percent": 171,
-        "kcal": 134,
-        "frame": 3149
-      },
-      {
         "name": "Wheat germ",
         "amount": 16.7,
         "percent": 152,
         "kcal": 382,
         "frame": 2810
-      },
-      {
-        "name": "Cereals ready-to-eat, wheat germ, toasted, plain",
-        "amount": 16.7,
-        "percent": 152,
-        "kcal": 382,
-        "frame": 6724
       },
       {
         "name": "Beef, chuck, short ribs, boneless, separable lean only, trimmed to 0\" fat, select, cooked, braised",
@@ -1710,20 +1689,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 8719
       },
       {
-        "name": "Bear",
-        "amount": 10.2,
-        "percent": 93,
-        "kcal": 257,
-        "frame": 5839
-      },
-      {
-        "name": "Dressing with oysters",
-        "amount": 10.0,
-        "percent": 91,
-        "kcal": 189,
-        "frame": 2805
-      },
-      {
         "name": "Baking chocolate, unsweetened, squares",
         "amount": 9.63,
         "percent": 88,
@@ -1731,11 +1696,46 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 13118
       },
       {
-        "name": "Hyacinth beans, mature seeds, raw",
-        "amount": 9.3,
-        "percent": 85,
-        "kcal": 344,
-        "frame": 10279
+        "name": "Lamb, foreshank, separable lean only, trimmed to 1/4\" fat, choice, cooked, braised",
+        "amount": 8.66,
+        "percent": 79,
+        "kcal": 187,
+        "frame": 8324
+      },
+      {
+        "name": "Poppy Seeds (Posto)",
+        "amount": 8.0,
+        "percent": 73,
+        "kcal": 525,
+        "frame": 4317
+      },
+      {
+        "name": "Pumpkin seeds, NFS",
+        "amount": 7.64,
+        "percent": 69,
+        "kcal": 574,
+        "frame": 11716
+      },
+      {
+        "name": "Crustaceans, crab, alaska king, cooked, moist heat",
+        "amount": 7.62,
+        "percent": 69,
+        "kcal": 97,
+        "frame": 956
+      },
+      {
+        "name": "Melon Seeds (egusi)",
+        "amount": 7.2,
+        "percent": 65,
+        "kcal": 590,
+        "frame": 3
+      },
+      {
+        "name": "Pork jerky",
+        "amount": 6.76,
+        "percent": 61,
+        "kcal": 412,
+        "frame": 7462
       }
     ]
   },
@@ -1751,53 +1751,11 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 922
       },
       {
-        "name": "Beef, variety meats and by-products, liver, cooked, pan-fried",
-        "amount": 14.6,
-        "percent": 1621,
-        "kcal": 175,
-        "frame": 2414
-      },
-      {
-        "name": "Liver, beef",
-        "amount": 14.5,
-        "percent": 1608,
-        "kcal": 174,
-        "frame": 7829
-      },
-      {
-        "name": "Lamb, New Zealand, imported, liver, cooked, soaked and fried",
-        "amount": 13.4,
-        "percent": 1489,
-        "kcal": 168,
-        "frame": 12349
-      },
-      {
-        "name": "Goose, liver, raw",
-        "amount": 7.52,
-        "percent": 836,
-        "kcal": 133,
-        "frame": 2812
-      },
-      {
-        "name": "Duck, domesticated, liver, raw",
-        "amount": 5.96,
-        "percent": 662,
-        "kcal": 136,
-        "frame": 13839
-      },
-      {
         "name": "Mollusks, oyster, eastern, wild, cooked, moist heat",
         "amount": 5.71,
         "percent": 634,
         "kcal": 102,
         "frame": 8911
-      },
-      {
-        "name": "Oysters, canned",
-        "amount": 4.85,
-        "percent": 539,
-        "kcal": 74,
-        "frame": 12742
       },
       {
         "name": "Seeds, sesame butter, paste",
@@ -1807,25 +1765,67 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 1297
       },
       {
-        "name": "Toasted sesame seed",
-        "amount": 4.08,
-        "percent": 454,
-        "kcal": 615,
-        "frame": 11802
+        "name": "Baking chocolate, unsweetened, squares",
+        "amount": 3.23,
+        "percent": 359,
+        "kcal": 642,
+        "frame": 13118
       },
       {
-        "name": "White sesame",
-        "amount": 4.08,
-        "percent": 454,
-        "kcal": 573,
-        "frame": 12918
+        "name": "Soy flour, full-fat, raw",
+        "amount": 2.92,
+        "percent": 324,
+        "kcal": 434,
+        "frame": 3484
       },
       {
-        "name": "Black sesame",
-        "amount": 4.08,
-        "percent": 454,
-        "kcal": 573,
-        "frame": 4933
+        "name": "Winged beans, mature seeds, raw",
+        "amount": 2.88,
+        "percent": 320,
+        "kcal": 409,
+        "frame": 4597
+      },
+      {
+        "name": "Calamari, cooked",
+        "amount": 2.35,
+        "percent": 261,
+        "kcal": 155,
+        "frame": 9496
+      },
+      {
+        "name": "Cashews, NFS",
+        "amount": 2.22,
+        "percent": 247,
+        "kcal": 574,
+        "frame": 7387
+      },
+      {
+        "name": "Grape leaves, canned",
+        "amount": 1.84,
+        "percent": 205,
+        "kcal": 69,
+        "frame": 14469
+      },
+      {
+        "name": "Sunflower seeds, plain, unsalted",
+        "amount": 1.83,
+        "percent": 203,
+        "kcal": 582,
+        "frame": 6167
+      },
+      {
+        "name": "Brazil nuts",
+        "amount": 1.74,
+        "percent": 194,
+        "kcal": 659,
+        "frame": 11584
+      },
+      {
+        "name": "Hazelnuts",
+        "amount": 1.73,
+        "percent": 192,
+        "kcal": 628,
+        "frame": 453
       }
     ]
   },
@@ -1833,27 +1833,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
     "unit": "mg",
     "dailyValue": 2.3,
     "foods": [
-      {
-        "name": "Cereals ready-to-eat, wheat germ, toasted, plain",
-        "amount": 20.0,
-        "percent": 868,
-        "kcal": 382,
-        "frame": 6724
-      },
-      {
-        "name": "Ras el hanout spices (components)",
-        "amount": 17.5,
-        "percent": 761,
-        "kcal": 374,
-        "frame": 13727
-      },
-      {
-        "name": "Baharat (Bzar)",
-        "amount": 15.0,
-        "percent": 652,
-        "kcal": 306,
-        "frame": 5596
-      },
       {
         "name": "Wheat germ, crude",
         "amount": 13.3,
@@ -1869,41 +1848,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 6790
       },
       {
-        "name": "Berbere spice",
-        "amount": 11.5,
-        "percent": 500,
-        "kcal": 374,
-        "frame": 9871
-      },
-      {
-        "name": "Mitmita",
-        "amount": 11.5,
-        "percent": 500,
-        "kcal": 374,
-        "frame": 4191
-      },
-      {
-        "name": "Timur (Sichuan pepper)",
-        "amount": 10.1,
-        "percent": 439,
-        "kcal": 372,
-        "frame": 8279
-      },
-      {
-        "name": "Mango, dried, sweetened",
-        "amount": 10.0,
-        "percent": 435,
-        "kcal": 319,
-        "frame": 11351
-      },
-      {
-        "name": "Long Pepper (Pipli)",
-        "amount": 9.3,
-        "percent": 404,
-        "kcal": 304,
-        "frame": 5091
-      },
-      {
         "name": "Teff, uncooked",
         "amount": 9.24,
         "percent": 402,
@@ -1911,11 +1855,67 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 2732
       },
       {
-        "name": "Bay Leaves",
-        "amount": 8.17,
-        "percent": 355,
-        "kcal": 313,
-        "frame": 13671
+        "name": "Seeds, hemp seed, hulled",
+        "amount": 7.6,
+        "percent": 330,
+        "kcal": 553,
+        "frame": 12570
+      },
+      {
+        "name": "Mollusks, mussel, blue, cooked, moist heat",
+        "amount": 6.8,
+        "percent": 296,
+        "kcal": 172,
+        "frame": 5134
+      },
+      {
+        "name": "Fireweed, leaves, raw",
+        "amount": 6.7,
+        "percent": 291,
+        "kcal": 103,
+        "frame": 13782
+      },
+      {
+        "name": "Poppy Seeds",
+        "amount": 6.7,
+        "percent": 291,
+        "kcal": 525,
+        "frame": 12318
+      },
+      {
+        "name": "Lemon grass (citronella), raw",
+        "amount": 5.22,
+        "percent": 227,
+        "kcal": 99,
+        "frame": 9561
+      },
+      {
+        "name": "Oats",
+        "amount": 4.92,
+        "percent": 214,
+        "kcal": 389,
+        "frame": 12850
+      },
+      {
+        "name": "Sugars, maple",
+        "amount": 4.42,
+        "percent": 192,
+        "kcal": 354,
+        "frame": 384
+      },
+      {
+        "name": "Peanut flour, low fat",
+        "amount": 4.23,
+        "percent": 184,
+        "kcal": 428,
+        "frame": 10729
+      },
+      {
+        "name": "Baking chocolate, unsweetened, squares",
+        "amount": 4.17,
+        "percent": 181,
+        "kcal": 642,
+        "frame": 13118
       }
     ]
   },
@@ -1929,34 +1929,6 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "percent": 566,
         "kcal": 151,
         "frame": 5085
-      },
-      {
-        "name": "Lamb, variety meats and by-products, kidneys, cooked, braised",
-        "amount": 219.0,
-        "percent": 398,
-        "kcal": 137,
-        "frame": 2798
-      },
-      {
-        "name": "Mustard (Black, Yellow, and Brown seeds)[3]",
-        "amount": 200.0,
-        "percent": 364,
-        "kcal": 508,
-        "frame": 12737
-      },
-      {
-        "name": "Beef, variety meats and by-products, kidneys, cooked, simmered",
-        "amount": 168.0,
-        "percent": 305,
-        "kcal": 158,
-        "frame": 5099
-      },
-      {
-        "name": "Kidney",
-        "amount": 167.0,
-        "percent": 303,
-        "kcal": 157,
-        "frame": 6932
       },
       {
         "name": "Black mustard",
@@ -2001,11 +1973,39 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 5248
       },
       {
-        "name": "Seeds, sunflower seed butter, with salt added (Includes foods for USDA's Food Distribution Program)",
+        "name": "Seeds, sunflower seed butter, with salt added",
         "amount": 104.0,
         "percent": 190,
         "kcal": 617,
         "frame": 7443
+      },
+      {
+        "name": "Chicken, broilers or fryers, giblets, cooked, fried",
+        "amount": 104.0,
+        "percent": 189,
+        "kcal": 277,
+        "frame": 13004
+      },
+      {
+        "name": "Semolina, enriched",
+        "amount": 89.4,
+        "percent": 163,
+        "kcal": 360,
+        "frame": 4738
+      },
+      {
+        "name": "Lobster",
+        "amount": 80.5,
+        "percent": 146,
+        "kcal": 97,
+        "frame": 9932
+      },
+      {
+        "name": "Wheat germ, crude",
+        "amount": 79.2,
+        "percent": 144,
+        "kcal": 360,
+        "frame": 6044
       }
     ]
   },
@@ -2014,67 +2014,11 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
     "dailyValue": 50,
     "foods": [
       {
-        "name": "Pork skin rinds",
-        "amount": 61.3,
-        "percent": 123,
-        "kcal": 544,
-        "frame": 1961
-      },
-      {
-        "name": "Snacks, pork skins, plain",
-        "amount": 61.3,
-        "percent": 123,
-        "kcal": 544,
-        "frame": 4180
-      },
-      {
-        "name": "Peanut flour, defatted",
-        "amount": 52.2,
-        "percent": 104,
-        "kcal": 327,
-        "frame": 7898
-      },
-      {
-        "name": "Soy flour, defatted",
-        "amount": 51.5,
-        "percent": 103,
-        "kcal": 327,
-        "frame": 11051
-      },
-      {
-        "name": "Seeds, sesame flour, low-fat",
-        "amount": 50.1,
+        "name": "Soy flour, low-fat",
+        "amount": 49.8,
         "percent": 100,
-        "kcal": 333,
-        "frame": 927
-      },
-      {
-        "name": "Soy meal, defatted, raw",
-        "amount": 49.2,
-        "percent": 98,
-        "kcal": 337,
-        "frame": 3257
-      },
-      {
-        "name": "Mollusks, whelk, unspecified, cooked, moist heat",
-        "amount": 47.7,
-        "percent": 95,
-        "kcal": 275,
-        "frame": 515
-      },
-      {
-        "name": "Pork, cracklings",
-        "amount": 45.0,
-        "percent": 90,
-        "kcal": 569,
-        "frame": 6586
-      },
-      {
-        "name": "Meat extender",
-        "amount": 41.7,
-        "percent": 83,
-        "kcal": 311,
-        "frame": 3098
+        "kcal": 372,
+        "frame": 3304
       },
       {
         "name": "Cheese, parmesan, low sodium",
@@ -2084,18 +2028,74 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 6761
       },
       {
-        "name": "Parmesan cheese topping, fat free",
-        "amount": 40.0,
-        "percent": 80,
-        "kcal": 370,
-        "frame": 3535
+        "name": "Pork, cured, bacon, cooked, microwaved",
+        "amount": 39.0,
+        "percent": 78,
+        "kcal": 476,
+        "frame": 14184
       },
       {
-        "name": "Bacon, for use on a sandwich",
-        "amount": 39.4,
-        "percent": 79,
-        "kcal": 494,
-        "frame": 6317
+        "name": "Soybeans, mature seeds, roasted, salted",
+        "amount": 38.5,
+        "percent": 77,
+        "kcal": 469,
+        "frame": 6052
+      },
+      {
+        "name": "Veal, leg (top round), separable lean only, cooked, braised",
+        "amount": 36.7,
+        "percent": 73,
+        "kcal": 203,
+        "frame": 7731
+      },
+      {
+        "name": "Lupins, mature seeds, raw",
+        "amount": 36.2,
+        "percent": 72,
+        "kcal": 371,
+        "frame": 13398
+      },
+      {
+        "name": "Lamb, shoulder, arm, separable lean only, trimmed to 1/4\" fat, choice, cooked, braised",
+        "amount": 35.5,
+        "percent": 71,
+        "kcal": 279,
+        "frame": 4298
+      },
+      {
+        "name": "Beef, New Zealand, imported, brisket point end, separable lean only, cooked, braised",
+        "amount": 34.5,
+        "percent": 69,
+        "kcal": 202,
+        "frame": 6779
+      },
+      {
+        "name": "Chicken, broilers or fryers, breast, meat only, cooked, fried",
+        "amount": 33.4,
+        "percent": 67,
+        "kcal": 187,
+        "frame": 8173
+      },
+      {
+        "name": "Mutton, cooked, roasted (Navajo)",
+        "amount": 33.4,
+        "percent": 67,
+        "kcal": 234,
+        "frame": 7033
+      },
+      {
+        "name": "Mollusks, cuttlefish, mixed species, cooked, moist heat",
+        "amount": 32.5,
+        "percent": 65,
+        "kcal": 158,
+        "frame": 1774
+      },
+      {
+        "name": "Pheasant, cooked, total edible",
+        "amount": 32.4,
+        "percent": 65,
+        "kcal": 239,
+        "frame": 7192
       }
     ]
   },
@@ -2111,81 +2111,81 @@ export const NUTRIENT_FOODS: Readonly<Record<string, NutrientTable>> = {
         "frame": 389
       },
       {
-        "name": "Wheat bran",
-        "amount": 42.8,
-        "percent": 153,
-        "kcal": 216,
-        "frame": 9179
+        "name": "Chia seeds",
+        "amount": 34.4,
+        "percent": 123,
+        "kcal": 486,
+        "frame": 9339
       },
       {
-        "name": "Nigella Seed (Kalonji)",
-        "amount": 40.0,
-        "percent": 143,
-        "kcal": 345,
-        "frame": 13343
+        "name": "Seeds, flaxseed",
+        "amount": 27.3,
+        "percent": 98,
+        "kcal": 534,
+        "frame": 6172
       },
       {
-        "name": "Nigella seed",
-        "amount": 40.0,
-        "percent": 143,
-        "kcal": 344,
-        "frame": 14361
+        "name": "Winged beans, mature seeds, raw",
+        "amount": 25.9,
+        "percent": 92,
+        "kcal": 409,
+        "frame": 4597
       },
       {
-        "name": "Carob flour",
-        "amount": 39.8,
-        "percent": 142,
-        "kcal": 222,
-        "frame": 7750
+        "name": "Rose Hips, wild (Northern Plains Indians)",
+        "amount": 24.1,
+        "percent": 86,
+        "kcal": 162,
+        "frame": 6198
       },
       {
-        "name": "Fennel Seed (Mouri)",
-        "amount": 39.8,
-        "percent": 142,
-        "kcal": 345,
-        "frame": 13922
+        "name": "Flax seeds",
+        "amount": 23.1,
+        "percent": 82,
+        "kcal": 545,
+        "frame": 10709
       },
       {
-        "name": "Fennel seed (for seafood)",
-        "amount": 39.8,
-        "percent": 142,
-        "kcal": 345,
-        "frame": 4323
+        "name": "Peas, green, split, mature seeds, raw",
+        "amount": 22.2,
+        "percent": 79,
+        "kcal": 364,
+        "frame": 10289
       },
       {
-        "name": "Sichuan pepper",
-        "amount": 39.8,
-        "percent": 142,
-        "kcal": 372,
-        "frame": 10531
+        "name": "Poppy Seeds",
+        "amount": 19.5,
+        "percent": 70,
+        "kcal": 525,
+        "frame": 12318
       },
       {
-        "name": "Andaliman (Sichuan pepper–like)",
-        "amount": 39.8,
-        "percent": 142,
+        "name": "Lupins, mature seeds, raw",
+        "amount": 18.9,
+        "percent": 68,
         "kcal": 371,
-        "frame": 4214
+        "frame": 13398
       },
       {
-        "name": "Sichuan pepper (Timur)",
-        "amount": 39.4,
-        "percent": 141,
-        "kcal": 372,
-        "frame": 14474
+        "name": "Papad, grilled or broiled",
+        "amount": 18.6,
+        "percent": 66,
+        "kcal": 371,
+        "frame": 361
       },
       {
-        "name": "Caraway Seed (Kümmel)",
-        "amount": 38.0,
-        "percent": 136,
-        "kcal": 333,
-        "frame": 12627
+        "name": "Baking chocolate, unsweetened, liquid",
+        "amount": 18.1,
+        "percent": 65,
+        "kcal": 472,
+        "frame": 13655
       },
       {
-        "name": "Sumac",
-        "amount": 36.2,
-        "percent": 129,
-        "kcal": 339,
-        "frame": 4927
+        "name": "Soybeans, mature seeds, roasted, salted",
+        "amount": 17.7,
+        "percent": 63,
+        "kcal": 469,
+        "frame": 6052
       }
     ]
   }
