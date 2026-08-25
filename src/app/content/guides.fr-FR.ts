@@ -56,20 +56,14 @@ export const GUIDES_FR_FR: GuideLocale = {
     careLinks: [
       {
         label: 'Anorexie Boulimie Info Écoute — 09 69 325 900',
-        url: 'https://www.fna-tca.fr/',
+        url: 'https://www.fna-tca.org/trouvez-de-laide',
       },
-      {
-        label: 'FFAB — Fédération Française Anorexie Boulimie',
-        url: 'https://www.ffab.fr/',
-      },
+      { label: 'FFAB — Fédération Française Anorexie Boulimie', url: 'https://www.ffab.fr/' },
       {
         label: '3114 — numéro national de prévention du suicide, 24 h/24',
         url: 'https://3114.fr/',
       },
-      {
-        label: 'Trouver une ligne d’écoute dans votre pays',
-        url: 'https://findahelpline.com/',
-      },
+      { label: 'Trouver une ligne d’écoute dans votre pays', url: 'https://findahelpline.com/' },
     ],
 
     ctaLine: 'Chaque nutriment cité plus haut, mesuré — dans l’app.',

@@ -55,21 +55,18 @@ export const GUIDES_ES_ES: GuideLocale = {
       'razonable y ya ha tenido esta conversación antes.',
     careLinks: [
       {
-        label: 'ACAB — Asociación contra la Anorexia y la Bulimia',
+        label: 'ACAB — Asociación contra la Anorexia y la Bulimia: 93 454 91 09',
         url: 'https://www.acab.org/es',
       },
       {
-        label: 'FITA — Fundación Imagen y Autoestima',
-        url: 'https://www.f-ima.org/es/',
+        label: 'Línea 024 — atención a la conducta suicida, gratuita, 24 horas',
+        url: 'https://www.sanidad.gob.es/linea024/home.htm',
       },
       {
         label: 'Teléfono de la Esperanza — 717 003 717, 24 horas',
         url: 'https://telefonodelaesperanza.org/',
       },
-      {
-        label: 'Buscar una línea de ayuda en su país',
-        url: 'https://findahelpline.com/',
-      },
+      { label: 'Buscar una línea de ayuda en su país', url: 'https://findahelpline.com/' },
     ],
 
     ctaLine: 'Cada nutriente nombrado arriba, medido — en la app.',

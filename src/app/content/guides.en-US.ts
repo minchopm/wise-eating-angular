@@ -47,9 +47,18 @@ export const GUIDES_EN_US: GuideLocale = {
       'they respond well to treatment — which are both reasons to speak to someone early rather ' +
       'than late. A GP is a reasonable first door and will have had the conversation before.',
     careLinks: [
-      { label: 'Beat — UK eating disorder helpline', url: 'https://www.beateatingdisorders.org.uk/get-information-and-support/get-help-for-myself/i-need-support-now/helplines/' },
-      { label: 'NEDA — US National Eating Disorders Association', url: 'https://www.nationaleatingdisorders.org/get-help/' },
-      { label: 'NICE guideline NG69 — what good treatment looks like', url: 'https://www.nice.org.uk/guidance/ng69' },
+      {
+        label: 'Beat — UK eating disorder helplines, Mon–Fri 3pm–8pm',
+        url: 'https://www.beateatingdisorders.org.uk/get-information-and-support/get-help-for-myself/i-need-support-now/helplines/',
+      },
+      {
+        label: 'ANAD — US eating disorders helpline: 1-888-375-7767, Mon–Fri 9am–9pm CT',
+        url: 'https://anad.org/get-support/eating-disorders-helpline/',
+      },
+      {
+        label: 'NICE guideline NG69 — what good treatment looks like',
+        url: 'https://www.nice.org.uk/guidance/ng69',
+      },
       { label: 'Find a helpline in your country', url: 'https://findahelpline.com/' },
     ],
 

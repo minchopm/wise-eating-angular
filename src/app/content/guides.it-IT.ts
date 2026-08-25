@@ -55,15 +55,15 @@ export const GUIDES_IT_IT: GuideLocale = {
       'l’ha già fatta.',
     careLinks: [
       {
-        label: 'Numero Verde SOS Disturbi Alimentari — 800 180 969',
-        url: 'https://www.iss.it/disturbi-della-nutrizione-e-dell-alimentazione',
+        label: 'Numero Verde SOS Disturbi Alimentari — 800 180 969, lun–ven 9–21',
+        url: 'https://sosdisturbialimentari.it/',
       },
       {
-        label: 'Ministero della Salute — disturbi della nutrizione e dell’alimentazione',
-        url: 'https://www.salute.gov.it/portale/saluteMentale/dettaglioContenutiSaluteMentale.jsp?lingua=italiano&id=5490&area=salute%20mentale&menu=disturbi',
+        label: 'EpiCentro (ISS) — disturbi della nutrizione e dell’alimentazione',
+        url: 'https://www.epicentro.iss.it/anoressia/',
       },
       {
-        label: 'Telefono Amico Italia — 02 2327 2327',
+        label: 'Telefono Amico Italia — 02 2327 2327, tutti i giorni 9–24',
         url: 'https://www.telefonoamico.it/',
       },
       {

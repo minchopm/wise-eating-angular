@@ -57,21 +57,15 @@ export const GUIDES_DE_DE: GuideLocale = {
       'und hat dieses Gespräch schon geführt.',
     careLinks: [
       {
-        label: 'BZgA — Beratungstelefon Essstörungen: 0221 892031',
-        url: 'https://www.bzga-essstoerungen.de/',
+        label: 'BIÖG — Beratungstelefon Essstörungen: 0221 892031',
+        url: 'https://essstoerungen.bioeg.de/',
       },
+      { label: 'ANAD e. V. — Beratung und Therapievermittlung', url: 'https://www.anad.de/' },
       {
-        label: 'ANAD e. V. — Beratung und Therapievermittlung',
-        url: 'https://www.anad.de/',
-      },
-      {
-        label: 'Telefonseelsorge — 0800 111 0 111, rund um die Uhr',
+        label: 'Telefonseelsorge — 0800 111 0 111 oder 116 123, rund um die Uhr',
         url: 'https://www.telefonseelsorge.de/',
       },
-      {
-        label: 'Hilfetelefon in Ihrem Land finden',
-        url: 'https://findahelpline.com/',
-      },
+      { label: 'Hilfetelefon in Ihrem Land finden', url: 'https://findahelpline.com/' },
     ],
 
     ctaLine: 'Jeder oben genannte Nährstoff, gemessen — in der App.',

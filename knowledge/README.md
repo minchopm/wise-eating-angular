@@ -51,26 +51,48 @@ publicly that nobody has checked against the thing itself.
 the App Store description, not read from the products. This is a promise to
 someone paying $6.99 a month.
 
-*Resolves with:* `node scripts/asc/audit.mjs` — blocked only on `ASC_ISSUER_ID`.
+*Resolves with:* `node scripts/asc/audit.mjs`. `ASC_ISSUER_ID` is now set and
+the signing is proven correct (signature round-trips locally, 64-byte raw
+r||s). The API still answers 401, so the remaining question is whether key
+`Z8VH284LJR` is an App Store Connect key at all rather than an APNs key — the
+two are indistinguishable as files, and only *Users and Access → Integrations*
+can say.
 
-### 2. Helpline numbers on the psychology guides — **unverified**
+### 2. Helpline numbers on the psychology guides — **verified 2026-08-26**
 
-Five locales carry named organisations and phone numbers. The organisations are
-real; the numbers and opening hours were written from knowledge and not
-confirmed against each site. This is the one place on the site where being
-wrong means someone in a bad moment rings a dead line, which is worse than
-offering no number.
+Six locales, twenty-four links, nineteen distinct URLs. All now resolve 200 and
+every number was read off the operator's own page. What the check found is the
+argument for having run it:
 
-*Resolves with:* opening five pages and reading them.
+| Was | Is |
+|---|---|
+| `nationaleatingdisorders.org` (US) | **NEDA has had no helpline since June 2023** — staff dismissed, replaced by a chatbot that advised calorie deficits and was withdrawn within days. Replaced with ANAD, 1-888-375-7767. |
+| `lmsspiseforstyrrelser.dk` | Dead domain. The organisation renamed twice — LMS → Foreningen Spiseforstyrrelser og Selvskade (2022) → **Somenta** (April 2026). Number unchanged. |
+| `bzga-essstoerungen.de` | 301 to `essstoerungen.bioeg.de`; the operator is now **BIÖG**, not BZgA. Number unchanged. |
+| `fna-tca.fr` | Does not resolve; the federation is on `.org`. |
+| `iss.it/...`, `salute.gov.it/...` | Both 404. |
+| `sundhed.dk/...patienthaandbogen/...` | 404. |
+| `f-ima.org` (FITA) | Serves only plaintext HTTP. Dropped in favour of **Línea 024**, the Spanish national line — free, 24/7, state-run. |
 
-### 3. Whether any of this is being found — **unknown**
+One live contradiction worth remembering: FFAB's own site publishes two
+different numbers on two pages. `/500-ligne-tca-nouveau-numero` announces the
+current free `09 69 325 900`; `/trouver-de-l-aide/permanence-telephonique`
+still lists the old surtaxed `0810 037 037`. We carry the free one.
 
-184 pages, six languages, and no Search Console. There is no way at present to
-know which pages are indexed, what queries reach them, or whether the German
-and Danish guides are read at all.
+*Re-check:* annually, or whenever a guide page is next edited. Organisations
+rename and lines close; this decays silently.
 
-*Resolves with:* verifying the property. The gtag is already live, so the
-Google Analytics method needs no code from us.
+### 3. Whether any of this is being found — **resolved 2026-08-26**
+
+Search Console is verified on `wise-eating.com` as a **Domain** property (DNS
+TXT, added alongside the existing SES SPF record rather than replacing it).
+`sitemap.xml` submitted and accepted: 179 URLs, status Success.
+
+Data starts accumulating from the verification date — there is no backfill, so
+the first meaningful Performance numbers arrive around 2026-09-02.
+
+Still open: linking Search Console to GA4 (`Admin → Search Console links`), so
+queries and on-page behaviour can be read together instead of in two tabs.
 
 ### 4. Whether readers read — **unknown**
 

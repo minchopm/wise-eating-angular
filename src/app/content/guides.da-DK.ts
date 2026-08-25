@@ -53,21 +53,15 @@ export const GUIDES_DA_DK: GuideLocale = {
       'frem for sent. Egen læge er en fornuftig første dør og har haft samtalen før.',
     careLinks: [
       {
-        label: 'LMS — Landsforeningen mod spiseforstyrrelser og selvskade: 70 10 18 18',
-        url: 'https://www.lmsspiseforstyrrelser.dk/',
+        label: 'Somenta (tidligere LMS) — rådgivning om spiseforstyrrelser: 70 10 18 18',
+        url: 'https://somenta.dk/',
       },
       {
-        label: 'Spiseforstyrrelser.dk — rådgivning og behandlingsoversigt',
-        url: 'https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/spiseforstyrrelser/',
+        label: 'Patienthåndbogen på sundhed.dk — spiseforstyrrelser hos voksne',
+        url: 'https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/anoreksi/anoreksi-hos-voksne/',
       },
-      {
-        label: 'Livslinien — 70 201 201, hver dag',
-        url: 'https://www.livslinien.dk/',
-      },
-      {
-        label: 'Find en hjælpelinje i dit land',
-        url: 'https://findahelpline.com/',
-      },
+      { label: 'Livslinien — 70 201 201, hver dag', url: 'https://www.livslinien.dk/' },
+      { label: 'Find en hjælpelinje i dit land', url: 'https://findahelpline.com/' },
     ],
 
     ctaLine: 'Hvert næringsstof nævnt ovenfor, målt — i appen.',
