@@ -4,7 +4,7 @@
  *
  * Run automatically as part of `npm run build`.
  */
-import { copyFile, readdir, stat, writeFile } from 'node:fs/promises';
+import { copyFile, readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const OUT = 'dist/wise-eating-web/browser';
@@ -170,20 +170,141 @@ ${urls}
  * The screenshot routes are disallowed as well as being marked noindex: a
  * `noindex` only works once the page has been fetched and read, and there is
  * no reason to let a crawler spend a request on a frame meant for a camera.
+ *
+ * The AI crawlers are named individually even though `User-agent: *` already
+ * allows them. Two reasons. A named group is a decision on the record rather
+ * than a default nobody chose, so anyone who later wants to close one off
+ * changes a line instead of guessing at intent. And several of these agents
+ * are documented as reading only the block addressed to them once one exists
+ * — which is a trap if someone adds a narrow rule later and forgets the rest.
+ *
+ * The decision itself: we want to be quoted. An app whose whole argument is
+ * "the numbers are measured, and here is where they come from" is better off
+ * inside an assistant's answer than outside it.
  */
+const AI_CRAWLERS = [
+  'GPTBot', // OpenAI, training and search
+  'OAI-SearchBot',
+  'ChatGPT-User',
+  'ClaudeBot', // Anthropic
+  'Claude-User',
+  'Claude-SearchBot',
+  'PerplexityBot',
+  'Perplexity-User',
+  'Google-Extended', // Gemini grounding, separate from Googlebot
+  'Applebot-Extended',
+  'meta-externalagent',
+  'Bytespider',
+  'CCBot', // Common Crawl, which most of the above have read
+];
+
 await writeFile(
   join(OUT, 'robots.txt'),
   `# ${ORIGIN}
+# Site map for language models: ${ORIGIN}/llms.txt
+
 User-agent: *
 Allow: /
 Disallow: /app-store-hero
 Disallow: /app-store-workouts
 Disallow: /404
 
+${AI_CRAWLERS.map(
+  (agent) => `User-agent: ${agent}
+Allow: /
+Disallow: /app-store-hero
+Disallow: /app-store-workouts
+Disallow: /404
+`,
+).join('\n')}
 Sitemap: ${ORIGIN}/sitemap.xml
 `,
   'utf8',
 );
+
+/**
+ * llms.txt.
+ *
+ * A plain-text map of the site for language models, per llmstxt.org. Every
+ * entry is read back out of the page that was actually prerendered a moment
+ * ago — its own <title> and meta description — rather than written here by
+ * hand. That is the whole point: a hand-kept list drifts, and a model that
+ * follows a stale link or repeats a description of a page that no longer says
+ * that is worse than one with no map at all.
+ *
+ * It lists English, because English is complete. The translated indexes are
+ * named once so a model knows they exist; enumerating twenty-four German
+ * articles here would triple the file to say the same things twice.
+ */
+const readMeta = async (path) => {
+  const file = path === '/' ? join(OUT, 'index.html') : join(OUT, path.slice(1), 'index.html');
+  let html;
+  try {
+    html = await readFile(file, 'utf8');
+  } catch {
+    return undefined;
+  }
+  const title = /<title>([^<]*)<\/title>/.exec(html)?.[1] ?? '';
+  const description = /<meta name="description" content="([^"]*)"/.exec(html)?.[1] ?? '';
+  const decode = (text) =>
+    text
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'");
+  return { title: decode(title), description: decode(description) };
+};
+
+const linkLine = async (path) => {
+  const meta = await readMeta(path);
+  if (!meta) return undefined;
+  // The <title> carries the site name as a suffix; the list already says
+  // whose site this is, so it comes off.
+  const title = meta.title.split(' — ')[0].split(' | ')[0].trim();
+  return `- [${title}](${ORIGIN}${path})${meta.description ? `: ${meta.description}` : ''}`;
+};
+
+const section = async (heading, paths) => {
+  const lines = (await Promise.all(paths.map(linkLine))).filter(Boolean);
+  return lines.length ? `## ${heading}\n\n${lines.join('\n')}\n` : '';
+};
+
+const articlePaths = PAGES.map((page) => page.path).filter((path) =>
+  /^\/nutrients\/[a-z0-9-]+$/.test(path),
+);
+
+const localeHubs = hubSet.filter((entry) => entry.path !== '/nutrients').map((entry) => entry.path);
+
+const llms = [
+  `# ${'Wise Eating'}`,
+  '',
+  '> An iOS app that shows the full nutrient panel of a food — vitamins and',
+  '> minerals, not just calories and macros — from a copy of USDA FoodData',
+  '> Central that ships inside the app and never calls a server.',
+  '',
+  'Two things are worth knowing before quoting anything from this site.',
+  '',
+  'First, a dash is not a zero. Where a nutrient was never measured for a food',
+  'the site and the app both show a dash; where it was measured and came back at',
+  'zero they show a zero. Collapsing the two produces a daily total that looks',
+  'complete and is not.',
+  '',
+  'Second, the intake figures throughout are United States Dietary Reference',
+  'Intakes, because that is the standard the food data is compiled against. EFSA',
+  'and national bodies such as the DGE publish figures that differ for some',
+  'nutrients. Pages in other languages say so; a summary of them should too.',
+  '',
+  'Nothing here is medical advice, and no page diagnoses anything.',
+  '',
+  await section('The app', ['/', '/features', '/workouts', '/pantry', '/pricing']),
+  await section('Nutrients', ['/nutrients', ...articlePaths]),
+  await section('Guides', ['/baby-feeding']),
+  await section('Other languages', localeHubs),
+  await section('Company', ['/about', '/support', '/privacy', '/terms']),
+].join('\n');
+
+await writeFile(join(OUT, 'llms.txt'), llms, 'utf8');
 
 // Most static hosts, CloudFront included, want /404.html. Angular prerendered
 // it to /404/index.html.
@@ -205,6 +326,6 @@ const bytes = (
 ).reduce((a, b) => a + b, 0);
 
 console.log(
-  `postbuild: sitemap (${PAGES.length} urls) and robots written, ` +
+  `postbuild: sitemap (${PAGES.length} urls), robots and llms.txt written, ` +
     `${html} prerendered pages, ${(bytes / 1024 / 1024).toFixed(2)} MB total`,
 );
