@@ -87,7 +87,12 @@ const NAV: readonly NavItem[] = [
 
     <!-- Kept in the DOM and hidden, rather than conditionally rendered, so the
          prerendered HTML carries every navigation link for a crawler to walk. -->
-    <div id="mobile-nav" class="sheet" [class.is-open]="open()" [attr.inert]="open() ? null : ''">
+    <div
+      id="mobile-nav"
+      class="sheet ground-dark"
+      [class.is-open]="open()"
+      [attr.inert]="open() ? null : ''"
+    >
       <nav class="sheet__nav" aria-label="Primary, mobile">
         @for (item of nav; track item.path) {
           <a [routerLink]="item.path" routerLinkActive="is-active" (click)="close()">{{
@@ -256,7 +261,20 @@ const NAV: readonly NavItem[] = [
         z-index: 99;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        /**
+         * The safe keyword is the whole fix; without it the menu was unusable.
+         *
+         * Plain centring places the links even when they are taller than the
+         * screen, which pushes the overflow off *both* ends — on a short
+         * viewport the first two items sat above y=0, behind the bar, with no
+         * way to reach them. The safe keyword centres when there is room and
+         * falls back to flex-start when there is not, and the scroll below
+         * catches whatever is still over.
+         */
+        justify-content: safe center;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
         gap: 34px;
         padding: 100px var(--gutter) 48px;
         background: var(--ground);

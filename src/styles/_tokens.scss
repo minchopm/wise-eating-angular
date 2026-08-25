@@ -58,6 +58,24 @@
   --leaf-deep: #12784c;
   --leaf-dim: #bfe0cd; /* a pale rule on paper */
 
+  /**
+   * The filled-button green, and it does not flip.
+   *
+   * Everything else here changes with the ground, and this one must not. The
+   * App Store badge appears in the dark hero and again in the closing call to
+   * action on paper, and when it took --leaf it came out mint in one and a
+   * darker green in the other — the same button, two colours, on one page.
+   *
+   * It cannot flip for a second reason: the text on it is a fixed near-black,
+   * chosen once. A background that moves under fixed text is a contrast
+   * accident waiting for the value that finally fails. So this is one green,
+   * light enough for black type and saturated enough to hold its own against
+   * both cream and brown-black.
+   */
+  --brand-fill: #3fb977;
+  --brand-fill-hover: #56d18e;
+  --brand-ink: #04150e; /* the type on it */
+
   /* --- ground: warm paper ------------------------------------------- */
   --ground: #faf5ec; /* the page */
   --surface: #ffffff; /* raised cards */

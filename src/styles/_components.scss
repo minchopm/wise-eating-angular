@@ -41,13 +41,13 @@
 }
 
 .btn--primary {
-  background: var(--leaf);
-  color: #04150e;
+  background: var(--brand-fill);
+  color: var(--brand-ink);
   box-shadow: var(--glow-leaf);
 
   &:hover {
-    background: var(--accent);
-    box-shadow: 0 0 60px -6px rgba(110, 231, 183, 0.7);
+    background: var(--brand-fill-hover);
+    box-shadow: 0 0 60px -6px rgba(63, 185, 119, 0.55);
   }
 }
 
@@ -325,8 +325,8 @@
   gap: 13px;
   padding: 12px 26px 12px 22px;
   border-radius: var(--radius-pill);
-  background: var(--leaf);
-  color: #04150e;
+  background: var(--brand-fill);
+  color: var(--brand-ink);
   box-shadow: var(--glow-leaf);
   transition:
     transform 0.28s var(--ease-out),
