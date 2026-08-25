@@ -193,8 +193,8 @@ const GROUPS: readonly Group[] = [
       }
 
       .jump .chip:hover {
-        border-color: var(--mint);
-        color: var(--mint);
+        border-color: var(--accent);
+        color: var(--accent);
       }
 
       .group {
@@ -203,7 +203,7 @@ const GROUPS: readonly Group[] = [
       }
 
       .group--alt {
-        background: rgba(7, 20, 16, 0.45);
+        background: var(--surface-2);
       }
 
       .group__grid {

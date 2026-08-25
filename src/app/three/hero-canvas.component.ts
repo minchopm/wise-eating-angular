@@ -133,23 +133,23 @@ type Caption = Hover & Marker;
       .stage__fallback {
         z-index: -1;
         background:
-          radial-gradient(58% 46% at 68% 34%, rgba(74, 222, 154, 0.24), transparent 70%),
-          radial-gradient(44% 38% at 16% 22%, rgba(251, 191, 36, 0.14), transparent 72%),
-          radial-gradient(46% 40% at 86% 24%, rgba(179, 157, 251, 0.22), transparent 72%),
-          radial-gradient(80% 50% at 50% 106%, rgba(103, 232, 249, 0.12), transparent 70%);
+          radial-gradient(58% 46% at 68% 34%, rgba(90, 215, 141, 0.22), transparent 70%),
+          radial-gradient(44% 38% at 16% 22%, rgba(245, 168, 54, 0.26), transparent 72%),
+          radial-gradient(46% 40% at 86% 24%, rgba(224, 139, 98, 0.2), transparent 72%),
+          radial-gradient(80% 50% at 50% 106%, rgba(247, 200, 115, 0.14), transparent 70%);
       }
 
       /* Weighted to the left, where the headline is. The right of the frame is
          where the globe lives and is left alone. */
       .stage__vignette {
         background:
-          radial-gradient(64% 70% at 22% 50%, rgba(8, 9, 11, 0.78), transparent 76%),
+          radial-gradient(64% 70% at 22% 50%, rgba(20, 16, 13, 0.76), transparent 76%),
           linear-gradient(
             180deg,
-            rgba(8, 9, 11, 0.72) 0%,
+            rgba(20, 16, 13, 0.7) 0%,
             transparent 20%,
             transparent 58%,
-            rgba(8, 9, 11, 0.96) 100%
+            rgba(20, 16, 13, 0.96) 100%
           );
       }
 
@@ -266,7 +266,7 @@ type Caption = Hover & Marker;
         flex: 1;
         height: 4px;
         border-radius: 2px;
-        background: rgba(215, 232, 240, 0.13);
+        background: var(--fill-strong);
         overflow: hidden;
       }
 
@@ -306,7 +306,7 @@ type Caption = Hover & Marker;
       .tag__more {
         margin: 8px 0 0;
         font-size: 0.7rem;
-        color: var(--mint);
+        color: var(--accent);
         opacity: 0.85;
       }
 
@@ -318,11 +318,11 @@ type Caption = Hover & Marker;
           background:
             linear-gradient(
               180deg,
-              rgba(8, 9, 11, 0.86) 0%,
-              rgba(8, 9, 11, 0.62) 34%,
-              rgba(8, 9, 11, 0.5) 52%,
-              rgba(8, 9, 11, 0.9) 88%,
-              rgba(8, 9, 11, 0.98) 100%
+              rgba(20, 16, 13, 0.86) 0%,
+              rgba(20, 16, 13, 0.62) 34%,
+              rgba(20, 16, 13, 0.5) 52%,
+              rgba(20, 16, 13, 0.9) 88%,
+              rgba(20, 16, 13, 0.98) 100%
             );
         }
       }

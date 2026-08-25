@@ -19,7 +19,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--ink);
+  background: var(--ground);
   color: var(--text);
   font-family: var(--font-body);
   font-size: var(--step-0);
@@ -91,7 +91,7 @@ strong {
 
 em {
   font-style: italic;
-  color: var(--mint);
+  color: var(--accent);
   font-weight: 500;
 }
 
@@ -103,7 +103,7 @@ kbd {
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 0.1em 0.42em;
-  color: var(--mint);
+  color: var(--accent);
 }
 
 hr {
@@ -121,7 +121,7 @@ hr {
 /* Focus is never removed, only replaced — a keyboard user has to be able to
    see where they are. `:focus-visible` keeps it off mouse clicks. */
 :focus-visible {
-  outline: 2px solid var(--mint);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -148,9 +148,16 @@ hr {
   padding-block: clamp(48px, 6vw, 84px);
 }
 
-/** A section that sits a shade above the page ground. */
+/**
+ * A section that sits a shade above the page ground.
+ *
+ * A gradient rather than a flat fill, so the band has no hard edge — it
+ * swells out of the ground and back into it. The colour has to come from a
+ * token: it used to be a hardcoded dark green-black, which was invisible on
+ * a near-black page and would have been a bruise on paper.
+ */
 .section--raised {
-  background: linear-gradient(180deg, transparent, rgba(11, 30, 24, 0.55) 12%, transparent);
+  background: linear-gradient(180deg, transparent, var(--fill-strong) 12%, transparent);
 }
 
 .stack > * + * {

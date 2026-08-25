@@ -1,62 +1,169 @@
 /**
  * The design tokens.
  *
- * The site is dark on purpose. The hero is a live WebGL scene, and a light
- * page around it would have made the canvas look like a rectangle of video
- * pasted onto a brochure — the dark ground is what lets the scene bleed into
- * the page and the whole thing read as one continuous shot.
+ * The page is warm paper with two dark bands: the hero at the top and the
+ * footer at the bottom, with the sticky header riding along as a third.
  *
- * The ground is neutral, not green. An earlier version tinted the darks with
- * the brand green as well as the accents, and green-on-green-on-green does not
- * read as fresh — it reads as olive. Now the darks are a plain near-black and
- * the only saturated things on the page are the ones that have earned it: the
- * globe, the food photographs, the crystal icons, and the accents.
+ * That split is the whole art direction, and each half is doing a different
+ * job. The hero is a live WebGL scene — a light page around it would have made
+ * the canvas look like a rectangle of video pasted onto a brochure, and the
+ * dark ground is what lets the scene bleed into the page. Everything below it
+ * is prose and photographs of food, and both of those want daylight: eighty-
+ * four nutrient articles are long-form reading, and food shot against warm
+ * paper looks like lunch where the same shot against near-black looks like
+ * evidence.
  *
- * Colour still comes from food rather than from a UI palette: leaf and mint
- * for the green things, amber for protein and grain, violet for the fats and
- * the night, and one near-white that everything bright resolves to.
+ * An earlier version was dark throughout and tinted cool — a near-black
+ * biased blue, blue-white type, and every hairline drawn in
+ * rgba(215, 232, 240). That is a palette from a monitoring dashboard. Green
+ * accents on cold grey is what a server rack looks like; this is a site about
+ * dinner.
+ *
+ * So: warm on both sides of the divide. The darks are brown-black rather than
+ * blue-black, the paper is cream rather than white, and the type is warm at
+ * both ends. The accents stay fresh against either, and that contrast is the
+ * point — herbs on a walnut board, not mint on slate.
+ *
+ * ── how the two grounds work ──────────────────────────────────────────────
+ *
+ * :root carries the light palette, because most of the site is light. The
+ * `.ground-dark` class re-declares the same names, so a component never asks
+ * which ground it is on: it reads var(--text) and gets whichever one is
+ * correct where it happens to sit. Adding a dark band later is one class,
+ * not an audit.
+ *
+ * The brand colours below the split — leaf, amber, honey, clay — are fixed.
+ * They are the same pigment on both grounds. Only the tokens that describe a
+ * *surface* or a *relationship to one* flip.
  */
 
 :root {
-  /* --- ground ------------------------------------------------------- */
-  --ink: #08090b; /* near-black, a hair cool; page ground */
-  --surface: #0f1114; /* raised panels */
-  --surface-2: #14171c; /* raised panels, one step up */
-  --surface-3: #1c2027; /* hover, active */
+  /**
+   * Pigment.
+   *
+   * Amber, honey and clay are fixed: they are warm enough to read on cream
+   * and bright enough to read on brown-black, so one value serves both.
+   *
+   * The greens are not, and finding that out cost a round trip. --leaf is
+   * used as a dot, a rule, a tick and a border on *both* grounds, so a single
+   * mid-green is either too dark on the paper or too dim on the dark bands —
+   * there is no value that is neither. It flips, like --accent does, and for
+   * the same reason.
+   */
+  --amber: #f5a836;
+  --honey: #f7c873;
+  --clay: #e08b62;
 
-  /* --- brand -------------------------------------------------------- */
-  --leaf: #4ade9a; /* softer than the old #26d07c, which read as acid */
-  --leaf-deep: #16a870;
-  --leaf-dim: #1c6b4d;
-  --mint: #86efc5;
-  --cyan: #67e8f9;
-  --amber: #fbbf24;
-  --violet: #b39dfb;
+  --leaf: #2f9e63;
+  --leaf-deep: #12784c;
+  --leaf-dim: #bfe0cd; /* a pale rule on paper */
+
+  /* --- ground: warm paper ------------------------------------------- */
+  --ground: #faf5ec; /* the page */
+  --surface: #ffffff; /* raised cards */
+  --surface-2: #f2ebdf; /* sunken bands */
+  --surface-3: #e9dfcd; /* hover, active */
+
+  /**
+   * The accent, meaning whichever green currently reads as a link.
+   *
+   * It is a deep leaf here and a pale mint on dark, and it is one token
+   * rather than two because every call site wants "the interactive green",
+   * not a particular hex. A bright mint on cream is invisible and a deep
+   * leaf on near-black is a smudge; picking per ground is the only way both
+   * are legible.
+   */
+  --accent: #12784c;
+  --accent-hover: #0d5c3a;
 
   /* --- type --------------------------------------------------------- */
-  --text: #eef1f4;
-  --text-soft: #c2cad4;
-  --text-dim: #929ba8;
-  --text-faint: #6b747f;
+  --text: #2a211a; /* warm near-black */
+  --text-soft: #4e4034;
+  --text-dim: #6f6053;
+  --text-faint: #93826f;
 
-  /* --- lines and glass ---------------------------------------------- */
-  --line: rgba(215, 232, 240, 0.11);
-  --line-strong: rgba(215, 232, 240, 0.2);
-  --glass: rgba(20, 23, 28, 0.6);
-  --glass-strong: rgba(12, 14, 18, 0.84);
-  --blur: blur(18px) saturate(1.25);
+  /* --- lines, fills and glass --------------------------------------- */
+  --line: rgba(74, 56, 40, 0.14);
+  --line-strong: rgba(74, 56, 40, 0.26);
+  /* A wash used to lift a panel off the ground without drawing a box. */
+  --fill: rgba(74, 56, 40, 0.045);
+  --fill-strong: rgba(74, 56, 40, 0.09);
+  --glass: rgba(255, 252, 246, 0.74);
+  --glass-strong: rgba(250, 245, 236, 0.92);
+  --blur: blur(18px) saturate(1.1);
 
   /* --- gradients ----------------------------------------------------- */
-  --grad-brand: linear-gradient(115deg, #4ade9a 0%, #67e8f9 42%, #b39dfb 100%);
-  --grad-warm: linear-gradient(115deg, #fbbf24 0%, #4ade9a 100%);
-  --grad-text: linear-gradient(105deg, #eef1f4 0%, #86efc5 52%, #b39dfb 100%);
+  --grad-brand: linear-gradient(115deg, #f5a836 0%, #2f9e63 52%, #12784c 100%);
+  --grad-warm: linear-gradient(115deg, #f0813f 0%, #f7c873 100%);
+  --grad-text: linear-gradient(105deg, #2a211a 0%, #b4791b 46%, #12784c 100%);
 
   /* --- elevation ------------------------------------------------------ */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow: 0 18px 44px -18px rgba(0, 0, 0, 0.8);
-  --shadow-lg: 0 40px 90px -32px rgba(0, 0, 0, 0.9);
-  --glow-leaf: 0 0 44px -8px rgba(74, 222, 154, 0.5);
+  /**
+   * Shadows on paper are brown, not black.
+   *
+   * A black shadow on a cream ground goes grey and reads as dirt. Tinting it
+   * with the ground's own hue keeps it looking like shade.
+   */
+  --shadow-sm: 0 1px 2px rgba(90, 66, 40, 0.1);
+  --shadow: 0 14px 34px -16px rgba(90, 66, 40, 0.3);
+  --shadow-lg: 0 34px 70px -28px rgba(90, 66, 40, 0.34);
+  --glow-leaf: 0 0 34px -10px rgba(47, 158, 99, 0.4);
+}
 
+/**
+ * The dark bands: the hero, the header and the footer.
+ *
+ * Same token names, different values. Anything inside one of these picks the
+ * dark reading up automatically.
+ */
+.ground-dark {
+  --ground: #14100d;
+  --surface: #1c1713;
+  --surface-2: #241d18;
+  --surface-3: #2f2620;
+
+  --accent: #93e7ae;
+  --accent-hover: #b9f0cc;
+
+  --leaf: #5ad78d;
+  --leaf-deep: #2f9e63;
+  --leaf-dim: #2a6b46; /* a dim rule on near-black */
+
+  --text: #f8f2e9;
+  --text-soft: #ddd0be;
+  --text-dim: #ac9c88;
+  --text-faint: #857868;
+
+  --line: rgba(246, 226, 197, 0.12);
+  --line-strong: rgba(246, 226, 197, 0.22);
+  --fill: rgba(246, 226, 197, 0.05);
+  --fill-strong: rgba(246, 226, 197, 0.1);
+  --glass: rgba(34, 27, 22, 0.62);
+  --glass-strong: rgba(22, 17, 14, 0.86);
+  --blur: blur(18px) saturate(1.25);
+
+  --grad-brand: linear-gradient(115deg, #f5a836 0%, #5ad78d 52%, #93e7ae 100%);
+  --grad-text: linear-gradient(105deg, #f8f2e9 0%, #f7c873 46%, #93e7ae 100%);
+
+  --shadow-sm: 0 1px 2px rgba(10, 6, 3, 0.5);
+  --shadow: 0 18px 44px -18px rgba(10, 6, 3, 0.82);
+  --shadow-lg: 0 40px 90px -32px rgba(10, 6, 3, 0.9);
+  --glow-leaf: 0 0 44px -8px rgba(245, 168, 54, 0.42);
+
+  /**
+   * A dark band paints its own ground, and this line is not optional.
+   *
+   * When the whole site was dark, the hero never set a background — it simply
+   * let the near-black body show through the gaps in its radial gradients.
+   * With paper underneath, those same gaps became cream, which put near-white
+   * hero type on a near-white ground. Anything that redefines --ground has to
+   * actually paint it.
+   */
+  background: var(--ground);
+  color: var(--text);
+}
+
+:root {
   /* --- geometry ------------------------------------------------------- */
   --radius-sm: 10px;
   --radius: 18px;
@@ -82,8 +189,8 @@
   --font-body:
     'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   /**
-   * A warm optical serif against a cold data scene. That tension is the whole
-   * art direction: this is a database, and it is also dinner.
+   * A warm optical serif against precise data. That tension is the whole art
+   * direction: this is a database, and it is also dinner.
    */
   --font-display: 'Fraunces Variable', 'Fraunces', 'Iowan Old Style', Georgia, serif;
 }

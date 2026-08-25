@@ -309,8 +309,8 @@ interface IntakeRow {
       }
 
       .languages .chip:hover {
-        border-color: var(--mint);
-        color: var(--mint);
+        border-color: var(--accent);
+        color: var(--accent);
       }
 
       /* ------------------------------------------------------ intake table */
@@ -341,7 +341,7 @@ interface IntakeRow {
       }
 
       .intake thead th {
-        background: rgba(255, 255, 255, 0.03);
+        background: var(--fill);
         color: var(--text);
         font-size: 0.72rem;
         font-weight: 700;
@@ -446,7 +446,7 @@ interface IntakeRow {
       }
 
       .food__meta b {
-        color: var(--mint);
+        color: var(--accent);
         font-variant-numeric: tabular-nums;
       }
 
@@ -454,7 +454,7 @@ interface IntakeRow {
         position: relative;
         height: 4px;
         border-radius: 2px;
-        background: rgba(215, 232, 240, 0.12);
+        background: var(--fill-strong);
         overflow: hidden;
       }
 
@@ -539,7 +539,7 @@ interface IntakeRow {
         border-radius: 50%;
         font-size: 0.82rem;
         font-weight: 650;
-        color: var(--mint);
+        color: var(--accent);
       }
 
       .steps strong {
@@ -585,7 +585,7 @@ interface IntakeRow {
       }
 
       .cta-back a {
-        color: var(--mint);
+        color: var(--accent);
       }
     `,
   ],

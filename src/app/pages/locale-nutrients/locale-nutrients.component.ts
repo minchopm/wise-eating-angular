@@ -124,8 +124,8 @@ interface Card {
       }
 
       .languages .chip:hover {
-        border-color: var(--mint);
-        color: var(--mint);
+        border-color: var(--accent);
+        color: var(--accent);
       }
 
       .english-note {
@@ -173,7 +173,7 @@ interface Card {
       .index__more {
         margin-top: auto;
         padding-top: 10px;
-        color: var(--mint);
+        color: var(--accent);
         font-size: var(--step--1);
         font-weight: 600;
       }

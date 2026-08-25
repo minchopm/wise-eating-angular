@@ -284,8 +284,8 @@ const FAQ = [
       }
 
       .languages .chip:hover {
-        border-color: var(--mint);
-        color: var(--mint);
+        border-color: var(--accent);
+        color: var(--accent);
       }
     `,
     `
@@ -322,7 +322,7 @@ const FAQ = [
 
       .index__more {
         margin-top: 16px;
-        color: var(--mint);
+        color: var(--accent);
         font-size: 0.86rem;
         font-weight: 600;
         transition: transform 0.28s var(--ease-out);
@@ -397,7 +397,7 @@ const FAQ = [
       }
 
       .faq summary:hover h3 {
-        color: var(--mint);
+        color: var(--accent);
       }
 
       .faq p {
@@ -420,7 +420,7 @@ const FAQ = [
         inset: 50% 0 auto;
         height: 1.6px;
         border-radius: 2px;
-        background: var(--mint);
+        background: var(--accent);
         transition: transform 0.3s var(--ease-out);
       }
 
@@ -443,7 +443,7 @@ const FAQ = [
       }
 
       .after-note a {
-        color: var(--mint);
+        color: var(--accent);
       }
     `,
   ],

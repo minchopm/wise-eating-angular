@@ -42,7 +42,7 @@ const NAV: readonly NavItem[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass, RouterLink, RouterLinkActive, StoreButtonComponent],
   template: `
-    <header class="bar" [ngClass]="{ 'is-solid': scrolled(), 'is-open': open() }">
+    <header class="bar ground-dark" [ngClass]="{ 'is-solid': scrolled(), 'is-open': open() }">
       <div class="wrap bar__inner">
         <a class="brand" routerLink="/" (click)="close()">
           <img
@@ -102,16 +102,34 @@ const NAV: readonly NavItem[] = [
   `,
   styles: [
     `
+      /**
+       * The bar is always painted, and always dark.
+       *
+       * It used to be transparent until scrolled, which worked when the whole
+       * site was dark: the hero simply showed through. Now the body is warm
+       * paper and the bar's own type is near-white, so a transparent bar over
+       * an article was white text on cream — invisible. Painting it always
+       * costs the bleed-through at the very top of the home page and buys a
+       * header that is readable on every route, which is not a close call.
+       *
+       * Dark on paper also does something the transparent version could not:
+       * with the footer dark as well, the page is bracketed top and bottom in
+       * the same ink, and the daylight in between reads as deliberate rather
+       * than as a theme that gave up halfway.
+       */
       .bar {
         position: fixed;
         inset: 0 0 auto;
         z-index: 100;
         padding-block: 18px;
+        background: var(--glass-strong);
+        backdrop-filter: var(--blur);
+        -webkit-backdrop-filter: var(--blur);
         transition:
           background-color 0.4s var(--ease),
           padding 0.4s var(--ease),
           border-color 0.4s var(--ease);
-        border-bottom: 1px solid transparent;
+        border-bottom: 1px solid var(--line);
       }
 
       .bar.is-solid,
@@ -210,7 +228,7 @@ const NAV: readonly NavItem[] = [
         padding: 0;
         border: 1px solid var(--line-strong);
         border-radius: 12px;
-        background: rgba(255, 255, 255, 0.04);
+        background: var(--fill);
         cursor: pointer;
 
         span {
@@ -241,7 +259,7 @@ const NAV: readonly NavItem[] = [
         justify-content: center;
         gap: 34px;
         padding: 100px var(--gutter) 48px;
-        background: var(--ink);
+        background: var(--ground);
         /* Hidden with opacity + visibility rather than display, so the links
            stay in the accessibility tree order and the panel can animate. */
         opacity: 0;
@@ -275,7 +293,7 @@ const NAV: readonly NavItem[] = [
 
         a:hover,
         a.is-active {
-          color: var(--mint);
+          color: var(--accent);
         }
       }
 

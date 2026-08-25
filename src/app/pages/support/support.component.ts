@@ -180,7 +180,7 @@ const FAQ = [
       }
 
       .faq summary:hover h3 {
-        color: var(--mint);
+        color: var(--accent);
       }
 
       .faq p {
@@ -203,7 +203,7 @@ const FAQ = [
         inset: 50% 0 auto;
         height: 1.6px;
         border-radius: 2px;
-        background: var(--mint);
+        background: var(--accent);
         transition: transform 0.3s var(--ease-out);
       }
 
@@ -220,7 +220,7 @@ const FAQ = [
       }
 
       .after a {
-        color: var(--mint);
+        color: var(--accent);
         text-decoration: underline;
         text-underline-offset: 3px;
       }

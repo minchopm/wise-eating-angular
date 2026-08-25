@@ -22,7 +22,7 @@ import { StoreButtonComponent } from './store-button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, StoreButtonComponent],
   template: `
-    <footer class="foot">
+    <footer class="foot ground-dark">
       <div class="wrap">
         <div class="foot__top">
           <div class="foot__brand">
@@ -95,7 +95,7 @@ import { StoreButtonComponent } from './store-button';
         padding-block: clamp(56px, 7vw, 92px) 36px;
         border-top: 1px solid var(--line);
         background:
-          radial-gradient(80% 130% at 50% 0%, rgba(38, 208, 124, 0.08), transparent 62%), var(--ink);
+          radial-gradient(80% 130% at 50% 0%, rgba(38, 208, 124, 0.08), transparent 62%), var(--ground);
       }
 
       .foot__top {
@@ -153,7 +153,7 @@ import { StoreButtonComponent } from './store-button';
           font-size: 0.94rem;
 
           &:hover {
-            color: var(--mint);
+            color: var(--accent);
           }
         }
       }
