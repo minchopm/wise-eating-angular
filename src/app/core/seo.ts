@@ -132,6 +132,29 @@ export class Seo {
       },
       image: { '@id': url('/#logo') },
       email: SITE.contactEmail,
+      // Named contact points as well as the bare email, so a machine reading
+      // this can route rather than guess. An assistant asked "how do I make a
+      // GDPR request to this company" has an answer that is not "email
+      // support and hope"; the legal one does the same for a takedown or a
+      // notice. All three already receive — see scripts/mail/.
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: SITE.contactEmail,
+          availableLanguage: ['en'],
+        },
+        {
+          '@type': 'ContactPoint',
+          contactType: 'privacy',
+          email: SITE.privacyEmail,
+        },
+        {
+          '@type': 'ContactPoint',
+          contactType: 'legal',
+          email: SITE.legalEmail,
+        },
+      ],
       foundingDate: SITE.incorporated,
       address: {
         '@type': 'PostalAddress',

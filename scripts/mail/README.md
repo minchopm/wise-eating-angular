@@ -204,6 +204,54 @@ To change it, re-run with `MAIL_ALIASES="support billing careers"`.
 
 ---
 
+## Which address goes on which page
+
+Provisioning creates eight addresses. Using one of them for everything wastes
+most of the point.
+
+| Page | Address |
+|---|---|
+| Privacy Policy | `privacy@` |
+| Terms of Service | `legal@` |
+| Security disclosure, if you publish one | `security@` |
+| Everything else — support, about, footer | `support@` |
+
+Two reasons, and neither is about looking bigger than you are.
+
+**Privacy requests and legal notices are not support tickets.** They arrive on
+a deadline — a GDPR access request has a calendar attached to it — and they
+are read by a different part of the brain than "how do I log a meal". Printing
+the address that matches the page means the sorting has happened before the
+message is written rather than after, and it costs nothing, because all eight
+already receive.
+
+**An address on a domain can be redirected; a legal document cannot easily be
+reissued.** The address in a Privacy Policy is a commitment with a long life.
+Pointing it at `privacy@yourdomain.com` means handing it to a lawyer, a
+colleague or a shared inbox later is one line in `provision.sh` — the document
+never changes.
+
+### Say it in the structured data too
+
+The site's `Organization` entity should carry named contact points, not just a
+bare `email`, so a machine reading the page can route rather than guess:
+
+```json
+"contactPoint": [
+  { "@type": "ContactPoint", "contactType": "customer support",
+    "email": "support@example.com", "availableLanguage": ["en"] },
+  { "@type": "ContactPoint", "contactType": "privacy",
+    "email": "privacy@example.com" },
+  { "@type": "ContactPoint", "contactType": "legal",
+    "email": "legal@example.com" }
+]
+```
+
+An assistant asked "how do I make a GDPR request to this company" then has an
+answer that is not "email support and hope".
+
+---
+
 ## Checking it works
 
 ```bash

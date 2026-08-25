@@ -69,6 +69,21 @@ export const SITE = {
    */
   contactEmail: 'support@wise-eating.com',
 
+  /**
+   * Where a page's own subject has its own address.
+   *
+   * Privacy requests and legal notices are not support tickets. They arrive on
+   * a deadline, they are read by a different part of the brain, and a GDPR
+   * request buried in a queue of "how do I log a meal" is the kind of thing
+   * that turns into a fine. Printing the address that matches the page costs
+   * nothing — every one of these already receives — and it means the sorting
+   * has happened before the message is written rather than after.
+   *
+   * Everything else uses `contactEmail`.
+   */
+  privacyEmail: 'privacy@wise-eating.com',
+  legalEmail: 'legal@wise-eating.com',
+
   appStoreId: '6751406823',
   appStore: 'https://apps.apple.com/us/app/wise-eating-nutrients/id6751406823',
 

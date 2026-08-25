@@ -54,7 +54,7 @@ const UPDATED = '2026-08-24';
           {{ site.address.street }}, {{ site.address.city }}, {{ site.address.region }}
           {{ site.address.postalCode }}. The App Store listing is currently published under the
           developer account of {{ site.storeSeller }}. You can reach us at
-          <a [href]="'mailto:' + site.contactEmail">{{ site.contactEmail }}</a
+          <a [href]="'mailto:' + site.privacyEmail">{{ site.privacyEmail }}</a
           >.
         </p>
 
@@ -160,7 +160,7 @@ const UPDATED = '2026-08-24';
           exercised directly: delete an entry in the app, or remove the app and its iCloud data
           through iOS Settings. For anything else, or for a request about the advertising or
           analytics described above, write to
-          <a [href]="'mailto:' + site.contactEmail">{{ site.contactEmail }}</a> and we will respond
+          <a [href]="'mailto:' + site.privacyEmail">{{ site.privacyEmail }}</a> and we will respond
           within the period the applicable law allows.
         </p>
 
@@ -183,7 +183,7 @@ const UPDATED = '2026-08-24';
           {{ site.address.street }}<br />
           {{ site.address.city }}, {{ site.address.region }} {{ site.address.postalCode }},
           {{ site.companyCountry }}<br />
-          <a [href]="'mailto:' + site.contactEmail">{{ site.contactEmail }}</a>
+          <a [href]="'mailto:' + site.privacyEmail">{{ site.privacyEmail }}</a>
         </p>
       </div>
     </section>

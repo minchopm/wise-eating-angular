@@ -191,7 +191,7 @@ const UPDATED = '2026-08-24';
           {{ site.address.street }}<br />
           {{ site.address.city }}, {{ site.address.region }} {{ site.address.postalCode }},
           {{ site.companyCountry }}<br />
-          <a [href]="'mailto:' + site.contactEmail">{{ site.contactEmail }}</a>
+          <a [href]="'mailto:' + site.legalEmail">{{ site.legalEmail }}</a>
         </p>
         <p>
           Apple's standard end user licence agreement also applies to the app:
