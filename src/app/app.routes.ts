@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { GUIDE_CONTENT, GUIDE_LOCALES } from './content/guide-registry';
 import { CONTENT, LIVE_LOCALES } from './content/registry';
 
 /**
@@ -49,6 +50,26 @@ const hubRoutes: Routes = LIVE_LOCALES.filter(
  * router's `title`, so the title, the description, the canonical link and the
  * structured data are all decided in one place and cannot disagree.
  */
+/**
+ * The guides, once per language that has them.
+ *
+ * A separate registry from the nutrient articles because the two bodies grow
+ * at different rates — a language can have all twenty-four nutrient articles
+ * and no guides at all.
+ */
+const guideRoutes: Routes = GUIDE_LOCALES.flatMap((locale) => [
+  {
+    path: locale.slug ? `${locale.slug}/guides` : 'guides',
+    loadComponent: () => import('./pages/guides/guides.component').then((m) => m.GuidesComponent),
+    data: { locale },
+  },
+  {
+    path: locale.slug ? `${locale.slug}/guides/:slug` : 'guides/:slug',
+    loadComponent: () => import('./pages/guide/guide.component').then((m) => m.GuideComponent),
+    data: { locale },
+  },
+]);
+
 export const routes: Routes = [
   {
     path: '',
@@ -66,6 +87,7 @@ export const routes: Routes = [
   },
   ...hubRoutes,
   ...nutrientRoutes,
+  ...guideRoutes,
   {
     path: 'workouts',
     loadComponent: () =>

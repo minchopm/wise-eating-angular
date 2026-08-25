@@ -116,6 +116,68 @@ PAGES.push(
     })),
 );
 
+// The guides, discovered the same way the articles are.
+//
+// Their own hreflang set, separate from the nutrient articles': a language can
+// have every nutrient article and no guides at all, so sharing one set would
+// advertise pages that were never built.
+const guideSets = new Map();
+const collectGuides = async (prefix, hreflang) => {
+  const base = prefix ? join(OUT, prefix, 'guides') : join(OUT, 'guides');
+  let entries;
+  try {
+    entries = await readdir(base, { withFileTypes: true });
+  } catch {
+    return;
+  }
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const set = guideSets.get(entry.name) ?? [];
+    set.push({ hreflang, path: `${prefix ? `/${prefix}` : ''}/guides/${entry.name}` });
+    guideSets.set(entry.name, set);
+  }
+};
+await collectGuides('', 'en');
+for (const slug of localeDirs) {
+  await collectGuides(slug, LOCALE_HREFLANG[slug]);
+}
+
+const guideHubSet = [];
+try {
+  await stat(join(OUT, 'guides', 'index.html'));
+  guideHubSet.push({ hreflang: 'en', path: '/guides' });
+} catch {
+  /* no guides at all */
+}
+for (const slug of localeDirs) {
+  try {
+    await stat(join(OUT, slug, 'guides', 'index.html'));
+    guideHubSet.push({ hreflang: LOCALE_HREFLANG[slug], path: `/${slug}/guides` });
+  } catch {
+    /* that language has no guide index */
+  }
+}
+PAGES.push(
+  ...guideHubSet.map((entry) => ({
+    path: entry.path,
+    priority: '0.8',
+    changefreq: 'monthly',
+    alternates: guideHubSet,
+  })),
+);
+PAGES.push(
+  ...[...guideSets.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .flatMap(([, set]) =>
+      set.map((entry) => ({
+        path: entry.path,
+        priority: '0.8',
+        changefreq: 'yearly',
+        alternates: set,
+      })),
+    ),
+);
+
 const articles = [...articleSets.entries()]
   .sort(([a], [b]) => a.localeCompare(b))
   .flatMap(([, set]) =>

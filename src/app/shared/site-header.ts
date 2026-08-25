@@ -23,6 +23,7 @@ interface NavItem {
 const NAV: readonly NavItem[] = [
   { label: 'Features', path: '/features' },
   { label: 'Nutrients', path: '/nutrients' },
+  { label: 'Guides', path: '/guides' },
   { label: 'Training', path: '/workouts' },
   { label: 'Kitchen', path: '/pantry' },
   { label: 'Pricing', path: '/pricing' },

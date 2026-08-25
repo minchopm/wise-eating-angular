@@ -57,6 +57,7 @@ import { StoreButtonComponent } from './store-button';
 
             <div>
               <h4>{{ shell.learn }}</h4>
+              <a routerLink="/guides">Training &amp; recovery guides</a>
               <a routerLink="/baby-feeding">Feeding a baby</a>
               <a [href]="data.sourceUrl" target="_blank" rel="noopener noreferrer">
                 USDA FoodData Central

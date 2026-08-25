@@ -1,5 +1,6 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 
+import { GUIDE_CONTENT, GUIDE_LOCALES } from './content/guide-registry';
 import { CONTENT, LIVE_LOCALES } from './content/registry';
 
 /**
@@ -20,6 +21,14 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
     getPrerenderParams: async () =>
       Object.keys(CONTENT[locale.code].articles).map((slug) => ({ slug })),
+  })),
+  // Same shape as the articles above: each language prerenders only the
+  // guides it has actually written.
+  ...GUIDE_LOCALES.map((locale) => ({
+    path: locale.slug ? `${locale.slug}/guides/:slug` : 'guides/:slug',
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: async () =>
+      Object.keys(GUIDE_CONTENT[locale.code].guides).map((slug) => ({ slug })),
   })),
   {
     path: '**',
