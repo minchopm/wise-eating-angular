@@ -49,3 +49,17 @@ Thumbs.db
 # every release do not belong in history. Everything else in art/ is an
 # original that exists nowhere else and is committed.
 /art/store-*.png
+
+# Private keys, of any flavour.
+#
+# An App Store Connect key was committed to this repo once, in
+# public/assets/, and the repo is public — so it has been readable on GitHub
+# ever since, because deleting a file does not remove it from history. The
+# only real fix for that one is revoking it at Apple. This block is here so
+# the next one never gets the chance.
+*.p8
+*.p12
+*.pem
+*.key
+*.mobileprovision
+AuthKey_*
