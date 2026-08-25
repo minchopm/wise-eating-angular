@@ -92,5 +92,24 @@ export const DA_DK: LocaleContent = {
     englishLink: 'Nutrients & USDA data',
   },
 
+  shell: {
+    tagline:
+      '{foods} fødevarer fra {source}, på telefonen — med værktøjerne til planlægning, træning ' +
+      'og spisekammer, så de rent faktisk bliver brugt.',
+    product: 'Produkt',
+    learn: 'Læs mere',
+    legal: 'Juridisk',
+    contact: 'Kontakt',
+    note:
+      '{name} er et planlægnings- og oplysningsværktøj. Det stiller ingen diagnose, behandler og ' +
+      'helbreder ingenting, og det erstatter ikke professionel lægelig rådgivning. ' +
+      'Næringsværdierne er skøn fra {source}; det faktiske indhold i en fødevare varierer med ' +
+      'jord, opbevaring og tilberedning.',
+    rights: 'Alle rettigheder forbeholdes.',
+    storeNote:
+      'Udgivet i App Store af {seller}. Apple og App Store er varemærker tilhørende Apple Inc.',
+    englishPages: 'Siderne herunder er på engelsk.',
+  },
+
   articles: CORE_DA,
 };

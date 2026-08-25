@@ -91,5 +91,23 @@ export const IT_IT: LocaleContent = {
     englishLink: 'Nutrients & USDA data',
   },
 
+  shell: {
+    tagline:
+      '{foods} alimenti dalla banca dati {source}, nel telefono — con gli strumenti di ' +
+      'pianificazione, allenamento e dispensa per usarli davvero.',
+    product: 'Prodotto',
+    learn: 'Approfondire',
+    legal: 'Note legali',
+    contact: 'Contatti',
+    note:
+      '{name} è uno strumento di pianificazione e divulgazione. Non fa diagnosi, non cura né ' +
+      'tratta alcuna condizione e non sostituisce il parere di un medico. I valori nutrizionali ' +
+      'sono stime tratte da {source}; il contenuto reale di un alimento varia con il suolo, la ' +
+      'conservazione e la cottura.',
+    rights: 'Tutti i diritti riservati.',
+    storeNote: 'Pubblicato sull’App Store da {seller}. Apple e App Store sono marchi di Apple Inc.',
+    englishPages: 'Le pagine qui sotto sono in inglese.',
+  },
+
   articles: CORE_IT,
 };

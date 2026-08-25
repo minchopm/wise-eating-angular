@@ -102,6 +102,25 @@ export const DE_DE: LocaleContent = {
     englishLink: 'Nutrients & USDA data',
   },
 
+  shell: {
+    tagline:
+      '{foods} Lebensmittel aus {source}, auf dem Telefon — mit den Werkzeugen für Planung, ' +
+      'Training und Vorrat, um sie auch zu nutzen.',
+    product: 'Produkt',
+    learn: 'Wissen',
+    legal: 'Rechtliches',
+    contact: 'Kontakt',
+    note:
+      '{name} ist ein Planungs- und Aufklärungswerkzeug. Es stellt keine Diagnose, behandelt und ' +
+      'heilt nichts und ersetzt keine ärztliche Beratung. Die Nährwerte sind Schätzungen aus ' +
+      '{source}; der tatsächliche Gehalt eines Lebensmittels schwankt mit Boden, Lagerung und ' +
+      'Zubereitung.',
+    rights: 'Alle Rechte vorbehalten.',
+    storeNote:
+      'Im App Store veröffentlicht von {seller}. Apple und App Store sind Marken von Apple Inc.',
+    englishPages: 'Die folgenden Seiten sind auf Englisch.',
+  },
+
   articles: {
     ...MINERALS_DE,
     ...VITAMINS_ACDEK_DE,

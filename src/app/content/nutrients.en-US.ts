@@ -55,6 +55,25 @@ export const EN_US: LocaleContent = {
     familyMacronutrient: 'Macronutrient',
   },
 
+  shell: {
+    tagline:
+      '{foods} foods from {source}, on your phone — with the planning, training and pantry ' +
+      'tools to actually use them.',
+    product: 'Product',
+    learn: 'Learn',
+    legal: 'Legal',
+    contact: 'Contact',
+    note:
+      '{name} is a planning and education tool. It does not diagnose, treat or cure any ' +
+      'condition, and it is not a substitute for professional medical advice. Nutrient values ' +
+      'are estimates from {source}; the real content of a food varies with soil, storage and how ' +
+      'it was cooked.',
+    rights: 'All rights reserved.',
+    storeNote:
+      'Published on the App Store by {seller}. Apple and App Store are trademarks of Apple Inc.',
+    englishPages: '',
+  },
+
   articles: {
     ...MINERALS_EN,
     ...VITAMINS_ACDEK_EN,

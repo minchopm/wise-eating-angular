@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
+import { foodName } from '../../content/food-names';
 import { localiseAmount, localiseNumber } from '../../content/format';
 import { NUTRIENT_FOODS, NutrientTable } from '../../content/nutrient-foods';
 import { FACTS, NutrientFacts } from '../../content/nutrient-facts';
@@ -145,7 +146,7 @@ interface IntakeRow {
                     decoding="async"
                   />
                   <span class="food__body">
-                    <span class="food__name">{{ food.name }}</span>
+                    <span class="food__name">{{ named(food.name) }}</span>
                     <span class="food__meta">
                       <b>{{ num(food.amount) }} {{ t.unit }}</b> / 100 g
                       @if (food.kcal) {
@@ -617,6 +618,11 @@ export class NutrientComponent {
    * the source has a spurious .0 on most values and a second decimal place
    * claims a precision food composition data does not have.
    */
+  /** The catalogue's name for a food, rewritten for a reader in this language. */
+  named(catalogueName: string): string {
+    return foodName(catalogueName, this.locale.code);
+  }
+
   num(value: number): string {
     return localiseNumber(value, this.locale.code, Number.isInteger(value) ? 0 : 1);
   }

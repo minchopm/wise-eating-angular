@@ -1,6 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { PlatformLocation } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
+import { contentFor } from '../content/registry';
+import { EN_US } from '../content/nutrients.en-US';
+import { ShellChrome } from '../content/types';
+import { DEFAULT_LOCALE, localeBySlug } from '../core/locales';
 import { DATA, SITE } from '../core/site';
 import { StoreButtonComponent } from './store-button';
 
@@ -32,16 +37,17 @@ import { StoreButtonComponent } from './store-button';
               />
               <span>{{ site.name }}</span>
             </a>
-            <p>
-              {{ data.foods.toLocaleString('en-US') }} foods from {{ data.source }}, on your phone —
-              with the planning, training and pantry tools to actually use them.
-            </p>
+            <p>{{ tagline }}</p>
             <we-store-button />
           </div>
 
-          <nav class="foot__links" aria-label="Footer">
+          <nav
+            class="foot__links"
+            aria-label="Footer"
+            [attr.lang]="shell.englishPages ? 'en' : null"
+          >
             <div>
-              <h4>Product</h4>
+              <h4>{{ shell.product }}</h4>
               <a routerLink="/features">Features</a>
               <a routerLink="/nutrients">Nutrients &amp; USDA data</a>
               <a routerLink="/workouts">Training</a>
@@ -50,7 +56,7 @@ import { StoreButtonComponent } from './store-button';
             </div>
 
             <div>
-              <h4>Learn</h4>
+              <h4>{{ shell.learn }}</h4>
               <a routerLink="/baby-feeding">Feeding a baby</a>
               <a [href]="data.sourceUrl" target="_blank" rel="noopener noreferrer">
                 USDA FoodData Central
@@ -60,27 +66,23 @@ import { StoreButtonComponent } from './store-button';
             </div>
 
             <div>
-              <h4>Legal</h4>
+              <h4>{{ shell.legal }}</h4>
               <a routerLink="/privacy">Privacy Policy</a>
               <a routerLink="/terms">Terms of Service</a>
-              <a [href]="'mailto:' + site.contactEmail">Contact</a>
+              <a [href]="'mailto:' + site.contactEmail">{{ shell.contact }}</a>
             </div>
           </nav>
         </div>
 
-        <p class="foot__note">
-          {{ site.name }} is a planning and education tool. It does not diagnose, treat or cure any
-          condition, and it is not a substitute for professional medical advice. Nutrient values are
-          estimates from {{ data.source }}; the real content of a food varies with soil, storage and
-          how it was cooked.
-        </p>
+        @if (shell.englishPages) {
+          <p class="foot__english">{{ shell.englishPages }}</p>
+        }
+
+        <p class="foot__note">{{ note }}</p>
 
         <div class="foot__bottom">
-          <p>&copy; {{ year }} {{ site.company }}. All rights reserved.</p>
-          <p class="foot__store">
-            Published on the App Store by {{ site.storeSeller }}. Apple and App Store are trademarks
-            of Apple Inc.
-          </p>
+          <p>&copy; {{ year }} {{ site.company }}. {{ shell.rights }}</p>
+          <p class="foot__store">{{ storeNote }}</p>
         </div>
       </div>
     </footer>
@@ -93,8 +95,7 @@ import { StoreButtonComponent } from './store-button';
         padding-block: clamp(56px, 7vw, 92px) 36px;
         border-top: 1px solid var(--line);
         background:
-          radial-gradient(80% 130% at 50% 0%, rgba(38, 208, 124, 0.08), transparent 62%),
-          var(--ink);
+          radial-gradient(80% 130% at 50% 0%, rgba(38, 208, 124, 0.08), transparent 62%), var(--ink);
       }
 
       .foot__top {
@@ -185,6 +186,12 @@ import { StoreButtonComponent } from './store-button';
         opacity: 0.8;
       }
 
+      .foot__english {
+        margin: 0 0 18px;
+        color: var(--text-faint);
+        font-size: 0.8rem;
+      }
+
       @media (min-width: 860px) {
         .foot__top {
           grid-template-columns: minmax(300px, 1fr) 1.4fr;
@@ -197,4 +204,35 @@ export class SiteFooterComponent {
   readonly site = SITE;
   readonly data = DATA;
   readonly year = SITE.copyrightYear;
+
+  readonly shell: ShellChrome;
+  readonly tagline: string;
+  readonly note: string;
+  readonly storeNote: string;
+
+  constructor() {
+    // The footer sits outside the router outlet, so it is not handed a
+    // locale the way the article pages are. Two obvious routes do not work:
+    // Router.url is still empty while prerendering, because the footer is
+    // built during the navigation that would set it, and the activated route
+    // has no children yet at that moment either. Both produced an English
+    // footer on every page.
+    //
+    // PlatformLocation is initialised from the URL being rendered before any
+    // of that starts, which makes it the one source available this early.
+    const slug = inject(PlatformLocation).pathname.split('/').filter(Boolean)[0] ?? '';
+    const locale = localeBySlug(slug) ?? DEFAULT_LOCALE;
+    this.shell = contentFor(locale.code).shell ?? EN_US.shell!;
+
+    const fill = (text: string) =>
+      text
+        .replace('{foods}', DATA.foods.toLocaleString(locale.code))
+        .replace('{source}', DATA.source)
+        .replace('{name}', SITE.name)
+        .replace('{seller}', SITE.storeSeller);
+
+    this.tagline = fill(this.shell.tagline);
+    this.note = fill(this.shell.note);
+    this.storeNote = fill(this.shell.storeNote);
+  }
 }

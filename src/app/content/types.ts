@@ -141,6 +141,34 @@ export interface HubChrome {
   readonly englishLink: string;
 }
 
+/**
+ * The site shell — the prose in the footer that every page carries.
+ *
+ * Split out from the page chrome because it is not about nutrients. It is
+ * here because the footer's medical disclaimer was reaching Danish, German,
+ * Spanish, French, Italian and Bulgarian readers in English, and of all the
+ * text on a translated page that is the one that has to be understood.
+ *
+ * The navigation labels are deliberately not in here. Those links go to pages
+ * that exist only in English, and a Danish label on an English destination is
+ * a small lie; `englishPages` says so once instead.
+ */
+export interface ShellChrome {
+  /** {foods} and {source} are substituted from core/site.ts. */
+  readonly tagline: string;
+  readonly product: string;
+  readonly learn: string;
+  readonly legal: string;
+  readonly contact: string;
+  /** The medical disclaimer. {name} and {source} are substituted. */
+  readonly note: string;
+  readonly rights: string;
+  /** {seller} is substituted. */
+  readonly storeNote: string;
+  /** Shown above the link columns on a translated page. */
+  readonly englishPages: string;
+}
+
 export interface LocaleContent {
   readonly chrome: ArticleChrome;
   /**
@@ -149,5 +177,7 @@ export interface LocaleContent {
    * see app.routes.ts.
    */
   readonly hub?: HubChrome;
+  /** Absent only where the shell has not been translated yet. */
+  readonly shell?: ShellChrome;
   readonly articles: Readonly<Record<string, LocalisedArticle>>;
 }

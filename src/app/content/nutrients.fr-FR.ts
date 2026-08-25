@@ -93,5 +93,24 @@ export const FR_FR: LocaleContent = {
     englishLink: 'Nutrients & USDA data',
   },
 
+  shell: {
+    tagline:
+      '{foods} aliments tirés de la base {source}, dans le téléphone — avec les outils de ' +
+      'planification, d’entraînement et de garde-manger pour vraiment s’en servir.',
+    product: 'Produit',
+    learn: 'Comprendre',
+    legal: 'Mentions légales',
+    contact: 'Contact',
+    note:
+      '{name} est un outil de planification et d’information. Il ne pose aucun diagnostic, ne ' +
+      'traite ni ne guérit aucune affection, et ne remplace pas un avis médical professionnel. ' +
+      'Les valeurs nutritionnelles sont des estimations tirées de la base {source} ; la teneur ' +
+      'réelle d’un aliment varie avec le sol, le stockage et la cuisson.',
+    rights: 'Tous droits réservés.',
+    storeNote:
+      'Publié sur l’App Store par {seller}. Apple et App Store sont des marques d’Apple Inc.',
+    englishPages: 'Les pages ci-dessous sont en anglais.',
+  },
+
   articles: CORE_FR,
 };
