@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
+import { localiseAmount, localiseNumber } from '../../content/format';
 import { NUTRIENT_FOODS, NutrientTable } from '../../content/nutrient-foods';
 import { FACTS, NutrientFacts } from '../../content/nutrient-facts';
 import { CONTENT, LIVE_LOCALES, contentFor } from '../../content/registry';
@@ -82,7 +83,13 @@ interface IntakeRow {
           <div class="table-wrap" appReveal="up">
             <table class="intake">
               <caption class="visually-hidden">
-                {{ chrome.howMuch }} — {{ a.name }}
+                {{
+                  chrome.howMuch
+                }}
+                —
+                {{
+                  a.name
+                }}
               </caption>
               <thead>
                 <tr>
@@ -140,15 +147,15 @@ interface IntakeRow {
                   <span class="food__body">
                     <span class="food__name">{{ food.name }}</span>
                     <span class="food__meta">
-                      <b>{{ food.amount }}{{ t.unit }}</b> / 100 g
+                      <b>{{ num(food.amount) }} {{ t.unit }}</b> / 100 g
                       @if (food.kcal) {
-                        · {{ food.kcal }} kcal
+                        · {{ num(food.kcal) }} kcal
                       }
                     </span>
                     <span class="food__bar">
                       <i [style.width.%]="food.percent > 100 ? 100 : food.percent"></i>
                     </span>
-                    <span class="food__dv">{{ food.percent }}% · DV</span>
+                    <span class="food__dv">{{ num(food.percent) }}% · DV</span>
                   </span>
                 </li>
               }
@@ -600,6 +607,20 @@ export class NutrientComponent {
   readonly reviewed: string = '';
   readonly store: string = SITE.appStore;
 
+  /**
+   * A generated number in the reader's convention.
+   *
+   * The food table's figures come out of nutrient-foods.ts as plain numbers,
+   * so unlike the intake amounts they carry no punctuation of their own — but
+   * printing 21100 or 2.5 unformatted still hands a German or Danish reader a
+   * number written in someone else's notation. Decimals are capped at one:
+   * the source has a spurious .0 on most values and a second decimal place
+   * claims a precision food composition data does not have.
+   */
+  num(value: number): string {
+    return localiseNumber(value, this.locale.code, Number.isInteger(value) ? 0 : 1);
+  }
+
   constructor() {
     const route = inject(ActivatedRoute).snapshot;
     const slug = route.paramMap.get('slug') ?? '';
@@ -622,7 +643,7 @@ export class NutrientComponent {
       const wording = article.intake[fact.id];
       return {
         who: wording?.who ?? fact.id,
-        amount: fact.amount,
+        amount: localiseAmount(fact.amount, this.locale.code),
         note: wording?.note ?? '—',
       };
     });
@@ -642,7 +663,7 @@ export class NutrientComponent {
     this.foodsHeading = this.chrome.foodsHeading.replace('{n}', article.name.toLowerCase());
     this.foodsFootnote = this.table
       ? this.chrome.foodsFootnote
-          .replace('{dv}', String(this.table.dailyValue))
+          .replace('{dv}', localiseNumber(this.table.dailyValue, this.locale.code))
           .replace('{unit}', this.table.unit)
       : '';
     this.disclaimer = this.chrome.disclaimer.replace('{n}', article.name.toLowerCase());
