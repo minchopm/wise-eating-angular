@@ -58,10 +58,28 @@ from:
 | Advanced Monthly / Yearly | $3.99 / $39.99 | 3.99 / 39.99 |
 | Premium Monthly / Yearly | $6.99 / $69.99 | 6.99 / 69.99 |
 
-**Still unverified: what each tier unlocks.** That is application logic, not a
-product attribute, so no API answers it. It is also the half a reader weighs
-before paying, so it stays on this list until someone checks it against the
-app.
+**What each tier unlocks: the site and the app disagree.** Checked against the
+app's own paywall copy on 2026-08-26 (`WiseEating/Subscriptions/Views/
+FeatureRow.swift`, rendered by SubscriptionListView and SubscriptionView, so
+this is what a customer reads at the point of payment).
+
+| Tier | The app promises | The site promises |
+|---|---|---|
+| Base / Free | 1 main + 1 child profile, meal and workout tracking, storage, shopping list, **AI generation of meal plans and training plans**, analytics, notes | USDA catalogue, search, diary, pantry, lists, workout logging |
+| Remove Ads | Base, without ads | no advertising |
+| Advanced | Remove Ads, **up to 4 profiles** | **AI meal plans, AI recipes, AI training programmes**, filters, emotion tracking |
+| Premium | Advanced, **up to 12 profiles** | **higher AI limits**, multi-person planning, budget, export |
+
+Two mismatches matter. **The app gives AI away on the free tier**, while the
+site sells it as the reason to pay $3.99 for Advanced — someone could pay for
+what they already had. And **the app's real ladder is profile count**, 1 then 4
+then 12, which the site never mentions anywhere.
+
+Which of the two is correct is a product fact, not something the repository can
+settle, so `site.ts` is deliberately left alone. Note also that the app source
+carries acknowledged leftover experiments, so its copy may itself be stale.
+What is certain is that the two documents describe different products, and one
+of them is the one a customer decides on.
 
 **Found on the way, and worth a decision: there are two live subscription
 groups.** `Wise.Eating.Group` and `Wise.Eating.Group.v2` each carry the same
