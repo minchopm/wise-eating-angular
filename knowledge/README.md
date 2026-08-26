@@ -45,36 +45,34 @@ an AI later should carry that field through.
 This is the part worth keeping honest. Each entry is something the site states
 publicly that nobody has checked against the thing itself.
 
-### 1. What each paid tier contains — **prices verified 2026-08-26, features still unverified**
+### 1. What each paid tier contains — **names and prices verified 2026-08-26**
 
-Names and prices are now confirmed against the live App Store listing, which
-publishes the in-app purchase list publicly — no API key required, which is
-worth remembering before reaching for one again:
+`node scripts/asc/audit.mjs` now runs. Every name and every price on the
+pricing page matches the products in App Store Connect, read from the API
+rather than from the App Store description they were originally reconstructed
+from:
 
-| App Store listing | site.ts |
-|---|---|
-| Remove Ads Monthly $2.99 · Yearly $29.99 | 2.99 / 29.99 |
-| Advanced Monthly $3.99 · Yearly $39.99 | 3.99 / 39.99 |
-| Premium Monthly $6.99 · Yearly $69.99 | 6.99 / 69.99 |
+| Product | ASC | site.ts |
+|---|---|---|
+| Remove Ads Monthly / Yearly | $2.99 / $29.99 | 2.99 / 29.99 |
+| Advanced Monthly / Yearly | $3.99 / $39.99 | 3.99 / 39.99 |
+| Premium Monthly / Yearly | $6.99 / $69.99 | 6.99 / 69.99 |
 
-Three subscription tiers, six products, all matching. The shape is also what
-the owner describes: the cheapest tier only removes advertising, the two above
-it add functionality.
+**Still unverified: what each tier unlocks.** That is application logic, not a
+product attribute, so no API answers it. It is also the half a reader weighs
+before paying, so it stays on this list until someone checks it against the
+app.
 
-**Still unverified: the feature lists.** The storefront does not publish what
-each tier contains, and `site.ts` reconstructed those from the App Store
-description rather than from the products. That is the part that is a promise
-to someone paying $6.99 a month, and it needs either the app itself or the
-App Store Connect API.
+**Found on the way, and worth a decision: there are two live subscription
+groups.** `Wise.Eating.Group` and `Wise.Eating.Group.v2` each carry the same
+six products, all APPROVED, at identical prices. Apple scopes upgrades and
+downgrades to a group, so a subscriber in one cannot move to a tier in the
+other — for them it is a second, parallel subscription rather than a change of
+plan. If v2 is the replacement, v1 should be cleared for new purchases. Also
+cosmetic but customer-visible: the v2 display names carry double spaces, and
+one of them opens with a space.
 
-*The API is still blocked.* `ASC_ISSUER_ID` is set and the signing is proven
-correct (signature round-trips locally, 64-byte raw r||s), yet every call
-answers 401. Whether key `Z8VH284LJR` is an App Store Connect key at all —
-rather than an APNs key, which is an identical-looking .p8 — can only be
-settled in Users and Access → Integrations, behind an Apple ID login.
-
-*Reviews are moot for now.* The iTunes lookup reports `userRatingCount: 0`, so
-`scripts/asc/reviews.mjs` has nothing to fetch whatever happens with the key.
+**Reviews remain moot.** The iTunes lookup reports zero ratings.
 
 ### 2. Helpline numbers on the psychology guides — **verified 2026-08-26**
 

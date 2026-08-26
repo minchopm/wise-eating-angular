@@ -22,7 +22,9 @@ async function siteClaims() {
   const source = await readFile(new URL('src/app/core/site.ts', ROOT), 'utf8');
   const block = source.slice(source.indexOf('export const PLANS'));
   const plans = [];
-  for (const m of block.matchAll(/\{\s*id: '([^']+)',\s*name: '([^']+)',[\s\S]*?monthly: '([^']+)'/g)) {
+  for (const m of block.matchAll(
+    /\{\s*id: '([^']+)',\s*name: '([^']+)',[\s\S]*?monthly: '([^']+)'/g,
+  )) {
     plans.push({ id: m[1], name: m[2], monthly: m[3] });
   }
   return plans;
@@ -67,13 +69,38 @@ for (const app of apps) {
       .catch(() => ({ data: [] }));
     for (const s of subs.data.filter(Boolean)) {
       const a = s.attributes ?? {};
+      // The closing line of this report asks the reader to compare prices, so
+      // it had better fetch them. Apple prices per territory; USA is the one
+      // the site quotes, and the one the pricing page is written against.
+      const price = await usdPrice(s.id);
       console.log(
         `    • ${a.name ?? '?'}  (${a.productId ?? '?'})  ` +
-          `${a.subscriptionPeriod ?? ''}  ${a.state ?? ''}`,
+          `${a.subscriptionPeriod ?? ''}  ${a.state ?? ''}` +
+          (price ? `  ${price}` : '  price: —'),
       );
     }
   }
   console.log();
+}
+
+/**
+ * The USA price of one subscription, as a string, or null.
+ *
+ * Prices hang off a subscription through subscriptionPrices, each pointing at
+ * a territory and a price point. Asking for the included resources in one call
+ * keeps this to a single request per product rather than three.
+ */
+async function usdPrice(subscriptionId) {
+  const query =
+    `/v1/subscriptions/${subscriptionId}/prices?limit=200` +
+    '&include=subscriptionPricePoint,territory' +
+    '&filter[territory]=USA';
+  const res = await api.get(query, { all: false }).catch(() => null);
+  if (!res) return null;
+
+  const point = (res.included ?? []).find((i) => i.type === 'subscriptionPricePoints');
+  const amount = point?.attributes?.customerPrice;
+  return amount ? `$${amount}` : null;
 }
 
 console.log('── What the pricing page currently promises\n');
