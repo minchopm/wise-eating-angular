@@ -42,6 +42,8 @@ export const IT_IT: LocaleContent = {
       'Questa pagina è divulgazione, non consiglio medico. Non fa diagnosi e non sostituisce un ' +
       'medico che conosca la vostra storia. Se pensate che vi manchi {n}, la risposta è un esame ' +
       'del sangue e una conversazione, non un integratore comprato per via di un articolo.',
+    ctaMid:
+      'La tabella qui sopra è per 100 g. L’app calcola la porzione che avete davvero mangiato.',
     ctaLine: 'Tutti gli alimenti qui sopra e altri 12.601, con il profilo completo — nell’app.',
     allNutrients: 'Tutti i nutrienti',
     familyVitamin: 'Vitamina',

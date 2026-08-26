@@ -105,6 +105,15 @@ export interface GuideChrome {
   readonly careBody: string;
   /** Label → URL. Kept per-language because the services differ by country. */
   readonly careLinks: readonly { readonly label: string; readonly url: string }[];
+  /**
+   * The line above the mid-article App Store button.
+   *
+   * Optional on purpose. A locale that has not been given one shows no
+   * mid-article call to action at all, which is the right failure: an
+   * English sentence dropped into a Danish article would be worse than
+   * the missing button it replaced.
+   */
+  readonly ctaMid?: string;
 
   readonly ctaLine: string;
   readonly allGuides: string;

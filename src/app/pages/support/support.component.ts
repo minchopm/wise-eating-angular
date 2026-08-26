@@ -5,6 +5,7 @@ import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.direc
 import { faqEntity, Seo } from '../../core/seo';
 import { DATA, SITE, url } from '../../core/site';
 import { PageHeadComponent } from '../../shared/page-head';
+import { StoreButtonComponent } from '../../shared/store-button';
 
 const FAQ = [
   {
@@ -64,45 +65,20 @@ const FAQ = [
   selector: 'we-support',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, PageHeadComponent, RevealDirective, RevealStaggerDirective],
+  imports: [
+    RouterLink,
+    PageHeadComponent,
+    StoreButtonComponent,
+    RevealDirective,
+    RevealStaggerDirective,
+  ],
   template: `
     <we-page-head
       title="Support"
       eyebrow="Help"
-      lede="Answers to the things that come up most, and a real address for everything else."
+      lede="Nearly everything people write in about is answered below. For the rest, there is a
+      real address further down."
     />
-
-    <section class="section section--tight">
-      <div class="wrap contact" appReveal="up">
-        <div class="card contact__card">
-          <span class="card__icon" aria-hidden="true"><img src="/assets/icons/mail.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
-          <h2>Write to us</h2>
-          <p>
-            Bug reports, questions, refunds you cannot get from Apple, and disagreements about
-            nutrition science all land in the same inbox. We read them.
-          </p>
-          <a class="btn btn--primary" [href]="'mailto:' + site.contactEmail">{{
-            site.contactEmail
-          }}</a>
-        </div>
-
-        <div class="card contact__card">
-          <span class="card__icon" aria-hidden="true"><img src="/assets/icons/list.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
-          <h2>Billing &amp; refunds</h2>
-          <p>
-            Subscriptions are sold and billed by Apple, so cancellations and refunds go through them
-            rather than through us.
-          </p>
-          <a
-            class="btn btn--ghost"
-            href="https://reportaproblem.apple.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            >reportaproblem.apple.com</a
-          >
-        </div>
-      </div>
-    </section>
 
     <section class="section">
       <div class="wrap wrap--narrow">
@@ -121,8 +97,72 @@ const FAQ = [
             </details>
           }
         </div>
+      </div>
+    </section>
 
-        <div class="disclaimer after">
+    <!-- ──────────────────────────────────────────────────────────── app ── -->
+    <section class="section section--tight">
+      <div class="wrap wrap--narrow centred" appReveal="up">
+        <p class="cta-line">
+          Most of what reaches this page is a question the app answers on its own — a number, a
+          portion, a label read off the back of a packet.
+        </p>
+        <we-store-button />
+      </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────────────── humans ── -->
+    <section class="section section--tight">
+      <div class="wrap contact" appReveal="up">
+        <div class="card contact__card">
+          <span class="card__icon" aria-hidden="true"
+            ><img
+              src="/assets/icons/mail.webp"
+              alt=""
+              width="30"
+              height="30"
+              loading="lazy"
+              decoding="async"
+          /></span>
+          <h2>Write to us</h2>
+          <p>
+            Bug reports, questions, refunds you cannot get from Apple, and disagreements about
+            nutrition science all land in the same inbox. We read them.
+          </p>
+          <a class="btn btn--ghost" [href]="'mailto:' + site.contactEmail">{{
+            site.contactEmail
+          }}</a>
+        </div>
+
+        <div class="card contact__card">
+          <span class="card__icon" aria-hidden="true"
+            ><img
+              src="/assets/icons/list.webp"
+              alt=""
+              width="30"
+              height="30"
+              loading="lazy"
+              decoding="async"
+          /></span>
+          <h2>Billing &amp; refunds</h2>
+          <p>
+            Subscriptions are sold and billed by Apple, so cancellations and refunds go through them
+            rather than through us.
+          </p>
+          <a
+            class="btn btn--ghost"
+            href="https://reportaproblem.apple.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            >reportaproblem.apple.com</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap wrap--narrow">
+        <div class="disclaimer">
           <p>
             {{ site.name }} is not a medical service and we cannot give medical advice. For anything
             clinical — a diagnosis, a symptom, a child's diet, a condition you are managing — please
@@ -135,6 +175,17 @@ const FAQ = [
   `,
   styles: [
     `
+      .centred {
+        text-align: center;
+      }
+
+      .cta-line {
+        margin-bottom: 20px;
+        font-family: var(--font-display);
+        font-size: var(--step-1);
+        color: var(--text-soft);
+      }
+
       .contact {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

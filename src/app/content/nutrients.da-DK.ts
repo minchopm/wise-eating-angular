@@ -42,6 +42,7 @@ export const DA_DK: LocaleContent = {
       'Denne side er oplysning, ikke lægelig rådgivning. Den stiller ingen diagnose og erstatter ' +
       'ikke en læge, der kender din historie. Hvis du tror, du mangler {n}, er svaret en ' +
       'blodprøve og en samtale — ikke et kosttilskud købt på baggrund af en artikel.',
+    ctaMid: 'Tabellen ovenfor er per 100 g. Appen regner på den portion, du faktisk spiste.',
     ctaLine: 'Alle fødevarer ovenfor og 12.601 mere, med hele profilen — i appen.',
     allNutrients: 'Alle næringsstoffer',
     familyVitamin: 'Vitamin',

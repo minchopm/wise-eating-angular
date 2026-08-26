@@ -70,7 +70,6 @@ import { StoreButtonComponent } from './store-button';
               <h4>{{ shell.legal }}</h4>
               <a routerLink="/privacy">Privacy Policy</a>
               <a routerLink="/terms">Terms of Service</a>
-              <a [href]="'mailto:' + site.contactEmail">{{ shell.contact }}</a>
             </div>
           </nav>
         </div>
@@ -96,7 +95,8 @@ import { StoreButtonComponent } from './store-button';
         padding-block: clamp(56px, 7vw, 92px) 36px;
         border-top: 1px solid var(--line);
         background:
-          radial-gradient(80% 130% at 50% 0%, rgba(38, 208, 124, 0.08), transparent 62%), var(--ground);
+          radial-gradient(80% 130% at 50% 0%, rgba(38, 208, 124, 0.08), transparent 62%),
+          var(--ground);
       }
 
       .foot__top {

@@ -66,6 +66,8 @@ export const GUIDES_FR_FR: GuideLocale = {
       { label: 'Trouver une ligne d’écoute dans votre pays', url: 'https://findahelpline.com/' },
     ],
 
+    ctaMid: 'Ce qui suit est plus simple quand vous savez ce que vous mangez déjà.',
+
     ctaLine: 'Chaque nutriment cité plus haut, mesuré — dans l’app.',
     allGuides: 'Tous les guides',
   },

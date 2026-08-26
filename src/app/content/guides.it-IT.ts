@@ -72,6 +72,8 @@ export const GUIDES_IT_IT: GuideLocale = {
       },
     ],
 
+    ctaMid: 'Quello che segue è più semplice se sapete che cosa state già mangiando.',
+
     ctaLine: 'Ogni nutriente citato sopra, misurato — nell’app.',
     allGuides: 'Tutte le guide',
   },

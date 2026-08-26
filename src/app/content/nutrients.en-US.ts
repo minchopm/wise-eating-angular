@@ -48,6 +48,7 @@ export const EN_US: LocaleContent = {
       'substitute for a clinician who knows your history. If you think you are short of {n}, the ' +
       'answer is a blood test and a conversation, not a supplement bought on the strength of an ' +
       'article.',
+    ctaMid: 'The table above is per 100 g. The app weighs the portion you actually ate.',
     ctaLine: 'Every food above, and 12,601 more, with the full panel — in the app.',
     allNutrients: 'All nutrients',
     familyVitamin: 'Vitamin',

@@ -43,6 +43,8 @@ export const FR_FR: LocaleContent = {
       'et ne remplace pas un professionnel qui connaît votre histoire. Si vous pensez manquer de ' +
       '{n}, la réponse est une prise de sang et une discussion, pas un complément acheté sur la ' +
       'foi d’un article.',
+    ctaMid:
+      'Le tableau ci-dessus est pour 100 g. L’app calcule la portion que vous avez réellement mangée.',
     ctaLine: 'Tous les aliments ci-dessus, et 12 601 autres, avec le profil complet — dans l’app.',
     allNutrients: 'Tous les nutriments',
     familyVitamin: 'Vitamine',

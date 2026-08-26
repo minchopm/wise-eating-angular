@@ -50,6 +50,8 @@ export const DE_DE: LocaleContent = {
       'ersetzt keine Ärztin und keinen Arzt, die Ihre Vorgeschichte kennen. Wenn Sie vermuten, ' +
       'dass Ihnen {n} fehlt, ist die Antwort eine Blutuntersuchung und ein Gespräch — nicht ein ' +
       'Präparat, das man wegen eines Artikels kauft.',
+    ctaMid:
+      'Die Tabelle oben gilt pro 100 g. Die App rechnet mit der Portion, die Sie wirklich gegessen haben.',
     ctaLine:
       'Jedes Lebensmittel oben und 12.601 weitere, mit dem vollständigen Profil — in der App.',
     allNutrients: 'Alle Nährstoffe',

@@ -62,6 +62,8 @@ export const GUIDES_EN_US: GuideLocale = {
       { label: 'Find a helpline in your country', url: 'https://findahelpline.com/' },
     ],
 
+    ctaMid: 'What follows is easier when you know what you are already eating.',
+
     ctaLine: 'Every nutrient named above, measured — in the app.',
     allGuides: 'All guides',
   },

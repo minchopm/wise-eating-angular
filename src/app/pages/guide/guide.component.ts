@@ -138,6 +138,16 @@ interface SeeAlsoLink {
         </section>
       }
 
+      <!-- ───────────────────────────────────────────────────── mid cta ── -->
+      @if (chrome.ctaMid && !careNotice) {
+        <section class="section section--tight">
+          <div class="wrap wrap--narrow centred">
+            <p class="cta-line">{{ chrome.ctaMid }}</p>
+            <we-store-button [href]="store" />
+          </div>
+        </section>
+      }
+
       <!-- ────────────────────────────────────────────────────── practical ── -->
       <section class="section">
         <div class="wrap wrap--narrow">

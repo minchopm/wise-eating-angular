@@ -168,6 +168,16 @@ interface IntakeRow {
         </div>
       </section>
 
+      <!-- ─────────────────────────────────────────────────── mid cta ── -->
+      @if (chrome.ctaMid) {
+        <section class="section section--tight">
+          <div class="wrap wrap--narrow centred">
+            <p class="cta-line">{{ chrome.ctaMid }}</p>
+            <we-store-button [href]="store" />
+          </div>
+        </section>
+      }
+
       <!-- ───────────────────────────────────────────────── absorption ── -->
       <section class="section section--raised">
         <div class="wrap">

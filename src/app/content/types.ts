@@ -88,6 +88,15 @@ export interface ArticleChrome {
   readonly reviewed: string;
   /** The medical disclaimer. {n} is the nutrient name, lower case. */
   readonly disclaimer: string;
+  /**
+   * The line above the mid-article App Store button.
+   *
+   * Optional on purpose. A locale that has not been given one shows no
+   * mid-article call to action at all, which is the right failure: an
+   * English sentence dropped into a Danish article would be worse than
+   * the missing button it replaced.
+   */
+  readonly ctaMid?: string;
   readonly ctaLine: string;
   readonly allNutrients: string;
   readonly familyVitamin: string;

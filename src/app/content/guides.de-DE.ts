@@ -68,6 +68,8 @@ export const GUIDES_DE_DE: GuideLocale = {
       { label: 'Hilfetelefon in Ihrem Land finden', url: 'https://findahelpline.com/' },
     ],
 
+    ctaMid: 'Was jetzt folgt, fällt leichter, wenn Sie wissen, was Sie ohnehin schon essen.',
+
     ctaLine: 'Jeder oben genannte Nährstoff, gemessen — in der App.',
     allGuides: 'Alle Ratgeber',
   },

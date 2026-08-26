@@ -64,6 +64,8 @@ export const GUIDES_DA_DK: GuideLocale = {
       { label: 'Find en hjælpelinje i dit land', url: 'https://findahelpline.com/' },
     ],
 
+    ctaMid: 'Det følgende er lettere, når du ved, hvad du allerede spiser.',
+
     ctaLine: 'Hvert næringsstof nævnt ovenfor, målt — i appen.',
     allGuides: 'Alle guides',
   },
