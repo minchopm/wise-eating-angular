@@ -79,6 +79,7 @@ export const ES_ES: LocaleContent = {
         'almacenamiento, cocinado — varía dentro de un país tanto como entre dos, y por eso la ' +
         'app trata cada cifra como una estimación.',
     ],
+    railTitle: 'Dónde viven realmente estos nutrientes',
     indexHeading: 'Un nutriente cada vez',
     indexLede:
       'Para qué sirve, cuánto necesita a cada edad, qué alimentos llevan más — ordenados a partir ' +

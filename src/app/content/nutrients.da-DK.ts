@@ -79,6 +79,7 @@ export const DA_DK: LocaleContent = {
         'tilberedning — varierer inden for ét land lige så meget som mellem to, og derfor ' +
         'behandler appen hvert tal som et skøn.',
     ],
+    railTitle: 'Hvor disse næringsstoffer faktisk findes',
     indexHeading: 'Ét næringsstof ad gangen',
     indexLede:
       'Hvad det er til for, hvor meget du har brug for i hver alder, hvilke fødevarer der ' +

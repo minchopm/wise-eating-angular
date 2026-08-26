@@ -90,6 +90,7 @@ export const DE_DE: LocaleContent = {
         'Boden, Lagerung, Zubereitung —, schwankt innerhalb eines Landes so stark wie zwischen ' +
         'zweien, und deshalb behandelt die App jede Zahl als Schätzung.',
     ],
+    railTitle: 'Wo diese Nährstoffe tatsächlich vorkommen',
     indexHeading: 'Ein Nährstoff nach dem anderen',
     indexLede:
       'Wofür er da ist, wie viel Sie in welchem Alter brauchen, welche Lebensmittel am meisten ' +

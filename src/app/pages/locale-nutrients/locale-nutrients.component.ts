@@ -8,6 +8,7 @@ import { Locale, localePath, storeUrl } from '../../core/locales';
 import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.directive';
 import { Seo } from '../../core/seo';
 import { DATA, SITE, url } from '../../core/site';
+import { FoodRailComponent } from '../../shared/food-rail';
 import { PageHeadComponent } from '../../shared/page-head';
 import { StoreButtonComponent } from '../../shared/store-button';
 
@@ -43,6 +44,7 @@ interface Card {
     StoreButtonComponent,
     RevealDirective,
     RevealStaggerDirective,
+    FoodRailComponent,
   ],
   template: `
     @if (hub; as h) {
@@ -72,6 +74,17 @@ interface Card {
           </p>
         </div>
       </section>
+
+      @if (h.railTitle) {
+        <section class="section section--tight">
+          <div class="wrap">
+            <div class="section-head">
+              <h2>{{ h.railTitle }}</h2>
+            </div>
+            <we-food-rail [locale]="locale" [label]="h.railTitle" />
+          </div>
+        </section>
+      }
 
       <section class="section section--raised">
         <div class="wrap">

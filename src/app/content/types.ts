@@ -140,6 +140,11 @@ export interface HubChrome {
    *  {source} are replaced from core/site.ts, so no locale carries its own
    *  copy of a number that can go stale. */
   readonly dataBody: readonly string[];
+  /**
+   * Heading over the food rail. Optional: a locale without one shows no
+   * rail, which is better than an English heading over localised cards.
+   */
+  readonly railTitle?: string;
   readonly indexHeading: string;
   readonly indexLede: string;
   /** The link label on each card. */

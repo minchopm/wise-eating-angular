@@ -6,9 +6,10 @@ import { faqEntity, Seo } from '../../core/seo';
 import { FACTS, NUTRIENT_SLUGS } from '../../content/nutrient-facts';
 import { EN_US } from '../../content/nutrients.en-US';
 import { CONTENT, LIVE_LOCALES } from '../../content/registry';
-import { localePath } from '../../core/locales';
+import { DEFAULT_LOCALE, localePath } from '../../core/locales';
 import { DATA, SITE, url } from '../../core/site';
 import { PageHeadComponent } from '../../shared/page-head';
+import { FoodRailComponent } from '../../shared/food-rail';
 import { StoreButtonComponent } from '../../shared/store-button';
 
 /**
@@ -90,6 +91,7 @@ const FAQ = [
   imports: [
     RouterLink,
     PageHeadComponent,
+    FoodRailComponent,
     StoreButtonComponent,
     RevealDirective,
     RevealStaggerDirective,
@@ -208,6 +210,21 @@ const FAQ = [
             />
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────── the rail ──── -->
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__dot"></span>Where they live</p>
+          <h2>Twenty-one foods worth knowing.</h2>
+          <p>
+            Not the highest-scoring foods — those are almost all liver — but the ones you might
+            actually put on a plate, each filed under the nutrient it is genuinely notable for.
+          </p>
+        </div>
+        <we-food-rail [locale]="locale" label="Foods rich in each nutrient, scrollable" />
       </div>
     </section>
 
@@ -449,6 +466,8 @@ const FAQ = [
   ],
 })
 export class NutrientsComponent {
+  /** The rail is shared with the localised hubs, so it asks for a locale. */
+  readonly locale = DEFAULT_LOCALE;
   readonly site = SITE;
   readonly data = DATA;
   readonly nutrients = NUTRIENTS;

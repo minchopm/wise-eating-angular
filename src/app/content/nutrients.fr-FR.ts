@@ -81,6 +81,7 @@ export const FR_FR: LocaleContent = {
         'stockage, cuisson — varie autant à l’intérieur d’un pays qu’entre deux, et c’est pour ' +
         'cela que l’app traite chaque chiffre comme une estimation.',
     ],
+    railTitle: 'Où vivent réellement ces nutriments',
     indexHeading: 'Un nutriment à la fois',
     indexLede:
       'À quoi il sert, quelle quantité il vous faut à chaque âge, quels aliments en portent le ' +

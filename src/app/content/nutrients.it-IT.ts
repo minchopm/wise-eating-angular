@@ -80,6 +80,7 @@ export const IT_IT: LocaleContent = {
         'suolo, conservazione, cottura — varia dentro un paese quanto fra due, ed è per questo ' +
         'che l’app tratta ogni numero come una stima.',
     ],
+    railTitle: 'Dove vivono davvero questi nutrienti',
     indexHeading: 'Un nutriente alla volta',
     indexLede:
       'A che cosa serve, quanto ve ne serve a ogni età, quali alimenti ne portano di più — ' +
