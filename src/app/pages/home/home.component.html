@@ -116,17 +116,20 @@
       <div class="query-card card card--lit">
         <div class="query-card__bar">
           <span class="query-card__glyph" aria-hidden="true">⌕</span>
-          <span class="query-card__caret" aria-hidden="true"></span>
+          <span class="query-card__label">Things people type</span>
         </div>
 
         <ul class="query-card__list">
-          @for (q of queries; track q) {
-            <li>{{ q }}</li>
+          @for (q of queries; track q.text) {
+            <li>
+              <a [routerLink]="q.path">{{ q.text }}</a>
+            </li>
           }
         </ul>
 
         <p class="query-card__foot">
-          Every one of these is a query the app understands as written.
+          Every one of these is a query the app understands as written. Follow any of them here to
+          read about the nutrient behind it.
         </p>
       </div>
     </div>
@@ -222,8 +225,22 @@
     </div>
 
     <div class="bento" appRevealStagger="70">
-      <a class="bento__cell bento__cell--wide card card--interactive card--lit" routerLink="/nutrients" appReveal="up" appTilt [tiltMax]="5">
-        <span class="card__icon" aria-hidden="true"><img src="/assets/icons/nutrients.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
+      <a
+        class="bento__cell bento__cell--wide card card--interactive card--lit"
+        routerLink="/nutrients"
+        appReveal="up"
+        appTilt
+        [tiltMax]="5"
+      >
+        <span class="card__icon" aria-hidden="true"
+          ><img
+            src="/assets/icons/nutrients.webp"
+            alt=""
+            width="30"
+            height="30"
+            loading="lazy"
+            decoding="async"
+        /></span>
         <h3>The whole nutrient panel</h3>
         <p>
           Per serving and per 100 g, with {{ data.vitamins }} vitamins and {{ data.minerals }}
@@ -233,8 +250,22 @@
         <span class="bento__more">Nutrients &amp; USDA data →</span>
       </a>
 
-      <a class="bento__cell card card--interactive card--lit" routerLink="/features" appReveal="up" appTilt [tiltMax]="5">
-        <span class="card__icon" aria-hidden="true"><img src="/assets/icons/plan.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
+      <a
+        class="bento__cell card card--interactive card--lit"
+        routerLink="/features"
+        appReveal="up"
+        appTilt
+        [tiltMax]="5"
+      >
+        <span class="card__icon" aria-hidden="true"
+          ><img
+            src="/assets/icons/plan.webp"
+            alt=""
+            width="30"
+            height="30"
+            loading="lazy"
+            decoding="async"
+        /></span>
         <h3>AI weekly plans</h3>
         <p>
           Meal plans and training weeks generated from real foods and your own constraints — goal,
@@ -243,8 +274,22 @@
         <span class="bento__more">All features →</span>
       </a>
 
-      <a class="bento__cell card card--interactive card--lit" routerLink="/pantry" appReveal="up" appTilt [tiltMax]="5">
-        <span class="card__icon" aria-hidden="true"><img src="/assets/icons/pantry.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
+      <a
+        class="bento__cell card card--interactive card--lit"
+        routerLink="/pantry"
+        appReveal="up"
+        appTilt
+        [tiltMax]="5"
+      >
+        <span class="card__icon" aria-hidden="true"
+          ><img
+            src="/assets/icons/pantry.webp"
+            alt=""
+            width="30"
+            height="30"
+            loading="lazy"
+            decoding="async"
+        /></span>
         <h3>A pantry that remembers</h3>
         <p>
           Batches, quantities and expiry dates for what is actually in the house, so a plan can be
@@ -253,18 +298,46 @@
         <span class="bento__more">Pantry &amp; shopping →</span>
       </a>
 
-      <a class="bento__cell bento__cell--wide card card--interactive card--lit" routerLink="/workouts" appReveal="up" appTilt [tiltMax]="5">
-        <span class="card__icon" aria-hidden="true"><img src="/assets/icons/training.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
+      <a
+        class="bento__cell bento__cell--wide card card--interactive card--lit"
+        routerLink="/workouts"
+        appReveal="up"
+        appTilt
+        [tiltMax]="5"
+      >
+        <span class="card__icon" aria-hidden="true"
+          ><img
+            src="/assets/icons/training.webp"
+            alt=""
+            width="30"
+            height="30"
+            loading="lazy"
+            decoding="async"
+        /></span>
         <h3>Training that knows what you ate</h3>
         <p>
-          Strength, hypertrophy, fat loss, mobility or general fitness. Pick the goal, the
-          equipment and the days; adjust the template whenever it stops fitting.
+          Strength, hypertrophy, fat loss, mobility or general fitness. Pick the goal, the equipment
+          and the days; adjust the template whenever it stops fitting.
         </p>
         <span class="bento__more">Training →</span>
       </a>
 
-      <a class="bento__cell card card--interactive card--lit" routerLink="/baby-feeding" appReveal="up" appTilt [tiltMax]="5">
-        <span class="card__icon" aria-hidden="true"><img src="/assets/icons/baby.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
+      <a
+        class="bento__cell card card--interactive card--lit"
+        routerLink="/baby-feeding"
+        appReveal="up"
+        appTilt
+        [tiltMax]="5"
+      >
+        <span class="card__icon" aria-hidden="true"
+          ><img
+            src="/assets/icons/baby.webp"
+            alt=""
+            width="30"
+            height="30"
+            loading="lazy"
+            decoding="async"
+        /></span>
         <h3>Feeding a baby</h3>
         <p>
           Age-suitability floors on every food, a hard honey rule under twelve months, and allergens
@@ -273,8 +346,22 @@
         <span class="bento__more">Read the guide →</span>
       </a>
 
-      <a class="bento__cell card card--interactive card--lit" routerLink="/pantry" appReveal="up" appTilt [tiltMax]="5">
-        <span class="card__icon" aria-hidden="true"><img src="/assets/icons/list.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
+      <a
+        class="bento__cell card card--interactive card--lit"
+        routerLink="/pantry"
+        appReveal="up"
+        appTilt
+        [tiltMax]="5"
+      >
+        <span class="card__icon" aria-hidden="true"
+          ><img
+            src="/assets/icons/list.webp"
+            alt=""
+            width="30"
+            height="30"
+            loading="lazy"
+            decoding="async"
+        /></span>
         <h3>Shopping &amp; budget</h3>
         <p>
           Lists that fall out of the plan, and optional price tracking so the week's food has a
@@ -294,15 +381,15 @@
       <p class="eyebrow"><span class="eyebrow__dot"></span>The data</p>
       <h2>American data. Global appetite.</h2>
       <p>
-        {{ data.source }} is published by the United States Department of Agriculture, and it is
-        the most complete public food composition database in existence. Canada leans on it.
-        Researchers everywhere cite it. Most countries have nothing of the kind of their own.
+        {{ data.source }} is published by the United States Department of Agriculture, and it is the
+        most complete public food composition database in existence. Canada leans on it. Researchers
+        everywhere cite it. Most countries have nothing of the kind of their own.
       </p>
       <p>
         That is why {{ site.name }} is not a US-only tool. Composition is a property of the food,
         not of the border it crossed — a lentil in Sofia and a lentil in Seattle are the same
-        lentil. What changes is soil, storage and how you cooked it, and the app says so rather
-        than hiding it.
+        lentil. What changes is soil, storage and how you cooked it, and the app says so rather than
+        hiding it.
       </p>
 
       <div class="disclaimer">
@@ -340,7 +427,15 @@
 
     <div class="who" appRevealStagger="80">
       <div class="card" appReveal="up">
-        <span class="card__icon" aria-hidden="true"><img src="/assets/icons/person.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
+        <span class="card__icon" aria-hidden="true"
+          ><img
+            src="/assets/icons/person.webp"
+            alt=""
+            width="30"
+            height="30"
+            loading="lazy"
+            decoding="async"
+        /></span>
         <h3>People &amp; families</h3>
         <p>
           Cover the nutrients you keep missing, check allergens before you cook, and see how the
@@ -348,7 +443,15 @@
         </p>
       </div>
       <div class="card" appReveal="up">
-        <span class="card__icon" aria-hidden="true"><img src="/assets/icons/clinician.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
+        <span class="card__icon" aria-hidden="true"
+          ><img
+            src="/assets/icons/clinician.webp"
+            alt=""
+            width="30"
+            height="30"
+            loading="lazy"
+            decoding="async"
+        /></span>
         <h3>Health professionals</h3>
         <p>
           Dietitians, paediatricians, gastroenterologists, endocrinologists and therapists who want
@@ -356,7 +459,15 @@
         </p>
       </div>
       <div class="card" appReveal="up">
-        <span class="card__icon" aria-hidden="true"><img src="/assets/icons/training.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
+        <span class="card__icon" aria-hidden="true"
+          ><img
+            src="/assets/icons/training.webp"
+            alt=""
+            width="30"
+            height="30"
+            loading="lazy"
+            decoding="async"
+        /></span>
         <h3>Coaches &amp; trainers</h3>
         <p>
           Design programmes, try variations, and keep the nutrition side of a client's week in the
@@ -364,7 +475,15 @@
         </p>
       </div>
       <div class="card" appReveal="up">
-        <span class="card__icon" aria-hidden="true"><img src="/assets/icons/team.webp" alt="" width="30" height="30" loading="lazy" decoding="async" /></span>
+        <span class="card__icon" aria-hidden="true"
+          ><img
+            src="/assets/icons/team.webp"
+            alt=""
+            width="30"
+            height="30"
+            loading="lazy"
+            decoding="async"
+        /></span>
         <h3>Employers &amp; teams</h3>
         <p>
           Wellbeing programmes that give people a real tool rather than a leaflet, and no

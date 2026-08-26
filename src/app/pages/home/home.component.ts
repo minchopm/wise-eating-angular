@@ -80,14 +80,23 @@ const SHOTS: readonly Shot[] = [
   },
 ];
 
-/** Example queries, shown cycling in the search section. */
+/**
+ * Example queries, and where each one goes.
+ *
+ * These are things the app parses, not things this page can answer — the
+ * search reads a whole USDA catalogue on the device, and the site has the
+ * rankings rather than the catalogue. Rather than mock up an input that
+ * swallows what you type, each example links to the page behind the
+ * constraint it expresses: an iron query to iron, a weaning query to the
+ * article about feeding a baby.
+ */
 const QUERIES = [
-  'beef proteins less than 15',
-  'vegetarian, rich in iron',
-  'high protein, no milk',
-  'low sugar, high fibre, under 200 kcal',
-  'alkaline, no nightshades',
-  'suitable from 8 months, no honey',
+  { text: 'beef proteins less than 15', path: '/nutrients/protein' },
+  { text: 'vegetarian, rich in iron', path: '/nutrients/iron' },
+  { text: 'high protein, no milk', path: '/nutrients/calcium' },
+  { text: 'low sugar, high fibre, under 200 kcal', path: '/nutrients/fibre' },
+  { text: 'alkaline, no nightshades', path: '/nutrients/potassium' },
+  { text: 'suitable from 8 months, no honey', path: '/baby-feeding' },
 ] as const;
 
 const FAQ = [
