@@ -45,18 +45,36 @@ an AI later should carry that field through.
 This is the part worth keeping honest. Each entry is something the site states
 publicly that nobody has checked against the thing itself.
 
-### 1. What each paid tier contains — **unverified**
+### 1. What each paid tier contains — **prices verified 2026-08-26, features still unverified**
 
-`site.ts` says so in its own comment: the feature lists were reconstructed from
-the App Store description, not read from the products. This is a promise to
-someone paying $6.99 a month.
+Names and prices are now confirmed against the live App Store listing, which
+publishes the in-app purchase list publicly — no API key required, which is
+worth remembering before reaching for one again:
 
-*Resolves with:* `node scripts/asc/audit.mjs`. `ASC_ISSUER_ID` is now set and
-the signing is proven correct (signature round-trips locally, 64-byte raw
-r||s). The API still answers 401, so the remaining question is whether key
-`Z8VH284LJR` is an App Store Connect key at all rather than an APNs key — the
-two are indistinguishable as files, and only *Users and Access → Integrations*
-can say.
+| App Store listing | site.ts |
+|---|---|
+| Remove Ads Monthly $2.99 · Yearly $29.99 | 2.99 / 29.99 |
+| Advanced Monthly $3.99 · Yearly $39.99 | 3.99 / 39.99 |
+| Premium Monthly $6.99 · Yearly $69.99 | 6.99 / 69.99 |
+
+Three subscription tiers, six products, all matching. The shape is also what
+the owner describes: the cheapest tier only removes advertising, the two above
+it add functionality.
+
+**Still unverified: the feature lists.** The storefront does not publish what
+each tier contains, and `site.ts` reconstructed those from the App Store
+description rather than from the products. That is the part that is a promise
+to someone paying $6.99 a month, and it needs either the app itself or the
+App Store Connect API.
+
+*The API is still blocked.* `ASC_ISSUER_ID` is set and the signing is proven
+correct (signature round-trips locally, 64-byte raw r||s), yet every call
+answers 401. Whether key `Z8VH284LJR` is an App Store Connect key at all —
+rather than an APNs key, which is an identical-looking .p8 — can only be
+settled in Users and Access → Integrations, behind an Apple ID login.
+
+*Reviews are moot for now.* The iTunes lookup reports `userRatingCount: 0`, so
+`scripts/asc/reviews.mjs` has nothing to fetch whatever happens with the key.
 
 ### 2. Helpline numbers on the psychology guides — **verified 2026-08-26**
 

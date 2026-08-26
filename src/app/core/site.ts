@@ -53,7 +53,13 @@ export const SITE = {
     postalCode: '82801',
     country: 'US',
   },
-  storeSeller: 'Arte Soft Ltd',
+  /**
+   * Exactly as Apple prints it. The About page tells readers to match this
+   * against the name on their receipt, so an anglicised approximation --
+   * it read 'Arte Soft Ltd' -- fails at the one job the sentence has.
+   * EOOD is the Bulgarian single-member limited form; it is not Ltd.
+   */
+  storeSeller: 'Arte Soft EOOD',
 
   /**
    * The support address Apple requires, and the one Privacy and Terms name.
