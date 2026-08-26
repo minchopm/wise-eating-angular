@@ -63,7 +63,6 @@ export const EN_US: LocaleContent = {
     product: 'Product',
     learn: 'Learn',
     legal: 'Legal',
-    contact: 'Contact',
     note:
       '{name} is a planning and education tool. It does not diagnose, treat or cure any ' +
       'condition, and it is not a substitute for professional medical advice. Nutrient values ' +

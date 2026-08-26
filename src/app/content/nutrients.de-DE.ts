@@ -112,7 +112,6 @@ export const DE_DE: LocaleContent = {
     product: 'Produkt',
     learn: 'Wissen',
     legal: 'Rechtliches',
-    contact: 'Kontakt',
     note:
       '{name} ist ein Planungs- und Aufklärungswerkzeug. Es stellt keine Diagnose, behandelt und ' +
       'heilt nichts und ersetzt keine ärztliche Beratung. Die Nährwerte sind Schätzungen aus ' +

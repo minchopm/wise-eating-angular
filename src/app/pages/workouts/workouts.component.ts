@@ -5,6 +5,8 @@ import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.direc
 import { Seo } from '../../core/seo';
 import { SITE } from '../../core/site';
 import { PageHeadComponent } from '../../shared/page-head';
+import { DEFAULT_LOCALE } from '../../core/locales';
+import { FoodRailComponent } from '../../shared/food-rail';
 import { StoreButtonComponent } from '../../shared/store-button';
 
 const GOALS = [
@@ -41,6 +43,7 @@ const GOALS = [
   imports: [
     RouterLink,
     PageHeadComponent,
+    FoodRailComponent,
     StoreButtonComponent,
     RevealDirective,
     RevealStaggerDirective,
@@ -115,7 +118,9 @@ const GOALS = [
           </p>
           <ul class="ticks">
             <li>Exercises, sets, reps, load and time</li>
-            <li>Perceived effort against the session, so the week has intensity and not just volume</li>
+            <li>
+              Perceived effort against the session, so the week has intensity and not just volume
+            </li>
             <li>Full body, splits, cardio, mobility and mixed days as first-class session types</li>
             <li>Notes on anything — a niggle, a PR, a session cut short</li>
             <li>Weeks compared against weeks, which is the scale training actually happens on</li>
@@ -141,6 +146,25 @@ const GOALS = [
             </p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────── the rail ──── -->
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__dot"></span>Recovery, on a plate</p>
+          <h2>The nutrients training actually spends.</h2>
+          <p>
+            Not the macros — those you already count. These are the ones a hard block quietly draws
+            down, and the foods that put them back.
+          </p>
+        </div>
+        <we-food-rail
+          [locale]="locale"
+          [only]="recovery"
+          label="Foods for the nutrients training spends, scrollable"
+        />
       </div>
     </section>
 
@@ -223,6 +247,11 @@ const GOALS = [
   ],
 })
 export class WorkoutsComponent {
+  /** The rail is shared with the hubs, so it asks for a locale. */
+  readonly locale = DEFAULT_LOCALE;
+
+  /** What a hard training block draws down, as opposed to what it burns. */
+  readonly recovery = ['magnesium', 'zinc', 'vitamin-d', 'vitamin-b12', 'vitamin-b6', 'niacin'];
   readonly site = SITE;
   readonly goals = GOALS;
 

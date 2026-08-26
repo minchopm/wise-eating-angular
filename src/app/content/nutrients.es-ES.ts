@@ -100,7 +100,6 @@ export const ES_ES: LocaleContent = {
     product: 'Producto',
     learn: 'Aprender',
     legal: 'Legal',
-    contact: 'Contacto',
     note:
       '{name} es una herramienta de planificación y divulgación. No diagnostica, no trata ni ' +
       'cura ninguna enfermedad, y no sustituye el consejo médico profesional. Los valores ' +

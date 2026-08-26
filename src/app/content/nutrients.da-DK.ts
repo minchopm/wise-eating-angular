@@ -101,7 +101,6 @@ export const DA_DK: LocaleContent = {
     product: 'Produkt',
     learn: 'Læs mere',
     legal: 'Juridisk',
-    contact: 'Kontakt',
     note:
       '{name} er et planlægnings- og oplysningsværktøj. Det stiller ingen diagnose, behandler og ' +
       'helbreder ingenting, og det erstatter ikke professionel lægelig rådgivning. ' +

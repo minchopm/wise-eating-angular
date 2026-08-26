@@ -101,7 +101,6 @@ export const IT_IT: LocaleContent = {
     product: 'Prodotto',
     learn: 'Approfondire',
     legal: 'Note legali',
-    contact: 'Contatti',
     note:
       '{name} è uno strumento di pianificazione e divulgazione. Non fa diagnosi, non cura né ' +
       'tratta alcuna condizione e non sostituisce il parere di un medico. I valori nutrizionali ' +

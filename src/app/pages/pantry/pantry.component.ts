@@ -5,6 +5,8 @@ import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.direc
 import { Seo } from '../../core/seo';
 import { SITE } from '../../core/site';
 import { PageHeadComponent } from '../../shared/page-head';
+import { DEFAULT_LOCALE } from '../../core/locales';
+import { FoodRailComponent } from '../../shared/food-rail';
 import { StoreButtonComponent } from '../../shared/store-button';
 
 const STEPS = [
@@ -45,6 +47,7 @@ const STEPS = [
   imports: [
     RouterLink,
     PageHeadComponent,
+    FoodRailComponent,
     StoreButtonComponent,
     RevealDirective,
     RevealStaggerDirective,
@@ -99,15 +102,30 @@ const STEPS = [
         <div appReveal="up" [revealDelay]="110">
           <h2>Budget, if you want it</h2>
           <p>
-            Price tracking is optional and off to one side, because not everybody wants their
-            dinner audited. Turn it on and the plan carries an estimated cost, the shopping list
-            adds up, and you can see which weeks were expensive and why.
+            Price tracking is optional and off to one side, because not everybody wants their dinner
+            audited. Turn it on and the plan carries an estimated cost, the shopping list adds up,
+            and you can see which weeks were expensive and why.
           </p>
           <p>
             It is the same mechanism as the nutrients: the numbers are estimates, they are honest
             about being estimates, and they are enough to make a decision with.
           </p>
         </div>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────── the rail ──── -->
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><span class="eyebrow__dot"></span>What is on the shelf</p>
+          <h2>Photographed, not stock.</h2>
+          <p>
+            Every food in the app carries its own picture, taken for the archive rather than bought
+            from one. Here are twenty of them, each filed under the nutrient it is known for.
+          </p>
+        </div>
+        <we-food-rail [locale]="locale" label="Foods in the archive, scrollable" />
       </div>
     </section>
 
@@ -200,6 +218,8 @@ const STEPS = [
   ],
 })
 export class PantryComponent {
+  /** The rail is shared with the hubs, so it asks for a locale. */
+  readonly locale = DEFAULT_LOCALE;
   readonly site = SITE;
   readonly steps = STEPS;
 

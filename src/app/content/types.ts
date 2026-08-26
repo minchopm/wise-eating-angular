@@ -173,7 +173,6 @@ export interface ShellChrome {
   readonly product: string;
   readonly learn: string;
   readonly legal: string;
-  readonly contact: string;
   /** The medical disclaimer. {name} and {source} are substituted. */
   readonly note: string;
   readonly rights: string;

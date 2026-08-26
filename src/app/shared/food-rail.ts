@@ -142,18 +142,33 @@ export class FoodRailComponent {
     this.current.set(value);
   }
 
-  /** Accessible name for the scroll region. Supplied by the hub that hosts it. */
+  /** Accessible name for the scroll region. Supplied by the page that hosts it. */
   @Input() label = 'Foods, scrollable';
 
+  /**
+   * Narrow the rail to these nutrients.
+   *
+   * The training page wants the half-dozen nutrients recovery actually turns
+   * on, not the whole set — a rail of vitamin K and fibre under a heading
+   * about lifting is decoration, and the reader can tell.
+   */
+  @Input() set only(value: readonly string[] | undefined) {
+    this.limit.set(value && value.length ? new Set(value) : null);
+  }
+
   private readonly current = signal<Locale | null>(null);
+  private readonly limit = signal<ReadonlySet<string> | null>(null);
 
   readonly cards = computed<Card[]>(() => {
     const locale = this.current();
     if (!locale) return [];
 
     const articles = contentFor(locale.code).articles;
+    const only = this.limit();
 
     return FOOD_RAIL.flatMap((food) => {
+      if (only && !only.has(food.slug)) return [];
+
       const article = articles[food.slug];
       // A locale that has not translated this nutrient yet gets a shorter
       // rail rather than an English card wedged into it.

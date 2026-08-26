@@ -103,7 +103,6 @@ export const FR_FR: LocaleContent = {
     product: 'Produit',
     learn: 'Comprendre',
     legal: 'Mentions légales',
-    contact: 'Contact',
     note:
       '{name} est un outil de planification et d’information. Il ne pose aucun diagnostic, ne ' +
       'traite ni ne guérit aucune affection, et ne remplace pas un avis médical professionnel. ' +
