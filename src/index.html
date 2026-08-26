@@ -60,6 +60,15 @@
     -->
     <script>
       addEventListener('load', function () {
+        // The pages that carry the care notice declare themselves ad-free in
+        // their own prerendered head, and this is the only place that can act
+        // on it: Auto Ads decides what to place when the script loads, and by
+        // then asking Angular is too late. Reading the served HTML works
+        // because every page here is prerendered, so the tag is present before
+        // a line of application code has run.
+        var ads = document.querySelector('meta[name="we-ads"]');
+        if (ads && ads.getAttribute('content') === '0') return;
+
         var s = document.createElement('script');
         s.async = true;
         s.crossOrigin = 'anonymous';

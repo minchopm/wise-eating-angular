@@ -33,6 +33,19 @@ export interface PageMeta {
   readonly alternates?: readonly { hreflang: string; path: string }[];
   /** BCP 47 for this page. Sets <html lang>. */
   readonly locale?: string;
+  /**
+   * Whether this page may carry advertising. Defaults to true.
+   *
+   * Set false on the pages that carry the care notice. An advert beside a
+   * paragraph telling someone to seek help for an eating disorder is not a
+   * revenue decision, it is an editorial one, and it is the wrong call
+   * whatever the page earns.
+   *
+   * Emitted as a meta tag rather than handled here, because the ad script
+   * lives in index.html and loads before Angular does. Always emitted, in
+   * both states, so a page can never inherit the answer from the last one.
+   */
+  readonly ads?: boolean;
 }
 
 /**
@@ -82,6 +95,8 @@ export class Seo {
   private tags(page: PageMeta, full: string, canonical: string): Record<string, string> {
     return {
       description: page.description,
+
+      'we-ads': page.ads === false ? '0' : '1',
 
       // Without max-image-preview:large a result gets a thumbnail rather than
       // the wide card, and max-snippet:-1 lets the description come from the

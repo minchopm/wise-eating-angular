@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
+import { track } from '../core/analytics';
 import { SITE } from '../core/site';
 
 /**
@@ -20,6 +21,7 @@ import { SITE } from '../core/site';
       [href]="href"
       target="_blank"
       rel="noopener"
+      (click)="clicked()"
       [attr.aria-label]="'Download ' + name + ' on the App Store'"
     >
       <svg viewBox="0 0 384 512" aria-hidden="true" focusable="false">
@@ -47,4 +49,19 @@ export class StoreButtonComponent {
   @Input() href: string = SITE.appStore;
 
   readonly name = SITE.name;
+
+  /**
+   * The one action on this site that counts as success.
+   *
+   * Fired here rather than at each call site for the reason the component
+   * exists at all: one button, one event name, one shape. GA4 attaches the
+   * page itself, so the only thing worth adding is which storefront the link
+   * pointed at — the same click from the German and Danish pages goes to two
+   * different App Stores, and that difference is invisible in the URL of the
+   * page it was clicked from.
+   */
+  clicked(): void {
+    const storefront = /\/([a-z]{2})\/app\//.exec(this.href)?.[1] ?? 'us';
+    track('store_click', { storefront });
+  }
 }

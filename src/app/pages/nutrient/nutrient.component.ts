@@ -7,6 +7,7 @@ import { NUTRIENT_FOODS, NutrientTable } from '../../content/nutrient-foods';
 import { FACTS, NutrientFacts } from '../../content/nutrient-facts';
 import { CONTENT, LIVE_LOCALES, contentFor } from '../../content/registry';
 import { ArticleChrome, LocalisedArticle } from '../../content/types';
+import { trackReadDepth } from '../../core/analytics';
 import { DEFAULT_LOCALE, Locale, localePath, storeUrl } from '../../core/locales';
 import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.directive';
 import { Seo } from '../../core/seo';
@@ -642,6 +643,8 @@ export class NutrientComponent {
     if (!this.article || !this.facts) return;
     const article = this.article;
     const facts = this.facts;
+
+    trackReadDepth({ kind: 'nutrient', slug, locale: this.locale.code });
 
     // Numbers from facts, words from the translation, joined by id — so a row
     // cannot end up with the wrong figure however the wording is edited.

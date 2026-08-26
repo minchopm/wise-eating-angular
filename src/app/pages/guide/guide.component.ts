@@ -6,6 +6,7 @@ import { GUIDE_FACTS, GuideFacts, Strength } from '../../content/guide-facts';
 import { GUIDE_CONTENT, GUIDE_LOCALES, guidesFor } from '../../content/guide-registry';
 import { GuideChrome, LocalisedGuide } from '../../content/guide-types';
 import { contentFor } from '../../content/registry';
+import { trackReadDepth } from '../../core/analytics';
 import { DEFAULT_LOCALE, Locale, localePath, storeUrl } from '../../core/locales';
 import { RevealDirective, RevealStaggerDirective } from '../../core/reveal.directive';
 import { Seo } from '../../core/seo';
@@ -97,7 +98,9 @@ interface SeeAlsoLink {
             <div class="table-wrap" appReveal="up">
               <table class="claims">
                 <caption class="visually-hidden">
-                  {{ chrome.numbers }}
+                  {{
+                    chrome.numbers
+                  }}
                 </caption>
                 <thead>
                   <tr>
@@ -464,6 +467,14 @@ export class GuideComponent {
 
     this.careNotice = facts.careNotice === true;
 
+    // Measured everywhere except the care pages. How long someone lingers on
+    // a page about restriction is not ours to collect: it would tell us
+    // nothing we would act on, and the person it describes did not come here
+    // to be studied.
+    if (!this.careNotice) {
+      trackReadDepth({ kind: 'guide', slug, locale: this.locale.code });
+    }
+
     const strengthLabel: Record<Strength, string> = {
       established: this.chrome.strengthEstablished,
       probable: this.chrome.strengthProbable,
@@ -521,6 +532,7 @@ export class GuideComponent {
       description: guide.description,
       updated: facts.updated,
       locale: this.locale.code,
+      ads: !this.careNotice,
       alternates: translated.map((locale) => ({
         hreflang: locale.hreflang,
         path: localePath(locale, path),

@@ -94,11 +94,38 @@ the first meaningful Performance numbers arrive around 2026-09-02.
 Still open: linking Search Console to GA4 (`Admin → Search Console links`), so
 queries and on-page behaviour can be read together instead of in two tabs.
 
-### 4. Whether readers read — **unknown**
+### 4. Whether readers read — **instrumented 2026-08-26**
 
-GA4 fires `page_view` correctly on route changes (verified). It fires nothing
-else. Default GA4 counts an "engaged session" at ten seconds; these articles
-take six minutes. Nothing currently distinguishes skimming from reading.
+GA4 counts an "engaged session" at ten seconds. These articles take six
+minutes, so by that measure a glance and a careful read were the same event.
+Two events now separate them:
+
+- `store_click` — fired from `store-button.ts`, the single component every App
+  Store link on the site goes through, carrying which storefront the link
+  pointed at. This is the one action that counts as success, and until now
+  nothing measured it. **Still to do in the GA4 UI:** mark it as a key event,
+  which is a setting rather than code.
+- `read_depth` — fired at 50% and 90% of the document, carrying the seconds
+  elapsed. Depth alone cannot separate reading from flicking a thumb to the
+  bottom; the elapsed time is in the payload so the report can tell rather
+  than the code guessing. Pages too short to scroll are skipped, since they
+  would report perfect depth without anyone moving.
+
+Both fail silently when `window.gtag` is absent — ad blocker, strict
+extension, unaccepted consent tool. That is an ordinary state, not an error.
+
+**The care pages are excluded, deliberately.** The sixteen guide pages carrying
+`careNotice` fire no `read_depth`, and serve no advertising: `Seo` emits
+`<meta name="we-ads">` in both states, and the AdSense loader in `index.html`
+reads it before Auto Ads decides anything. How long someone lingers on a page
+about restriction is not ours to collect, and an advert beside a paragraph
+telling them to seek help is an editorial mistake whatever it earns.
+
+One honest limitation: the ad decision is made once per full page load, so a
+reader who navigates *client-side* from an ordinary page into a care page
+arrives with the script already loaded. Search traffic lands directly, which
+is the case that matters, but this is not airtight and pretending otherwise
+would be worse than writing it down.
 
 ---
 
