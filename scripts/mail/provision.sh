@@ -103,13 +103,30 @@ read -r -a DKIM <<< "$(aws ses verify-domain-dkim --domain "$DOMAIN" --query 'Dk
 # until the reports show the domain's mail is signing cleanly.
 #
 # UPSERT rather than CREATE throughout, so a re-run repairs rather than fails.
+# Route 53 keeps every value for one name and type in a single record, so an
+# UPSERT carrying only SPF deletes whatever else was there. Domains collect apex
+# TXT records over time — Google and Bing verification, TikTok, Atlassian — and
+# losing one silently un-verifies a property nobody thinks to re-check. So: read
+# what is there, drop any previous SPF, keep the rest, add ours.
+EXISTING=$(aws route53 list-resource-record-sets --hosted-zone-id "$ZONE" \
+  --query "ResourceRecordSets[?Name=='${DOMAIN}.' && Type=='TXT'].ResourceRecords[].Value" \
+  --output json 2>/dev/null || echo '[]')
+APEX_TXT=$(EXISTING="$EXISTING" python3 -c '
+import json, os
+keep = [v for v in json.loads(os.environ["EXISTING"]) if "v=spf1" not in v]
+keep.append("\"v=spf1 include:amazonses.com ~all\"")
+print(",".join(json.dumps({"Value": v}) for v in keep))
+')
+KEPT=$(( $(echo "$APEX_TXT" | tr ',' '\n' | grep -c .) - 1 ))
+[[ $KEPT -gt 0 ]] && cyan "     keeping ${KEPT} existing apex TXT record(s)"
+
 cyan "2/7  writing DNS records"
 {
   echo '{"Comment":"mail for '"${DOMAIN}"'","Changes":['
   echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"'"${DOMAIN}"'","Type":"MX","TTL":300,'
   echo '"ResourceRecords":[{"Value":"10 inbound-smtp.'"${REGION}"'.amazonaws.com"}]}},'
   echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"'"${DOMAIN}"'","Type":"TXT","TTL":300,'
-  echo '"ResourceRecords":[{"Value":"\"v=spf1 include:amazonses.com ~all\""}]}},'
+  echo '"ResourceRecords":['"${APEX_TXT}"']}},'
   echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"_dmarc.'"${DOMAIN}"'","Type":"TXT","TTL":300,'
   echo '"ResourceRecords":[{"Value":"\"v=DMARC1; p=none; rua=mailto:postmaster@'"${DOMAIN}"'\""}]}},'
   echo '{"Action":"UPSERT","ResourceRecordSet":{"Name":"_amazonses.'"${DOMAIN}"'","Type":"TXT","TTL":300,'
